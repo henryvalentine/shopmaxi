@@ -1,0 +1,132 @@
+﻿<br/>
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 90%; border: 2px solid #008000" ng-controller="profileController" ng-init="initializeController()">
+    <div class=" modal-header" style="border-bottom: 1px solid #e0e0e0">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <h3 class="modal-title">Edit Your Profile</h3>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-7">
+                    <img ng-src="{{img.path}}" style="height: 40%; width: 80%; float: left" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-md-8">
+                    <label>Profile Picture:</label>
+                    <input type="file" class="form-control" name="file" ng-file-select="previewImage($event)" accept="image/*" ng-disabled="uploading === true" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Email: &nbsp;{{profile.Email}}</h4>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-10">
+                    <label>Original Password *</label>
+                    <input type="password" class="form-control" ng-model="profile.OriginalPassword" placeholder="Enter Original Password"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <label>New Password *</label>
+                    <input type="password" class="form-control" placeholder="Enter New Password" ng-model="profile.Password"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <label>Confirm New Password *</label>
+                    <input type="password" class="form-control" placeholder="Confirm New Password" ng-model="profile.ConfirmPassword" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="modal-body">
+        <form method="POST">
+           <div class="row">
+                <div class="col-md-6">
+                    <label>Last Name *</label>
+                    <input type="text" class="form-control" ng-model="profile.LastName" placeholder="Last Name"/>
+                </div>
+                <div class="col-md-6">
+                    <label>Other Names *</label>
+                    <input type="text" class="form-control" placeholder="Other Names" ng-model="profile.OtherNames"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-6">
+                    <label for="email">Phone Number *</label>
+                    <input type="tel" data-ng-model="profile.PhoneNumber" class="form-control" placeholder="Phone Number"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label">Birthday</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                               min-date="minDate" max-date="maxDate"
+                               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="profile.BirthdayStr" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" ng-if="isAdmin === false">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Country *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getStates(profile.Country, getStatesCompleted)" ng-model="profile.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>State/Province *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getCities(profile.State, getCitiesCompleted)" ng-model="profile.State" ng-options="state as state.Name for state in states track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>City *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-model="profile.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label "> Address *</label>
+                        <input type="text" ng-model="profile.StreetNo" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3" ng-if="isAdmin === false">
+                    <input type="button" value="Save" ng-click="processProfile()" class="btn btn-primary" style="margin-top: 7px;"/>
+                </div>
+                <div class="col-md-3" ng-if="isAdmin === true">
+                    <input type="button" value="Save" ng-click="processAdminProfile()" class="btn btn-primary" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br/><br/>
+         

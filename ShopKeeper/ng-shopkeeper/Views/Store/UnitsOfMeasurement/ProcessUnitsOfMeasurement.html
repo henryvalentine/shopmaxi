@@ -1,0 +1,35 @@
+﻿   
+    <div class="row"  style="visibility: visible; width: 100%" ng-controller="uomController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+               <h4 class="modal-title">{{uom.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Unit of Measurement Code *</label>
+                    <input type="text" data-ng-model="uom.UoMCode" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Description</label>
+                    <textarea data-ng-model="uom.UoMDescription" class="form-control">{{uom.UoMDescription}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processUoM()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<script>
+    //angular.element('popDiv').draggable();
+</script>

@@ -1,0 +1,218 @@
+﻿<br />
+<br />
+
+<div class="row fsEdit" ng-controller="storeOutletController" ng-init="getStoreOutlet()" style="border: 3px #008000 solid">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-4">
+                <h4 class="modal-title">Store Operational Settings</h4>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-md-3">
+                    <img ng-src="{{storeOutlet.StoreSettingObject.StoreLogoPath}}" style="height: 40%; width: 80%; float: left"/>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Store</h4>
+                </div>
+                <div class="col-md-4">
+                   
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Store Name *</label>
+                    <div class="input-group input-group-lg">
+                        <input type="text" data-ng-model="storeOutlet.StoreSettingObject.StoreName" class="form-control" placeholder=" Store Name"/>
+                    </div>
+                </div>
+                <div class="form-group  col-md-6">
+                    <label>Company Name</label>
+                    <div class="input-group input-group-lg">
+                        <input type="tel" data-ng-model="storeOutlet.StoreSettingObject.CompanyName" class="form-control" placeholder="Phone Number"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-md-4">
+                    <label>Store Email *</label>
+                    <div class="input-group input-group-lg">
+                        <input type="email" data-ng-model="storeOutlet.StoreSettingObject.StoreEmail" class="form-control" placeholder="Store Email"/>
+                    </div>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label>Store website url:</label>
+                    <div class="input-group input-group-lg">
+                        <input type="tel" data-ng-model="storeOutlet.StoreSettingObject.Url" class="form-control" placeholder="Store website url" />
+                    </div>
+                </div>
+                <div class="form-group  col-md-4">
+                    <label>Store Phone Number:</label>
+                    <div class="input-group input-group-lg">
+                        <input type="tel" data-ng-model="storeOutlet.StoreSettingObject.PhoneNumber" class="form-control" placeholder="Store Phone Number"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-md-6">
+                    <label>Operating Currency *</label>
+                    <div class="input-group input-group-lg">
+                        <select ng-model="storeOutlet.StoreSettingObject.StoreCurrencyObject" class="form-control" ng-options="currency  as currency.Name for currency in currencies track by currency.StoreCurrencyId">
+                            <option value="">-- select --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group  col-md-6">
+                    <label>Store Logo:</label>
+                    <div class="input-group input-group-lg">
+                        <input type="file" id="imgView" class="form-control" name="file" ng-file-select="previewImage($event)" accept="image/*" ng-disabled="uploading === true" />
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4><b>Main Store Outlet</b></h4>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Outlet Name *</label>
+                        <input type="text" data-ng-model="storeOutlet.OutletName" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Default Tax</label>
+                        <input type="text" data-ng-model="storeOutlet.DefaultTax" class="form-control" valid-number />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label ">VAT(%)</label>
+                        <input type="text" data-ng-model="storeOutlet.StoreSettingObject.VAT" class="form-control" valid-number />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Database Synchronization Schedule Time</label>
+                        <!--<timepicker ng-model="storeOutlet.SynchronizationTime" hour-step="1" minute-step="1" show-meridian="true"></timepicker>-->
+
+                        <p class="input-group">
+                            <input type="text" class="form-control" datetime-picker="H:MM" ng-model="storeOutlet.StoreSettingObject.DbSyncTimeShedule" is-open="opened" enable-date="false" timepicker-options="timeOptions" close-on-selection="true" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Facebook ID </label>
+                        <input type="text" data-ng-model="storeOutlet.FacebookHandle" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Twitter ID </label>
+                        <input type="text" data-ng-model="storeOutlet.TwitterHandle" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Deduct Stock At Sales Point? &nbsp; <input type="checkbox" data-ng-model="storeOutlet.StoreSettingObject.DeductStockAtSalesPoint" /> </label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Outlet Address</h4>
+                </div>
+                <div class="col-md-4">
+                   
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label>Country *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getStates(storeOutlet.Country, getStatesCompleted)" ng-model="storeOutlet.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label>State/Province *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getCities(storeOutlet.State, getCitiesCompleted)" ng-model="storeOutlet.State" ng-options="state as state.Name for state in states track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label>City *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-model="storeOutlet.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <label class="control-label "> Address *</label>
+                        <input type="text" ng-model="storeOutlet.StoreAddress" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processStoreOutlet()" class="btn btn-lg btn-primary" style="margin-top: 7px;" ng-disabled="busy === true" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

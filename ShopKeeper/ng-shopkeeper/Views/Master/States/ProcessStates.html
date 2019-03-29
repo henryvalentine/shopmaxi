@@ -1,0 +1,39 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="manageStateCntroller" ng-init="initializeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{selectedState.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessStatees" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="selectedState.Name" class="form-control" required />
+                </div>
+                <!--ng-options="country as country.Name for country in Countries"-->
+                <!--<option ng-repeat="country in Countries" value="{{country.CountryId}}">{{country.Name}}</option>-->
+                <div class="col-md-12">
+                    <label class="control-label "> Country *</label>
+                    <select id="ngIx" ng-model="selectedState.Country" ng-options="country as country.Name for country in countries track by country.CountryId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select Country --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processState()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    //alert($('#cnIx').html());
+    //$('#ngIx').val($('#cnIx').html());
+</script>

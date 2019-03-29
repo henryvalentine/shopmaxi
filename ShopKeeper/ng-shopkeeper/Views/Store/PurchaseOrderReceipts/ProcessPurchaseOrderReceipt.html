@@ -1,0 +1,47 @@
+﻿
+
+<div ng-controller="purchaseOrderReceiptsController">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>{{newOrderReceipt.receptionHeader}}</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            Item : <strong>{{newOrderReceipt.StoreItemName}}</strong> <br/>
+            Quantity remaining : <strong>{{newOrderReceipt.balance | number:0}}</strong>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Quantity Received *</label>
+            <input type="text" ng-model="newOrderReceipt.QuantityDelivered" class="form-control" ui-number-mask="0"/>
+        </div>
+        <div class="col-md-6">
+            <label>Reception Date *</label>
+            <p class="input-group">
+                <input type="text" class="form-control datepicker" ng-click="opendelivery($event, newOrderReceipt)" datepicker-popup="{{format}}" is-open="newOrderReceipt.isOpen" min-date="minDate" max-date="maxDate" datepicker-options="endDateOptions" date-disabled="" close-text="Close" ng-model="newOrderReceipt.DateDelivered"/>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Selling Price :{{newOrderReceipt.Price}}/{{newOrderReceipt.MinimumQuantity}}{{newOrderReceipt.UoMCode}} </label>
+            <input type="text" ng-model="newOrderReceipt.Price" class="form-control" ui-number-mask="0" placeholder="New selling price" />
+        </div>
+        <div class="col-md-6">
+            <label>Expiry Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control datepicker" ng-click="opendeliveryExp($event, newOrderReceipt)" datepicker-popup="{{expDateFormat}}" is-open="newOrderReceipt.isExpOpen" min-date="minExpDate" max-date="maxExpDate" datepicker-options="expDateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="newOrderReceipt.ExpiryDate" />
+            </p>
+        </div>
+    </div>
+    <div class="row modal-footer">
+        <div class="col-md-12">
+            <input type="button" value="Save" ng-click="addDelivery(newOrderReceipt)" class="btn btn-primary" style="margin-top: 7px;" ng-if="isPurchaser === true" />
+        </div>
+    </div>
+</div>

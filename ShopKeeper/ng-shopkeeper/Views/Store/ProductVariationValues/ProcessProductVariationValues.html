@@ -1,0 +1,25 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="productVariationValueController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+               <h4 class="modal-title">{{productVariationValue.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Variation Property *</label>
+                    <input type="text" data-ng-model="productVariationValue.Value" class="form-control" />
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processProductVariationValue()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

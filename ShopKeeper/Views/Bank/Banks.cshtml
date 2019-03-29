@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Banks";
+}
+<br />
+<br />
+<br />
+<h4>Banks</h4>
+
+<br />
+
+    <fieldset id="fsBankList" style="border: none; background: whitesmoke" ng-app="bankManagement" ng-controller="manageBankCntroller">
+    <div class="row">
+       
+            <div class="row">
+                <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                    <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+                </div>
+            </div>
+            <div class="row"></div>
+            <table id="tblBanks" bank-table="">
+                <thead>
+                    <tr style="color: #fff">
+                        <th style="width: 3%; text-align: left">
+                            S/N
+                        </th>
+                        <th style="width: 12%; text-align: left">
+                            Full Name
+                        </th>
+                        <th style="width: 12%; text-align: left">
+                            Short Name
+                        </th>
+                        <th style="width: 12%; text-align: left">
+                            Sort Code
+                        </th>
+                        <th style="width: 7%">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+</div>
+
+</fieldset>
+
+    <style type="text/css">
+        a, a:visited, a:hover{
+        color: #fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        var bankManager = angular.module('bankManagement', ['ngResource', 'ngDialog']);
+        
+        bankManager.config(['ngDialogProvider', function (ngDialogProvider) {
+            ngDialogProvider.setDefaults({
+                className: 'ngdialog-theme-default',
+                showClose: true,
+                closeByDocument: true,
+                closeByEscape: true
+            });
+        }]);
+
+        bankManager.directive('bankTable', function ($compile)
+        {
+            return function ($scope, bankTable)
+            {
+                var tableOptions = {};
+                tableOptions.sourceUrl = "/Bank/GetBankObjects";
+                tableOptions.itemId = 'BankId';
+                tableOptions.columnHeaders = ['FullName', 'ShortName', 'SortCode'];
+                tableManager($scope, $compile, bankTable, tableOptions, 'New Bank', 'prepareBankTemplate', 'getBank', 'deleteBank');
+
+            };
+        });
+
+        bankManager.factory("bankClientService", function ($http)
+        {
+
+            return {
+                addBank: function (bank) {
+                    var dxcv = JSON.stringify({ bank: bank });
+                    return $http({ method: 'POST', url: "/Bank/AddBank", data: dxcv });
+                },
+                getBank : function (id)
+                {
+                    return $http({ method: 'GET', url: "/Bank/GetBank?id=" + id });
+                },
+                
+                editBank: function (bank) {
+                    var dxcv = JSON.stringify({ bank: bank });
+                    return $http({ method: 'POST', url: "/Bank/EditBank", data: dxcv });
+                },
+
+                deleteBank: function (id) {
+                    return $http({ method: 'POST', url: "/Bank/DeleteBank?id=" + id });
+                }
+            };
+        });
+        
+        bankManager.controller('manageBankCntroller', ['$scope', 'bankClientService', 'ngDialog', function ($scope, bankClientService, ngDialog)
+        {
+            $scope.initializeController = function ()
+            {
+                $scope.selectedBank = new Object();
+                $scope.selectedBank.BankId = 0;
+                $scope.selectedBank.SortCode = '';
+                $scope.selectedBank.ShortName = '';
+                $scope.selectedBank.FullName = '';
+                $scope.selectedBank.Header = 'Create New Bank';
+                id = 0;
+            };
+
+            $scope.prepareBankTemplate = function () {
+                $scope.initializeController();
+                ngDialog.open({
+                    template: '/ng-shopkeeper/Views/Master/Banks/ProcessBanks.html',
+                    className: 'ngdialog-theme-flat',
+                    scope: $scope
+                });
+            };
+           
+            $scope.processBank = function ()
+            {
+                var bank = new Object();
+                bank.SortCode = $scope.selectedBank.SortCode;
+                bank.ShortName = $scope.selectedBank.ShortName;
+                bank.FullName = $scope.selectedBank.FullName;
+                if (bank.FullName == undefined || bank.FullName.length < 1)
+                {
+                    alert("ERROR: Please provide Bank full name. ");
+                    return;
+                }
+                if (bank.SortCode == undefined || bank.SortCode.length < 1)
+                {
+                    alert("ERROR: Please provide Bank full name. ");
+                    return;
+                }
+                var promise = '';
+                if ($scope.selectedBank.BankId < 1)
+                {
+                    promise = bankClientService.addBank(bank);
+                }
+                else
+                {
+                    promise = bankClientService.editBank(bank);
+                }
+                promise.success(
+                function (data)
+                {
+                    if (data.BankId < 1)
+                    {
+                        alert(data.FullName);
+
+                    }
+                    else
+                    {
+                        if ($scope.selectedBank.BankId < 1)
+                        {
+                            alert("Bank information was successfully added.");
+                         } else {
+                            alert("Bank information was successfully updated.");
+                        }
+                       
+                        ngDialog.close('/ng-shopkeeper/Views/Master/Banks/ProcessBanks.html', '');;
+                        $scope.dataTable.fnClearTable();
+                        $scope.initializeController();
+                    }
+                });
+
+            };
+
+            $scope.getBank = function (id)
+            {
+                if (parseInt(id) < 1 || id == undefined || id == NaN)
+                {
+                    alert("ERROR: Invalid selection! ");
+                    return;
+                }
+                
+                bankClientService.getBank(id).success(
+                function (data)
+                {
+                    if (data.BankId < 1)
+                    {
+                        alert("ERROR: Bank information could not be retrieved! ");
+                               
+                    } else {
+                        $scope.initializeController();
+                        $scope.selectedBank = data;
+                        id = data.BankId;
+                        $scope.selectedBank.Header = 'Update Bank Information';
+                        ngDialog.open({
+                            template: '/ng-shopkeeper/Views/Master/Banks/ProcessBanks.html',
+                            className: 'ngdialog-theme-flat',
+                            //controller: 'manageBankCntroller',
+                            scope: $scope
+                        });
+                    }
+                });
+            };
+
+            $scope.deleteBank = function (id)
+            {
+                if (parseInt(id) > 0)
+                {
+                    if (!confirm("This Bank information will be deleted permanently. Continue?")) {
+                        return;
+                    }
+                    bankClientService.deleteBank(id).success(
+                    function (data)
+                    {
+                        if (data.Code < 1)
+                        {
+                            alert(data.Error);
+
+                        }
+                        else
+                        {
+                            $scope.dataTable.fnClearTable();
+                            alert(data.Error);
+                        }
+                    });
+                } else {
+                    alert('Invalid selection.');
+                }
+            };
+
+        }]);
+    </script>

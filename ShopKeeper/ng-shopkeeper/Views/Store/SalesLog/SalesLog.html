@@ -1,0 +1,177 @@
+﻿
+<br /><br /><br />
+<h4>Sales Log</h4>
+<br />
+
+<fieldset style="border: none; background: whitesmoke" ng-controller="salesLogController" ng-init="initializeController()">
+
+    <div class="row">
+        <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+            <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+        </div>
+        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+            <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+        </div>
+    </div>
+
+    <div class="row fsEdit check-element animate-show" style="width: 100%; border: 3px solid #27ae60;" ng-show="detail == true">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-9">
+                    <input type="button" value="Print" ng-click="printInvoice()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-body" id="invoice">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        {{sale.StoreName}}
+                    </h4>
+                </div>
+                <div class="col-md-5">
+                    <p>
+                        {{sale.StoreAddress}} 
+                    </p>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><label>Sales Invoice</label>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="col-md-3">
+                        <!--<label>To</label>-->
+                    </div>
+                    <div style="border-radius: 5px; border: 0.7px #000 solid">
+                        <div class="col-md-12">
+                            <h4>
+                            <!--    {{sale.CustomerName}}-->
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                            <!--    {{sale.CustomerAddress}}--> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label style="font-weight: normal">Invoice Number:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label style="font-weight: normal">
+                                {{sale.InvoiceNumber}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label style="font-weight: normal">Date:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label style="font-weight: normal">
+                                {{sale.DateStr}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <h4>Sold Items</h4>
+                </div>
+                <table class="table-responsive table-striped no-footer" role="grid">
+                    <thead>
+                    <tr style="color: #fff">
+                        <th style="text-align: left">
+                            SKU
+                        </th>
+                        <th style="text-align: left">
+                            Item Description
+                        </th>
+                        <th style="text-align: left">
+                            Quantity
+                        </th>
+                        <th style="text-align: left">
+                            Unit Price(&#8358;)
+                        </th>
+                        <th style="text-align: left">
+                            Total(&#8358;)
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="soldItem in sale.SoldItems">
+                        <td>
+                            <label class="control-label " style="font-weight: normal">{{soldItem.Sku}}</label>
+                        </td>
+                        <td>
+                            <label class="control-label ">{{soldItem.ItemSoldName}}</label>
+                        </td>
+                        <td>
+                            <div class="col-md-9">
+                                <label class="control-label " style="font-weight: normal">{{soldItem.QuantitySold}}</label>
+                            </div>
+                        </td>
+                        <td>
+                            <label class="control-label " style="font-weight: normal">{{soldItem.UnitPrice | currency: " "}}</label>
+                        </td>
+                        <td>
+                            <label class="control-label " style="font-weight: normal">{{soldItem.AmountSold | currency: " "}}</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row modal-footer">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-3">
+                <input type="button" value="<< Back" ng-click="initializeController()" class="btn btn-default" style="margin-top: 7px;" />
+            </div>
+        </div>
+    </div>
+    <div class="row check-element animate-show" ng-hide="detail == true">
+        <table class="dataTable no-footer" role="grid" ng-sales-log>
+            <thead>
+                <tr style="color: #fff;">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Date
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Amount Due(&#8358;)
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        No. of Items
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Sales Terminal
+                    </th>
+                    <th style="width: 5%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</fieldset>
+<br/><br/>

@@ -1,0 +1,132 @@
+﻿<br/><br/><br/>
+
+<div class="row" ng-controller="itemInfoController" ng-init="getDefaults()">
+    <div class="row">
+        <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+            <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+        </div>
+        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+            <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <h3> {{stockItem.Name}} : {{stockItem.VariationValue}}</h3>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-7">
+                    <div style="border: 1px solid #eee" class="targetarea">
+                        <img id="zoomer" style="visibility: visible; width: 150px; height: 100px; opacity: 1;" src="{{stockItem.StockUploadObjects[0].ImagePath}}" title="" alt="zoomable">
+                    </div>
+                    <div class="multizoom1 thumbs">
+                        <a ng-repeat="img in stockItem.StockUploadObjects" data-title="{{img.ViewName}}" data-large="{{img.ImagePath}}" href="{{img.ImagePath}}">
+                            <img title="{{img.ViewName}}" alt="{{img.ViewName}}" src="{{img.ImagePath}}" style="width: 50px; height: 50px;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <input type="hidden" id="cart_trigger" ng-model="trigger" />
+                    <div class="row">
+                        <ul>
+                            <li>
+                                Price : <label> {{stockItem.CurrencySymbol}}{{stockItem.Price}}</label>
+                            </li>
+                            <!--<li>
+                                Type: <a style="cursor: pointer; color: #008000" ng-click="gotoType(stockItem.StoreItemTypeId)">{{stockItem.StoreItemTypeName}}</a>
+                            </li>
+                            <li>
+                                Category: <a style="cursor: pointer; color: #008000" ng-click="gotoCategory(stockItem.StoreItemCategoryId)">{{stockItem.StoreItemCategoryName}}</a>
+                            </li>
+                            <li>
+                                Brand: <a style="cursor: pointer; color: #008000" ng-click="gotoBrand(stockItem.StoreItemBrandId)">{{stockItem.StoreItemBrandName}}</a>
+                            </li>
+                            <li>
+                                Deleivery: <a style="cursor: pointer; color: #008000">{{stockItem.DeliveryMethod}}</a>
+                            </li>-->
+                        </ul>
+                    </div>
+                    <br/>
+                    <div ng-if="variations !== null && variations.length > 0" class="row" ng-repeat="variation in variations">
+                        <div class="col-md-5 divlesspadding">
+                            <label>{{variation.StoreItemVariation}}</label>
+                            <select theme="bootstrap" ng-change="setItemVariant(variation, variation.ModelValue)" ng-model="variation.ModelValue" ng-options="variant as variant.Value for variant in variation.StoreItemVariationValueObjects track by variant.StoreItemVariationValueId" data-inset="true" class=" form-control" required>
+                                <option value="">-- Select {{variation.StoreItemVariation}} --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 divlesspadding">
+                            <label>Quantity</label>
+                            <input type="number" ng-model="stockItem.QuantityOrdered" class="form-control"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-7 divlesspadding">
+                            <a style="width: 80%" title="add to cart" class="btn ui-button ui-buttonCart ui-bg-orange-gradient sel-cart-add-button glyphicon glyphicon-plus-sign" ng-disabled="processing===true" ng-click="addToCart()">
+                                <span>add to cart</span> 
+                            </a>
+                        </div>
+                        <div class="col-md-5 divlesspadding">
+                            <a class="add-wishlist-link ui-block border-box acursor" ng-click="addToWishList()">
+                                <i class="ui-block icon i-wishlist"></i>
+                                <span class="label ui-block border-box" style="color: #333">add to wishlist</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h4>Description</h4>
+                <div>
+                    <p>
+                        {{stockItem.Description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row" ng-if="stockItem.SimilarItems.length > 0">
+                <label style="padding-bottom:5%">Other Products in {{stockItem.StoreItemTypeName}}</label>
+                <ul class="front">
+                    <li ng-repeat="item in stockItem.SimilarItems" class="liWidth">
+                        <a class="acursor" ng-click="getItemDetails(item)">
+                            <img src="{{item.ImagePath}}" style="width: 40%; height: 40%" />
+                            <h5>{{item.Name}} - {{stockItem.CurrencySymbol}}{{item.Price}}</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <br />
+            <div class="row" ng-if="viewedItems !== null && viewedItems !== undefined && viewedItems.length > 0">
+                <label>Previously viewed Items</label>
+                <ul class="front">
+                    <li ng-repeat="item in viewedItems" class="Width30li">
+                        <a style="cursor: pointer" ng-click="getItemDetails(item)">
+                            <img src="{{item.ImagePath}}" />
+                            <h5>{{item.Name}} - {{item.CurrencySymbol}}{{item.Price}}</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br/><br />
+    <div class="row">
+        <ul class="front">
+            <li ng-repeat="item in items" class="Width302li">
+                <a class="acursor" ng-click="getItemDetails(item)">
+                    <img src="{{item.ImagePath}}" style="width: 40%; height: 40%" />
+                    <h5>{{item.Name}} - {{item.CurrencySymbol}}{{item.Price}}</h5>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

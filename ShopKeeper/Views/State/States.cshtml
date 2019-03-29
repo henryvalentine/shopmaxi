@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "States";
+}
+<br />
+<br />
+<br />
+<h4>States</h4>
+
+<br />
+
+<fieldset id="fsStateList" style="border: none; background: whitesmoke" ng-app="stateManagement" ng-controller="manageStateCntroller">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table id="tblStates" state-table="">
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        State
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Country
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+</fieldset>
+
+<style type="text/css">
+    a, a:visited, a:hover {
+        color: #fff;
+    }
+</style>
+
+<script type="text/javascript">
+
+    var stateManager = angular.module('stateManagement', ['ngResource', 'ngDialog']);
+    stateManager.config(['ngDialogProvider', function (ngDialogProvider) {
+        ngDialogProvider.setDefaults({
+            className: 'ngdialog-theme-default',
+            showClose: true,
+            closeByDocument: true,
+            closeByEscape: true
+        });
+    }]);
+
+    stateManager.directive('stateTable', function ($compile) {
+        return function ($scope, stateTable) {
+
+            var tableOptions = {};
+            tableOptions.sourceUrl = "/State/GetStateObjects";
+            tableOptions.itemId = 'StateId';
+            tableOptions.columnHeaders = ['Name','CountryName'];
+            tableManager($scope, $compile, stateTable, tableOptions, 'New State', 'prepareStateTemplate', 'getState', 'deleteState');
+
+        };
+    });
+
+    stateManager.factory("stateClientService", function ($http) {
+
+        return {
+            addState: function (state)
+            {
+                var dxcv = JSON.stringify({ state: state });
+                return $http({ method: 'POST', url: "/State/AddState", data: dxcv });
+            },
+            getState: function (id)
+            {
+                return $http({ method: 'GET', url: "/State/GetState?id=" + id });
+            },
+            getCountries: function ()
+            {
+                return $http({ method: 'GET', url: "/State/GetCountries" });
+            },
+            
+            editState: function (state)
+            {
+                var dxcv = JSON.stringify({ state: state });
+                return $http({ method: 'POST', url: "/State/EditState", data: dxcv });
+            },
+
+            deleteState: function (id)
+            {
+                return $http({ method: 'POST', url: "/State/DeleteState?id=" + id });
+            }
+        };
+    });
+
+    var id = 0;
+
+    stateManager.controller('manageStateCntroller', ['$scope', 'stateClientService', 'ngDialog', function ($scope, stateClientService, ngDialog) {
+
+        $scope.initializeController = function ()
+        {
+            $scope.Countries = [];
+            stateClientService.getCountries().success(
+               function (data)
+               {
+                   $scope.Countries = data;
+               });
+            
+            $scope.selectedState = new Object();
+            $scope.selectedState.StateId = 0;
+            $scope.selectedState.Name = '';
+            $scope.selectedState.Country = new Object();
+            $scope.selectedState.Country.CountryId = 0;
+            $scope.selectedState.Country.Name = '';
+            
+        };
+
+        $scope.prepareStateTemplate = function ()
+        {
+            $scope.initializeController();
+            $scope.selectedState.Header = 'Create New State';
+            ngDialog.open({
+                template: '/ng-shopkeeper/Views/Master/States/ProcessStates.html',
+                className: 'ngdialog-theme-flat',
+                scope: $scope
+            });
+        };
+        
+        $scope.processState = function ()
+        {
+            var state = new Object();
+            state.Name = $scope.selectedState.Name;
+            state.CountryId = $scope.selectedState.Country.CountryId;
+           
+            if (state.Name == undefined || state.Name.length < 1)
+            {
+                alert("ERROR: Please provide State Name. ");
+                return;
+            }
+           
+            var promise = '';
+            if ($scope.selectedState.StateId < 1)
+            {
+                promise = stateClientService.addState(state);
+            }
+            else
+            {
+                promise = stateClientService.editState(state);
+            }
+            promise.success(
+            function (data) {
+                if (data.StateId < 1)
+                {
+                    alert(data.Name);
+
+                }
+                else {
+                   
+                    if ($scope.selectedState.StateId < 1)
+                    {
+                        alert("State information was successfully added.");
+                    } else
+                    {
+                        alert("State information was successfully updated."); 
+                    }
+                    ngDialog.close('/ng-shopkeeper/Views/Master/State/ProcessStates.html', '');
+                    $scope.dataTable.fnClearTable();
+                    $scope.initializeController();
+                }
+            });
+
+        };
+
+        $scope.getState = function (id) {
+            if (parseInt(id) < 1 || id == undefined || id == NaN)
+            {
+                alert("ERROR: Invalid selection! ");
+                return;
+            }
+
+            stateClientService.getState(id).success(
+            function (data)
+            {
+                if (data.StateId < 1)
+                {
+                    alert("ERROR: State information could not be retrieved! ");
+
+                }
+                else
+                {
+                    $scope.initializeController();
+                    $scope.selectedState = data;
+                    $scope.selectedState.Country = {};
+                    $scope.selectedState.Country.CountryId = data.CountryId;
+                    $scope.selectedState.Country.Name = data.CountryName;
+                    //alert($scope.selectedState.Country.Name);
+                    $scope.selectedState.Header = 'Update State Information';
+                    ngDialog.open({
+                        template: '/ng-shopkeeper/Views/Master/States/ProcessStates.html',
+                        className: 'ngdialog-theme-flat',
+                        //controller: 'manageStateCntroller',
+                        scope: $scope
+                    });
+                }
+            });
+        };
+
+        $scope.deleteState = function (id) {
+            if (parseInt(id) > 0) {
+                if (!confirm("This State information will be deleted permanently. Continue?")) {
+                    return;
+                }
+                stateClientService.deleteState(id).success(
+                function (data) {
+                    if (data.Code < 1) {
+                        alert(data.Error);
+
+                    }
+                    else {
+                        $scope.dataTable.fnClearTable();
+                        alert(data.Error);
+                    }
+                });
+            } else {
+                alert('Invalid selection.');
+            }
+        };
+
+    }]);
+</script>

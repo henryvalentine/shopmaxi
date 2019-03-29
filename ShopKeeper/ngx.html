@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Shopkeeper</title>
+        <script src="Scripts/jquery-2.1.1.min.js"></script>
+        <script src="Scripts/angular-file-upload-shim.min.js"></script>
+        <script src="Scripts/jquery.dataTables.js"></script>
+        <script data-main="main.js" src="Scripts/require.js"></script>
+        <script src="Scripts/dataTableDescription.js"></script>
+        
+        <!--<script src="Scripts/angular-file-upload.min.js"></script>-->
+
+        <link href="/Content/angular-block-ui.css" rel="stylesheet" />
+        <link href="/Content/bootstrap.css" rel="stylesheet" />
+        <link href="/Content/jquery.dataTables.css" rel="stylesheet" />
+        <link href="/Content/ngDialog.css" rel="stylesheet" />
+        <link href="/Content/ngDialog-theme-flat.css" rel="stylesheet" />
+        <link href="/Content/ngDialog-theme-default.css" rel="stylesheet" />
+        <link href="/Content/site.css" rel="stylesheet" />
+        <link href="/Content/feedbackmessage.css" rel="stylesheet" />
+        <link href="/Content/formControls.css" rel="stylesheet" />
+
+    </head>
+                      
+<body>
+    
+    <nav class="ddg-dropdown navbar-inverse navbar-fixed-top">
+        <ul class="main-menu">
+            <li>
+                <a title="Home" href="ngx.html#Master/Dashboard_Admin/Dashboard_Admin">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a title="Home" href="#">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a title="Link title here" href="#">Packges</a>
+                <ul>
+
+                    <li><a href="ngx.html#Master/SubscriptionPackages/SubscriptionPackages">Packages</a></li>
+                    <li><a href="#">Subscribers</a></li>
+                </ul>
+            </li>
+            <li>
+                <a title="Link title here" href="#">Transactions</a>
+                <ul>
+                    <li><a href="#">New Transaction</a></li>
+                    <li><a href="#">Transaction History</a></li>
+                    <li><a href="#">Exchange Rates</a></li>
+                </ul>
+            </li>
+        <li>
+            <a title="Link title here" href="#">General Settings</a>
+            <ul>
+                <li><a href="ngx.html#Master/Banks/Banks">Banks</a></li>
+                <li><a href="ngx.html#Master/Cities/Cities">Cities</a></li>
+                <li><a href="ngx.html#Master/States/States">States</a></li>
+                <li><a href="ngx.html#Master/Countries/Countries">countries</a></li>
+                <li><a href="ngx.html#Master/BillingCycles/BillingCycles">Billing Cycle</a></li>
+                <li><a href="ngx.html#Master/Currencies/Currencies">Currency</a></li>
+                <li><a href="ngx.html#Master/PaymentGateways/PaymentGateways">Payment Gateways</a></li>
+                <li><a href="ngx.html#Master/TransactionTypes/TransactionTypes">Transaction Types</a></li>
+            </ul>
+        </li>
+            <li>
+                <a title="Link title here" href="#">Support</a>
+                <ul>
+                    <li><a title="Link title here" href="#">FAQs</a></li>
+                    <li><a title="Link title here" href="#">Service Requests</a></li>
+                </ul>
+            </li>
+            <li style="float:right">
+                <a href="javascript:document.getElementById('logoutForm').submit()" title="Log out"><span style="cursor: pointer"><i class="glyphicon glyphicon-log-out"></i></span></a>
+                <form method="post" action="/Account/AdminLogOff" id="logoutForm" class="hide"></form>
+            </li>
+        </ul>
+    </nav>
+
+<div ng-view class="container body-content">
+    
+</div>
+    <script type="text/ng-template" id="warning-dialog.html">
+        <div class="modal-header">
+            <h3>You're Idle. Do Something!</h3>
+        </div>
+        <div idle-countdown="countdown" ng-init="countdown=5" class="modal-body">
+            <progressbar max="5" value="5" animate="false" class="progress-striped active">You'll be logged out in {{countdown}} second(s).</progressbar>
+        </div>
+
+    </script>
+</body>
+</html>
+
+<!--<div style="padding-top:20px; ">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox" style="display: none"></div></alert>
+</div>-->

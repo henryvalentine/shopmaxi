@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--[if gte IE 9]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Favicons -->
+   
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/icons/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/icons/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/icons/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/icons/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/assets/images/icons/favicon.png">
+
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+    <script src="Scripts/jquery-ui.min-1.11.1.js"></script>
+
+    <script type="text/javascript">
+        //$(window).load(function() {
+        //    setTimeout(function ()
+        //    {
+        //        $('#loading').fadeOut(400, "linear");
+        //    }, 800);
+        //});
+
+        $(document).ready(function ()
+        {
+            //var randomImages = ['1', '2', '3', '4', '5', '6'];
+
+            //var rndNum = Math.floor(Math.random() * randomImages.length);
+            //var url = 'url(/Content/images/' + randomImages[rndNum] + '.jpg)';
+            //$('body').css({ "background": url });
+            setTimeout(function ()
+            {
+                //$('body').css({ "background": "none" });
+                $('.nv-header').fadeIn();
+                $('.nv-body').fadeIn();
+                $('.nv-footer').fadeIn();
+                
+            }, 1500);
+        });
+    </script>
+    <style>
+       
+        .front li a {
+            color: #000;
+            font-size: 1em;
+        }
+         .front li a:hover {
+             text-decoration: none;
+             color: #008000;
+        }
+         .alink {
+            color: #000;
+            font-size: 1em;
+        }
+          .alink:hover {
+             text-decoration: none;
+             color: #008000;
+        }
+    </style>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="/assets/all-demo.css">-->
+    <!--<script src="Scripts/angular-file-upload.min.js"></script>-->
+
+
+    <link href="/Content/angular-block-ui.css" rel="stylesheet"/>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/Content/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="/Content/ngDialog.css" rel="stylesheet"/>
+    <link href="/Content/multizoom.css" rel="stylesheet" />
+    <link href="/Content/ngDialog-theme-flat.css" rel="stylesheet"/>
+    <link href="/Content/ngDialog-theme-default.css" rel="stylesheet"/>
+    <link href="/Content/site.css" rel="stylesheet"/>
+    <link href="/Content/feedbackmessage.css" rel="stylesheet"/>
+    <link href="/Content/formControls.css" rel="stylesheet"/>
+
+</head>
+
+<body ng-controller="defaultController" ng-init="setAuth()">
+
+     <!--<div  ng-show="busy===true;">
+        <img src="/assets/images/spinner/loader-dark.gif" alt="Loading...">
+    </div>-->
+  
+
+    <nav class="ddg-dropdown navbar-inverse navbar-fixed-top" style="border: #1e2e38; background: #1e2e38;">
+
+    <div class="row nv-header" style="margin-top: 10px; margin-bottom: 5px; background: #1e2e38; display:none">
+        <div class="col-md-3" ng-cloak>
+            <a title="Home" href="ngs.html#Store/Welcome/Welcome" ng-cloak>
+                <img src="{{store.StoreLogo}}" style="width: 15%; height: 10%" /> <span>{{store.StoreName}}</span>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" ng-model="searchCriteria" placeholder="Search for Item" class="form-control" style="top: 2%"/>
+                <span class="input-group-addon glyphicon" style="top: 2%; cursor: pointer" ng-click="search(searchCriteria)">
+                    <button class="button tooltip-button glyphicon glyphicon-search"></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <ul style="float: right" ng-if="isAuthenticated===true;" ng-cloak>
+                <li class="dropdown">
+                    <a title="Link title here" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{userName}}<span class="caret"></span></a>
+                    <ul>
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">Wish list</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">Wish list</a></li>
+                        <li><a style="cursor: pointer" ng-click="customerLogOut()" title="Log out"><span style="cursor: pointer"><i class="glyphicon glyphicon-log-out"></i></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul style="float: right" ng-if="isAuthenticated===false || isAuthenticated== null;" ng-cloak>
+                <li><a style="cursor: pointer; float: right" id="signinBtn" ng-click="showAccess() " title="Log in"><span style="cursor: pointer"><i class="glyphicon glyphicon-log-in"></i></span> Login in</a></li>
+            </ul>
+        </div>
+        <div class="col-md-1">
+            <div style="cursor:pointer" ng-click="showCart()">
+                <span class="shopping-cart">
+                    <span ng-cloak class="cartNumberWrapper">{{cartItemsCount}}</span>
+                </span>
+                <span style="color:#000">my cart</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="login_overlay popupAccess divStyle" id="authsection">
+    <a ng-click="closeAccess()" style="color: #999999; float: right; font-weight: bold; text-decoration: none; cursor: pointer">x</a>
+    <div id="loginSection">
+        <!-- html for login box -->
+        <div>
+
+            <h4>Login</h4>
+            <div class="col-md-12">
+
+            </div>
+            <form>
+                <div class="row">
+                    <input type="text" class="form-control" id="email" placeholder="Email" ng-model="model.UserName">
+                </div>
+                <br/>
+                <div class="row">
+                    <input type="password" class="form-control" id="password" placeholder="Password" ng-model="model.Password">
+                </div>
+                <div class="row" style="margin-bottom: 7px; margin-top: 7px">
+                    <button class="btn btnGreen" id="btnLogin" ng-click="signIn(model)">Login</button>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <a title="Use facebook" onclick=" checkLoginState() " href="#facebook" style="color: #498307;" class="btn socialLogin facebook">sign in with facebook</a>
+                    </div>
+                    <div class="row">
+                        <a title="Use Google" onclick=" checkAuth(); " href="#google" style="color: #498307;" class="btn socialLogin google">sign in with google</a>
+                    </div>
+                    <div class="row">
+                        <a title="Use Twitter" href="#twitter" class="btn socialLogin twitter" style="color: #498307;"> sign in with twitter</a>
+                    </div>
+                </div>
+                <div class="more_links">
+                    <p>
+                        <a onclick=" $('#loginSection').hide(); $('#forgotPassword').fadeIn();; return false; " style="text-decoration: none; cursor: pointer">
+                            forgot password?
+                        </a>
+                        <br>
+                        <img src="Content/images/load.gif" style="display: none" id="ldgif"/>
+                        <br>
+                    </p>
+                    <p>
+                        <a onclick=" $('#loginSection').hide(); $('#signUpSection').fadeIn();; return false; " style="text-decoration: none; cursor: pointer">
+                            sign up
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="signUpSection" style="display: none">
+        <!-- html for login box -->
+        <div>
+            <h4>sign up</h4>
+            <form>
+                <div class="row">
+                    <input type="text" class="form-control" style="margin-bottom: 7px;" placeholder="Last Name" ng-model="signupObj.LastName">
+                </div>
+                <div class="row">
+                    <input type="text" class="form-control" style="margin-bottom: 7px;" placeholder="Other Names" ng-model="signupObj.OtherNames">
+                </div>
+                <div class="row" style="margin-bottom: 7px;">
+                    <input type="text" class="form-control" placeholder="Email" ng-model="signupObj.Email">
+                </div>
+                <div class="row" style="margin-bottom: 7px;">
+                    <input type="password" class="form-control" id="regPassword" placeholder="Password" ng-model="signupObj.Password">
+                </div>
+                <div class="row" style="margin-bottom: 7px; margin-top: 7px">
+                    <button class="btn btnGreen" id="btnsignUp" ng-click="signUp(signupObj)">sign up</button>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <a title="Use facebook" onclick=" checkLoginState(); " href="#facebook" style="color: #498307;" class="btn socialLogin facebook">sign up with facebook</a>
+                    </div>
+                    <div class="row">
+                        <a title="Use Google" onclick=" checkAuth(); " href="#google" style="color: #498307;" class="btn socialLogin google">sign up with google</a>
+                    </div>
+                    <div class="row">
+                        <a title="Use Twitter" href="#twitter" class="btn socialLogin twitter" style="color: #498307;"> sign up with twitter</a>
+                    </div>
+                    <br>
+                    <img src="/Content/images/load.gif" style="display: none" id="ldrgif"/>
+
+                </div>
+                <div class="more_links">
+                    <p>
+                        <a onclick=" $('#signUpSection').hide(); $('#loginSection').fadeIn();; return false; " style="text-decoration: none; cursor: pointer">
+                            login
+                        </a>
+                        <br/>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="forgotPassword" style="display: none">
+        <!-- html for login box -->
+        <div>
+            <h4>Request Password Reset</h4>
+            <form>
+                <div class="row">
+                    <input type="text" class="form-control" style="margin-bottom: 7px;" placeholder="Email" ng-model="reqPassword.Email">
+                </div>
+                <div class="row" style="margin-bottom: 7px; margin-top: 7px">
+                    <button class="btn btnGreen" ng-click="reqNewPassword(reqPassword)">Continue</button>
+                </div>
+                <div class="more_links">
+                    <p>
+                        <a onclick=" $('#forgotPassword').hide(); $('#loginSection').fadeIn();; return false; " style="text-decoration: none; cursor: pointer">
+                            login
+                        </a>
+                        <br/>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+ <div id="cart" class="login_overlay popupAccess cartStyle">
+     <div class="row" ng-cloak>
+         <a ng-click="closeCart()" style="color: #999999; float: right; font-weight: bold; text-decoration: none; cursor: pointer">x</a>
+         <h4>{{cartInfo}}</h4>
+     </div>
+     <br/>
+     <div class="row" ng-cloak>
+         <ul>
+             <li>
+                 <div class="row">
+                     <div class="col-md-2" style="padding-right: 1px">
+
+                     </div>
+                     <div class="col-md-4" style="padding: 0px">
+                         <div class="row" style="padding: 0px">
+                             <h5>Product details</h5>
+                         </div>
+                     </div>
+                     <div class="col-md-2">
+                         <h5>Quantity</h5>
+                     </div>
+                     <div class="col-md-3">
+                         <h5>Unit Price</h5>
+                     </div>
+                     <div class="col-md-1">
+
+                     </div>
+                 </div>
+             </li>
+         </ul>
+         <ul>
+             <li ng-repeat="cartItem in ShoppingCart.ShopingCartItemObjects">
+                 <div class="row">
+                     <div class="col-md-2" style="padding-right: 1px">
+                         <a style="cursor: pointer" ng-click="getItemDetails(cartItem)" class="row">
+                             <p>
+                                 <img src="{{cartItem.ImagePath}}" style="width: 60%"/>&nbsp;
+
+                             </p>
+                         </a>
+                     </div>
+                     <div class="col-md-2" style="padding-right: 1px">
+                         <a style="cursor: pointer" ng-click="getItemDetails(cartItem)" class="alink">
+                             {{cartItem.Name}}; {{cartItem.VariationValue}}
+                         </a>
+                     </div>
+                     <div class="col-md-2">
+                         <input type="text" ng-model="cartItem.QuantityOrdered" ng-change="updateCartItem(cartItem)" class="form-control"/>
+                     </div>
+                     <div class="col-md-3">
+                         <label class="control-label " style="font-weight: normal">{{cartItem.CurencySymbol}}{{cartItem.UnitPrice | currency: " "}}</label>
+                     </div>
+                     <div class="col-md-1">
+                         <a title="Remove" style="cursor: pointer" ng-click="removeCartItem(cartItem)"><img src="/Content/images/delete.png"/></a>
+                     </div>
+                 </div>
+             </li>
+         </ul>
+     </div>
+        <br />
+        <div class="row" ng-if="ShoppingCart !== null && ShoppingCart.ShoppingCartId > 0" ng-cloak>
+            <div class="col-md-5">
+                Total Items : <label class="control-label " style="font-weight: normal">{{cartItemsCount}}</label>
+            </div>
+            <div class="col-md-5">
+                Total Price : <label class="control-label " style="font-weight: normal">{{ShoppingCart.ShopingCartItemObjects[0].CurencySymbol}}{{cartTotalAmount | currency: " "}}</label>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-blue-alt btn-yellow" ng-click="checkOut()">
+                    Check out
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="angular-center-container">
+        <div class="angular-centered" ng-show="busy===true;">
+            <img src="content/images/spinningred.gif" ng-show="busy===true" id="loading" />
+        </div>
+    </div>
+
+    <div ng-view class="body-content nv-body" style="min-height: 320px; display: none">
+
+    </div>
+    <footer style="background: #C0C0C0; bottom: 0; width: 100%;display:none" class="nv-footer">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <p>
+                <a style="color: #3b3b3b">FAQs</a> |
+                <a style="color: #3b3b3b">Terms of Use</a> |
+                <a style="color: #3b3b3b">Privacy Policy</a> |
+                <a style="color: #3b3b3b">Disclaimer</a> |
+                <a style="color: #3b3b3b">About US</a>
+            </p>
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+    </footer>
+
+
+<!--[if !(IE 8)]><!-->
+    <!--<script type="text/javascript" src="/assets/widgets/skycons/skycons.js"></script>
+        <script type="text/javascript" src="/assets/widgets/charts/piegage/piegage.js"></script>
+        <script type="text/javascript" src="/assets/widgets/charts/piegage/piegage-demo.js"></script>
+        <script type="text/javascript" src="/assets/widgets/charts/sparklines/sparklines.js"></script>
+    <script type="text/javascript" src="/assets/widgets/charts/sparklines/sparklines-demo.js"></script>-->
+
+    
+    <script src="Scripts/angular-file-upload-shim.min.js"></script>
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/typeahead.bundle.js"></script>
+    <script data-main="main.js" src="/Scripts/require.js"></script>
+    <script src="Scripts/dataTableDescription.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="/assets/js-core/html5shiv.js"></script>
+    <![endif]-->
+    <div data-widget-cid="widget-0" class="ui-mask"></div>
+</body>
+</html>

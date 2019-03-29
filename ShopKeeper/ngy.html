@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-controller="defaultController" ng-init="initializeDefaultController()">
+<head>
+    <title ng-cloak>{{store.StoreName}}</title>
+    <meta charset="UTF-8">
+    <!--[if gte IE 9]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/all-demo.css">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/icons/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/icons/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/icons/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/icons/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/assets/images/icons/favicon.png">
+
+    <!-- JS Core -->
+    <script type="text/javascript" src="/assets/js-core.js"></script>
+
+    <!--<script type="text/javascript">
+
+        $(document).ready(function ()
+        {
+            //var randomImages = ['1', '2', '3', '4', '5', '6'];
+
+            //var rndNum = Math.floor(Math.random() * randomImages.length);
+            //var url = 'url(/Content/images/' + randomImages[rndNum] + '.jpg)';
+            //$('body').css({ "background": url });
+            setTimeout(function () {
+                //$('body').css({ "background": "none" });
+                $('.nv-header').fadeIn();
+                $('.nv-side').fadeIn();
+                $('.nv-body').fadeIn();
+
+            }, 2000);
+        });
+    </script>-->
+
+    <link href="/Content/angular-block-ui.css" rel="stylesheet" />
+    <link href="/Content/jquery.dataTables.css" rel="stylesheet" />
+    <link href="/Content/ngDialog.css" rel="stylesheet" />
+    <link href="/Content/animate.css" rel="stylesheet" />
+    <link href="/Content/select.css" rel="stylesheet" />
+    <link href="/Content/select2.css" rel="stylesheet" />
+    <link href="/Content/ngDialog-theme-flat.css" rel="stylesheet" />
+    <link href="/Content/ngDialog-theme-default.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/feedbackmessage.css" rel="stylesheet" />
+    <link href="/Content/formControls.css" rel="stylesheet" />
+    <link href="/Content/angular-szn-autocomplete.css" rel="stylesheet" />
+    <link href="/Content/angucomplete.css" rel="stylesheet" />
+
+
+    <style>
+        /*#loading {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                display: block;
+                background: #fff;
+                z-index: 10000;
+            }
+
+                #loading img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin: -23px 0 0 -23px;
+                }*/
+
+        .nv-header, .nv-side, .nv-body {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="sb-site">
+        <div id="page-wrapper">
+
+            <div id="page-header" class="clearfix nv-header">
+                <div id="header-logo" class="rm-transition">
+                    <a href="#" class="tooltip-button hidden-desktop" title="Navigation Menu" id="responsive-open-menu">
+                        <i class="glyph-icon icon-align-justify"></i>
+                    </a>
+                    <span>
+                        {{store.StoreName}}
+                    </span>
+                    <a id="collapse-sidebar" href="#" title="">
+                        <i class="glyph-icon icon-chevron-left"></i>
+                    </a>
+                </div>
+                <div id="header-left">
+                </div>
+                <div id="header-right" style="margin-right: 15px">
+                    <div class="user-profile dropdown">
+                        <a style="cursor: pointer" title="" class="user-ico clearfix autoFade" data-toggle="dropdown" ng-if="res.IsAuthenticated === true;">
+                            <img width="36" class="img-rounded" src="{{user.PhotofilePath}}" alt="">
+                            <span>{{user.Name}}</span>
+                            <i class="glyph-icon icon-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu pad0B float-right" class="dropdown-menu pad0B float-right" style="width: 50%;">
+                            <div class="box-sm" style="color: #000; width: 260px">
+                                <div class="login-box clearfix">
+                                    <div class="user-img" style="width: 100px; height : 100px">
+                                        <img src="{{user.PhotofilePath}}" alt="" style="border-radius: 50px;">
+                                    </div>
+                                </div>
+                                <div class="login-box clearfix">
+                                    <div class="user-info">
+                                        <a style="cursor: pointer; color: #008080" href="ngy.html#Store/UserProfile/UserProfile" title="Update Profile">Update profile</a>
+                                    </div>
+                                </div>
+                                <br />
+                                <!--<div class="divider"></div>-->
+                                <div class="button-pane-alt">
+                                    <a style="cursor: pointer; width:61%" class="btn display-block font-normal btn-danger" ng-click="logOut()">
+                                        <i class="glyph-icon icon-power-off"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="page-sidebar" class="rm-transition nv-side" style="display: none;">
+                <div id="page-sidebar-wrapper">
+                    <div id="sidebar-menu">
+                        <!--<div id="sidebar-search">
+                            <input type="text" placeholder="Autocomplete search..." class="autocomplete-input tooltip-button" data-placement="right" title="Type &apos;j&apos; to see the available tags..." name="">
+                            <i class="glyph-icon icon-search"></i>
+                        </div>-->
+                        <ul>
+                            <li ng-repeat="link in links">
+                                <a href="{{link.Href}}" title="{{link.Value}}">
+                                    <i class="{{link.GlyphIconClass}}"></i>
+                                    <span>{{link.Value}}</span>
+                                </a>
+                                <ul ng-if="link.ChildMenuObjects !== undefined && link.ChildMenuObjects !== null && link.ChildMenuObjects.length > 0">
+                                    <li ng-repeat="childLink in link.ChildMenuObjects">
+                                        <a href="{{childLink.Href}}">{{childLink.Value}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="page-content-wrapper" class="rm-transition">
+                <div ng-view class="container body-content nv-body" style="min-height: 320px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="angular-center-container">
+        <div class="angular-centered sowBusy">
+            <img src="content/images/spinningred.gif" id="loading" />
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="warning-dialog.html">
+        <div class="modal-header">
+            <h3>You have been Idle for long!</h3>
+        </div>
+        <div class="col-md-12">
+            <p>
+                Move your mouse around a bit or press any key to keep your session alive.
+            </p>
+        </div>
+        <div idle-countdown="countdown" ng-init="countdown=5" class="modal-body">
+            <progressbar max="5" value="5" animate="false" class="progress-striped active">You'll be logged out in {{countdown}} second(s).</progressbar>
+        </div>
+
+    </script>
+    <!--[if !(IE 8)]><!-->
+
+    <script type="text/javascript" src="/assets/widgets/skycons/skycons.js"></script>
+    <script type="text/javascript" src="/assets/widgets/charts/piegage/piegage.js"></script>
+    <script type="text/javascript" src="/assets/widgets/charts/piegage/piegage-demo.js"></script>
+    <script type="text/javascript" src="/assets/all-demo.js"></script>
+    <script type="text/javascript" src="/assets/widgets/charts/sparklines/sparklines-demo.js"></script>
+    <script type="text/javascript" src="/assets/widgets/charts/sparklines/sparklines.js"></script>
+
+    <style>
+        #page-content {
+            background: #fff;
+        }
+    </style>
+    <!-- JS Interactions -->
+    <script type="text/javascript" src="/assets/widgets/interactions-ui/resizable.js"></script>
+    <script type="text/javascript" src="/assets/widgets/interactions-ui/draggable.js"></script>
+    <script type="text/javascript" src="/assets/widgets/interactions-ui/sortable.js"></script>
+    <script type="text/javascript" src="/assets/widgets/interactions-ui/selectable.js"></script>
+    <script type="text/javascript">
+        /* Todo sortable */
+
+        $(function () {
+            "use strict";
+            $(".todo-sort").sortable({
+                handle: ".sort-handle"
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="/assets/widgets/charts/sparklines/sparklines.js"></script>
+    <script src="Scripts/angular-file-upload-shim.min.js"></script>
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/moment.min.js"></script>
+    <script data-main="main.js" src="/Scripts/require.js"></script>
+    <script src="Scripts/dataTableDescription.js"></script>
+    <script src="Scripts/highcharts.js"></script>
+    <script src="Scripts/exporting.js"></script>
+    <script src="Scripts/themes/dark-blue.js"></script>
+    <script src="Scripts/themes/dark-green.js"></script>
+    <!--<script src="Scripts/themes/dark-unica.js"></script>-->
+    <!--<script src="Scripts/themes/gray.js"></script>-->
+    <script src="Scripts/themes/grid-light.js"></script>
+    <script src="Scripts/themes/grid.js"></script>
+    <!--<script src="Scripts/themes/sand-signika.js"></script>-->
+    <!--<script src="Scripts/themes/skies.js"></script>-->
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="/assets/js-core/html5shiv.js"></script>
+    <![endif]-->
+    <div data-widget-cid="widget-0" class="ui-mask"></div>
+</body>
+</html>

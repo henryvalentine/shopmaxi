@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71E7C595-AFCD-417A-8346-FAF64495C146}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShopkeeperStore.EF</RootNamespace>
+    <AssemblyName>ShopkeeperStore.EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\IStoreEntityExtension.cs" />
+    <Compile Include="Extensions\StoreEntityExtension.cs" />
+    <Compile Include="Models\Store\AccountGroup.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\AddressType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\AspNetRole.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\AspNetUser.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\AspNetUserClaim.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\AspNetUserLogin.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\BankAccount.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ChartOfAccount.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ChildMenu.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ChildMenuRole.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ContactType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Coupon.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Customer.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\CustomerInvoice.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\C__MigrationHistory.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DailyInventory.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DailySale.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Delivery.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DeliveryAddress.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DeliveryMethod.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DeliveryVessel.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\DocumentType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Employee.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\EmployeeAssigment.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\EmployeeDocument.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\EmployeeSalesLog.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Estimate.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\EstimateItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ImageView.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Invoice.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\InvoiceRequest.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\InvoiceRequestItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\IssueType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ItemPrice.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ItemReview.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\JobRole.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ParentMenu.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ParentMenuRole.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PaymentType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PersonContact.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PurchaseOrder.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PurchaseOrderItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PurchaseOrderItemDelivery.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\PurchaseOrderPayment.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\RefundNote.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Register.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ReturnedProduct.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Sale.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\SalePayment.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\SaleTransaction.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Salutation.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\schema_info.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\scope_config.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\scope_info.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShopingCartItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShopKeeperStoreModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopKeeperStoreModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShopKeeperStoreModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShopKeeperStoreModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopKeeperStoreModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShoppingCart.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShoppingCartDelivery.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\ShoppingCartInvoice.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StockUpload.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreAddress.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreBank.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreCity.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreContact.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreContactTag.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreCountry.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreCurrency.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreCustomerType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreDepartment.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemBrand.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemCategory.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemIssue.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemSold.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemStock.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemSupplier.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemVariation.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemVariationValue.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreItemVariation_tracking.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreMessage.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreMessageTemplate.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreOutlet.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreOutletCoupon.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StorePaymentGateway.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StorePaymentMethod.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreSetting.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreState.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreTransaction.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\StoreTransactionType.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\SubscriptionSetting.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Supplier.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\SupplierAddress.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\TransferNote.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\TransferNoteItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\UnitsOfMeasurement.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\UserProfile.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\Warehouse.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\WayBill.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store\WayBillItem.cs">
+      <DependentUpon>ShopKeeperStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Models\Store\ShopKeeperStoreModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShopKeeperStoreModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Store\ShopKeeperStoreModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopKeeperStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShopKeeperStoreModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Store\ShopKeeperStoreModel.edmx.diagram">
+      <DependentUpon>ShopKeeperStoreModel.edmx</DependentUpon>
+    </None>
+    <None Include="Models\Store\ShopKeeperStoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopKeeperStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShopKeeperStoreModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+﻿<!--ng-init="initializeController"-->
+   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="manageBillingCycleCntroller">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="modal-title">{{billingCycle.Header}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+           <form id="fsProcessBillingCyclees" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label "> Name *</label>
+                        <input type="text" data-ng-model="billingCycle.Name" class="form-control" required="required" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="control-label "> Code *</label>
+                        <input type="text" data-ng-model="billingCycle.Code" class="form-control" required="required" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="control-label "> Duration *</label>
+                        <input type="text" data-ng-model="billingCycle.Duration" class="form-control" required="required" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="control-label "> Remark </label>
+                        <textarea data-ng-model="billingCycle.Remark" class="form-control">{{billingCycle.Remark}}</textarea>
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <div class="col-md-12">
+                        <input type="button" value="Save" ng-click="processBillingCycle()" class="btn btn-default" style="margin-top: 7px;" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+   

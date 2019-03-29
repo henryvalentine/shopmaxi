@@ -1,0 +1,161 @@
+Exception Date :: 2015-10-28 02:40:45 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.CustomerRepository.AddCustomer(UserProfileObject user) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\CustomerRepository.cs:line 91
+Exception Source :: EntityFramework
+Exception Message :: Entity of type "DeliveryAddress" in state "Added" has the following validation errors:
+- Property: "MobileNumber", Error: "The MobileNumber field is required." 
+
+
+
+Exception Date :: 2015-10-28 07:08:09 PM
+Exception Stack Trace ::    at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.GetColumnValueWithErrorHandling[TColumn](Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.ItemPriceRepository.GetItemPriceListByOutlet(Int32 outletId, Int32 page, Int32 itemsPerPage) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\ItemPriceRepository.cs:line 257
+Exception Source :: EntityFramework
+Exception Message :: The specified cast from a materialized 'System.Int32' type to the 'System.Double' type is not valid.
+
+
+Exception Date :: 2015-11-10 05:33:35 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.<>c__DisplayClass49.<ProcessPurchaseOrderDeliveries>b__3d(DeliveryObject dObject) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 515
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.ProcessPurchaseOrderDeliveries(List`1 deliveries) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 503
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-10 05:51:46 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.<>c__DisplayClass49.<ProcessPurchaseOrderDeliveries>b__3d(DeliveryObject dObject) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 515
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.ProcessPurchaseOrderDeliveries(List`1 deliveries) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 503
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-10 06:00:48 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.<>c__DisplayClass49.<ProcessPurchaseOrderDeliveries>b__3d(DeliveryObject dObject) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 515
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.PurchaseOrderRepository.ProcessPurchaseOrderDeliveries(List`1 deliveries) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs:line 503
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-11 12:54:25 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Infrastructures.ShopkeeperInfrastructures.UnitOfWork.SaveChanges() in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Infrastructures\ShopkeeperInfrastructures\UnitofWork.cs:line 21
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.SaleRepository.AddSale(SaleObject sale) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\SaleRepository.cs:line 50
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-11 12:55:36 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Infrastructures.ShopkeeperInfrastructures.UnitOfWork.SaveChanges() in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Infrastructures\ShopkeeperInfrastructures\UnitofWork.cs:line 21
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.SaleRepository.AddSale(SaleObject sale) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\SaleRepository.cs:line 50
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-11 02:04:12 PM
+Exception Stack Trace ::    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Shopkeeper.Infrastructures.ShopkeeperInfrastructures.UnitOfWork.SaveChanges() in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Infrastructures\ShopkeeperInfrastructures\UnitofWork.cs:line 21
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.SaleRepository.AddSale(SaleObject sale) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\SaleRepository.cs:line 50
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while updating the entries. See the inner exception for details.
+
+
+Exception Date :: 2015-11-16 02:13:52 PM
+Exception Stack Trace ::    at ShopKeeper.Controllers.StoreControllers.PurchaseorderController.GetMyPurchaseOrders(JQueryDataTableParamModel param) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\ShopKeeper\Controllers\StoreControllers\PurchaseorderController.cs:line 215
+Exception Source :: ShopKeeper
+Exception Message :: Object reference not set to an instance of an object.
+
+
+Exception Date :: 2015-11-16 02:47:45 PM
+Exception Stack Trace ::    at System.ComponentModel.BaseNumberConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertObjectToTypeInternal(Object o, Type type, JavaScriptSerializer serializer, Boolean throwOnError, Object& convertedObject)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertObjectToTypeMain(Object o, Type type, JavaScriptSerializer serializer, Boolean throwOnError, Object& convertedObject)
+   at System.Web.Script.Serialization.ObjectConverter.AssignToPropertyOrField(Object propertyValue, Object o, String memberName, JavaScriptSerializer serializer, Boolean throwOnError)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertDictionaryToObject(IDictionary`2 dictionary, Type type, JavaScriptSerializer serializer, Boolean throwOnError, Object& convertedObject)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertObjectToTypeInternal(Object o, Type type, JavaScriptSerializer serializer, Boolean throwOnError, Object& convertedObject)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertObjectToTypeMain(Object o, Type type, JavaScriptSerializer serializer, Boolean throwOnError, Object& convertedObject)
+   at System.Web.Script.Serialization.ObjectConverter.ConvertObjectToType(Object o, Type type, JavaScriptSerializer serializer)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(JavaScriptSerializer serializer, String input, Type type, Int32 depthLimit)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize[T](String input)
+   at ShopKeeper.Controllers.StoreControllers.PurchaseorderController.ProcessPurchaseorderInvoice(HttpPostedFileBase file, String subdomain) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\ShopKeeper\Controllers\StoreControllers\PurchaseorderController.cs:line 656
+Exception Source :: System
+Exception Message ::  is not a valid value for Int64.
+
+
+Exception Date :: 2015-11-19 09:52:31 AM
+Exception Stack Trace ::    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.EmployeeRepository.GetUserProfile(String aspnetUserId) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\EmployeeRepository.cs:line 242
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while executing the command definition. See the inner exception for details.
+
+
+Exception Date :: 2015-11-19 10:18:37 AM
+Exception Stack Trace ::    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.EmployeeRepository.GetAdminUserProfile(String aspnetUserId) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\EmployeeRepository.cs:line 300
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while executing the command definition. See the inner exception for details.
+
+
+Exception Date :: 2015-11-19 10:38:14 AM
+Exception Stack Trace ::    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Shopkeeper.Repositories.ShopkeeperRepositories.ShopkeeperStoreRepositories.EmployeeRepository.GetAdminUserProfile(String aspnetUserId) in c:\Users\maxinspire\Documents\Visual Studio 2013\Projects\ShopKeeper\Shopkeeper.Repositories\ShopkeeperRepositories\ShopkeeperStoreRepositories\EmployeeRepository.cs:line 300
+Exception Source :: EntityFramework
+Exception Message :: An error occurred while executing the command definition. See the inner exception for details.
+
+

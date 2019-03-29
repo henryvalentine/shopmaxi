@@ -1,0 +1,47 @@
+﻿<br />
+<br />
+<br />
+<h4>Outlets</h4>
+
+<br />
+
+<fieldset id="fsCityList" style="border: none; background: whitesmoke" ng-controller="storeOutletController">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table id="tblCities" ng-store-outlet-table>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Outlet Name
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                       Is Main Outlet
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Default Tax
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Is Operational
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Date Created
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</fieldset>
+

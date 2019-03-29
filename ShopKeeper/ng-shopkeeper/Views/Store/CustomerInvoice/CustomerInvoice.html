@@ -1,0 +1,60 @@
+﻿
+
+<div class="row" ng-controller="customerInvoiceReports" ng-init="initializeController()">
+    <div style="display: none" ng-default></div>
+    <div class="row" style="border-bottom: 1px solid #e0e0e0">
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Customers' Performances</h4>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="row">
+                <div class="row" id="customerSummary">
+
+                </div>
+                <div class="row">
+                    <table ng-emp-report-table id="customerInvoiceRepTbl">
+                        <thead style="background-color: #008000; height: 38px">
+                            <tr style="color: #fff">
+                                <th style="width: 3%; text-align: left">
+                                    S/N
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Customer
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Date Registered
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Outlet
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Total Amount Due({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Total VAT({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Total Discount({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Total Amount Paid({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 15%; text-align: left">
+                                    Total Invoice Balance({{store.DefaultCurrencySymbol}})
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+
+</div>

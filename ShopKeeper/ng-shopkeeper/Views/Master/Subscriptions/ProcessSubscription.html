@@ -1,0 +1,121 @@
+﻿<!--ng-init="initializeController"-->
+   
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="subscriptionController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="row check-element animate-show" ng-hide="creatLogin == true">
+                <div class="col-md-4" style="padding-right: 0px; padding-right: 0px">
+                    <label class="modal-title">Subscription Plan:</label>
+                </div>
+                <div class="col-md-8" style="padding-left: 0px;">
+                    <h4 class="modal-title">{{header}}</h4>
+                </div>
+            </div>
+            
+            <div class="row check-element animate-show" ng-show="creatLogin == true">
+                <div class="col-md-8" style="padding-left: 0px;">
+                    <h4 class="modal-title">Logon Information</h4>
+                </div>
+            </div>
+            <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+            </div> 
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="row check-element animate-show" ng-hide="creatLogin === true">
+
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px">
+                            <label class="control-label"> Store Name *</label>
+                            <input type="text" data-ng-model="store.StoreName" class="form-control" />
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px">
+                            <label class="control-label"> Company Name</label>
+                            <input type="text" data-ng-model="store.CompanyName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="control-label"> Alias(<span style="font-weight: normal; ">Eg: mystorename</span>)</label>
+                        <div class=" input-group">
+                            <input type="text" data-ng-model="store.StoreAlias" class="form-control" />
+                            <span class="input-group-addon">.shopkepeer.ng</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px">
+                            <label class="control-label ">Duration(Days) * </label>
+                            <ui-select ng-model="store.BillingCycle" theme="bootstrap" ng-disabled="trial == true">
+                                <ui-select-match placeholder="-- Select --">{{$select.selected.Duration}}</ui-select-match>
+                                <ui-select-choices repeat="billingcycle in genericList.billingCycles | propsFilter: {Duration: $select.search} track by billingcycle.BillingCycleId">
+                                    <div ng-bind-html="billingcycle.Duration | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px">
+                            <label class="control-label ">Operating Currency * </label>
+                            <ui-select ng-model="store.Currency" theme="bootstrap">
+                                <ui-select-match placeholder="-- Select --">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="currency in genericList.currencies | propsFilter: {Name: $select.search} track by currency.CurrencyId">
+                                    <div ng-bind-html="currency.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px">
+                            <label class="control-label ">Payment Method * </label>
+                            <ui-select ng-model="store.PaymentMethod" theme="bootstrap" ng-disabled="trial == true">
+                                <ui-select-match placeholder="-- Select --">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="paymentmethod in genericList.paymentMethods | propsFilter: {Name: $select.search} track by paymentmethod.PaymentMethodId">
+                                    <div ng-bind-html="paymentmethod.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px">
+                            <label class="control-label"> Customer Email *</label>
+                            <input type="text" data-ng-model="store.CustomerEmail" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <h5>Logon Information</h5>
+                <form method="POST">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" data-ng-model="registerModel.UserName" class="form-control" placeholder="User Name" style="font-size: 0.9em" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" data-ng-model="registerModel.Email" class="form-control" placeholder="Email" style="font-size: 0.9em" />
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="tel" data-ng-model="registerModel.PhoneNumber" class="form-control" placeholder="Phone Number(optional)" style="font-size: 0.9em" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" data-ng-model="registerModel.Password" class="form-control" placeholder="Password (at leaset 8 charaters wide)" style="font-size: 0.9em" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row modal-footer">
+                        <div class="col-md-6">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-3" style="padding-right: 0px;">
+                            <input type="button" value="<< Cancel" ng-click="initializeController()" class="btn btn-default" style="margin-top: 7px;" />
+                        </div>
+                        <div class="col-md-3" style="padding-left: 0px;">
+                            <input type="button" value="Subscribe" ng-click="processSubscription()" ng-disabled="inprogress == true" class="btn btn-default" style="margin-top: 7px;" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

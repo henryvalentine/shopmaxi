@@ -1,0 +1,35 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="documentTypeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+               <h4 class="modal-title">{{documentType.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessDocumentTypees" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="documentType.TypeName" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Description</label>
+                    <textarea data-ng-model="documentType.Description" class="form-control">{{documentType.Description}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processDocumentType()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<script>
+    //angular.element('popDiv').draggable();
+</script>

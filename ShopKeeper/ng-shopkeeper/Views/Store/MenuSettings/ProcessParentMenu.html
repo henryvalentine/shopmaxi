@@ -1,0 +1,53 @@
+﻿
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="parentMenuController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Menu Name *</label>
+                    <h4 class="form-control">{{parentMenu.Value}}</h4>
+                </div>
+                <div class="col-md-6">
+                    <label>Menu Order *</label>
+                    <h4 class="form-control">{{parentMenu.MenuOrder}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Menu Icon </label>
+                    <h4 class="form-control">{{parentMenu.GlyphIconClass}}</h4>
+                </div>
+                <div class="col-md-6">
+                    <label>Menu Link *</label>
+                    <h4 class="form-control">{{parentMenu.Href}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Accessible Role(s) * </label>
+                    <ul>
+                        <li ng-repeat="role in roles" style="float: left; margin-bottom: 1%">
+                           <label><input type="checkbox" ng-change="addRole(role.Status,role)" ng-model="role.Status" />&nbsp;{{role.Name}}</label>&nbsp;&nbsp;
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Save" ng-click="processMenu()" class="btn btn-default" ng-disabled="process === true;" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+          
+         

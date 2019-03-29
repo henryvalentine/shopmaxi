@@ -1,0 +1,86 @@
+﻿
+
+<div class="row" ng-controller="dailySalesController" ng-init="initializeController()">
+    <div style="display: none" ng-default></div>
+    <div class="row" ng-show="details===false" style="border-bottom: 1px solid #e0e0e0">
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Today's Sales</h4>
+            </div>
+           
+        </div>
+    </div>
+    <div>
+        <br />
+        <div class="row" style="margin-top: 2%">
+            <div class="row">
+                <div class="col-md-8" id="empSummary"></div>
+                <div class="col-md-4" id="prtEmpTbl" style="display: none">
+                    <input type="button" value="Print" ng-click="printEmpReport('cllCollection')" class="btn btn-primary"
+                           style="float: right; font-weight: bold;"/>
+                </div>
+            </div>
+            <div class="row">
+                <table ng-emp-report-table id="empRepTbl" style="border: solid 1px #ddd; width: 100%">
+                    <thead style="background-color: #008000; height: 40px">
+                        <tr style="color: #fff; border-top: solid 1px #ddd;">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Invoice No.
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Customer
+                            </th>
+                            <!--<th style="width: 12%; text-align: left">
+                                Amount Due({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 8%; text-align: left">
+                                VAT({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Discount({{store.DefaultCurrencySymbol}})
+                            </th>-->
+                            <th style="width: 12%; text-align: left">
+                                Net Amount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount Paid({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <!--<th style="width: 5%; text-align: center">
+                                View
+                            </th>-->
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="details === true" style="border: 3px solid #008000" ng-cloak>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-3">
+                <input type="button" value="Print Report" ng-click="printReport()" class="btn btn-primary" style="float: left; font-weight: bold; float: right" />
+            </div>
+            <div class="col-md-3">
+                <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="margin-top: 7px; float: right" />
+            </div>
+        </div>
+        <br />
+        <div class="row" id="rep">
+
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+
+

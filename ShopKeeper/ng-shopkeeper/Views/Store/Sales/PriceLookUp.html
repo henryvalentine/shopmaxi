@@ -1,0 +1,85 @@
+﻿
+<fieldset style="border: none; background: whitesmoke" ng-controller="saleController">
+    
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        Price Look Up
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span style="width: 100%; font-weight: bold; font-size: 12pt" id="brFeedback"></span>
+                </div>
+            </div>
+        </div>
+    <div class="row modal-body">
+        <div class="row">
+            <div class="col-md-7" style="padding-right: 7px;">
+                <input type="text" id="pSku" ng-p-sku ng-model="criteria" class=" form-control" ng-keyup="getpItemPrices()" required placeholder="Search Product by Name or Scan SKU" style="font-size: 1.1em"/>
+            </div>
+        </div>
+        <br/> 
+        <div class="row">
+      
+            <div class="row"  style="color: #000;">
+                <div class="col-md-4">
+                   <strong> Item</strong>
+                </div>
+                <div class="col-md-4">
+                   <strong> Description.</strong>
+                 </div>
+                <div div class="col-md-4">
+                    <strong>Quantity in stock</strong>
+                </div>
+            </div>
+         
+            <div class="row" ng-repeat="item in priceList" style="border-bottom: 1px #e0e0e0 solid">
+                <div class="col-md-4">
+                    {{item.StoreItemName}}
+                </div>
+                <div class="col-md-4">
+                    {{item.Description}}
+                </div>
+                <div class="col-md-4">
+                    {{item.QuantityInStock | number:0}}
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12" style="margin-top: 2%">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Price information</strong>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-5">
+                            <h5>Minimum Quantity</h5>
+                        </div>
+                        <div class="col-md-7">
+                            <h5>Price({{store.DefaultCurrencySymbol}})</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-12" ng-repeat="price in item.ItemPriceObjects">
+                        <div class="col-md-5">
+                            <h5>{{price.MinimumQuantity}}</h5>
+                        </div>
+                        <div class="col-md-7">
+                            <h5>{{price.Price | currency: " "}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    <script type="text/javascript">
+        angular.element('#pSku').focus();
+    </script>
+</fieldset>

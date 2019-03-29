@@ -1,0 +1,47 @@
+﻿   
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="customerTypeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{customerType.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessCustomerTypees" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="customerType.Name" class="form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Code *</label>
+                    <input type="text" data-ng-model="customerType.Code" class="form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <br/>
+                    <label class="control-label form-control"><input type="checkbox" data-ng-model="customerType.CreditWorthy"/> &nbsp; Credit Worthy?</label>
+                </div>
+                <div class="col-md-8" ng-show="customerType.CreditWorthy === true"> 
+                    <label class="control-label "> Credit Limit({{store.DefaultCurrencySymbol}}) *</label>
+                    <input type="text" data-ng-model="customerType.CreditLimit" class="form-control" ui-number-mask=""/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Description</label>
+                    <textarea data-ng-model="customerType.Description" class="form-control">{{customerType.Description}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processCustomerType()" class="btn btn-default" style="margin-top: 7px;"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

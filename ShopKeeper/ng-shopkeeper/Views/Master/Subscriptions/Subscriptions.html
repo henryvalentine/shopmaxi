@@ -1,0 +1,311 @@
+﻿
+<br /><br />
+    <br /><br />
+<br />
+
+    <fieldset ng-controller="subscriptionController" ng-init="getSubscriptionPackages()" style="background: whitesmoke; width: 100%; border: none">
+
+    <div class="row check-element animate-show" ng-hide="subSel == true">
+        <div class="jumbotron row">
+            <h3> The no. 1 Software as a Service(SaaS) application for your on/offline e-commerce needs. </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Subcription Plans</h3>
+            </div>
+            <div class="col-md-3">
+                <button class="btnGreen btn btn-primary btn-large" ng-model="trialPackage" ng-click="setTrialPackage()" style="float: right; font-weight: bold">Try Free for 30 Days!</button>
+            </div>
+        </div>
+        <div class="row" style="background: whitesmoke; width: 100%;">
+            <div class="row" style="margin-top: 18px;">
+                <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true" style="width: 99%; margin: 7px;">
+                    <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="positivefeedback = false">x</span>
+                </div>
+                <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true" style="width: 99%; margin: 7px;">
+                    <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="negativefeedback = false">x</span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 5px">
+                <table style="width: auto">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table style="width: auto">
+                                            <tr>
+                                                <td>
+                                                    <h4>
+                                                        &nbsp;
+                                                    </h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Disk Space(MB):</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Products:</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Number Of Outlets:</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Registers:</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Users:</h4></td>
+                                            </tr>
+                                            <tr><td><h4>Max. Transaction:</h4></td></tr>
+                                            <tr><td><h4>Transaction Fee(&#8358;):</h4></td></tr>
+                                            <tr><td><h4>Max. Customers:</h4></td></tr>
+                                            <tr><td><h4>Dynamic Reporting:</h4></td></tr>
+                                            <tr><td><h4>Live Chat:</h4></td></tr>
+                                            <tr><td><h4>Emal</h4></td></tr>
+                                            <tr><td><h4>Telephone Support:</h4></td></tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Prices:</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>&nbsp;</h4></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table style="width: auto">
+                                <tr>
+                                    <td ng-repeat="package in allPackages" style="padding-left: 10px">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h4 style="color: #008000">{{package.PackageTitle}}</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>{{package.FileStorageSpace}}</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.NumberOfStoreProducts}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.NumberOfOutlets}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.Registers}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.NumberOfUsers}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.MaximumTransactions}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.TransactionFee}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>{{package.MaximumCustomer}}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" ng-show="package.UseReportBuilder"/>
+                                                    <img src="/Content/images/eraser3.png" ng-show="!package.UseReportBuilder"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" ng-show="package.LiveChat"/>
+                                                    <img src="/Content/images/eraser3.png" ng-show="!package.LiveChat"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" ng-show="package.EmailSupport"/>
+                                                    <img src="/Content/images/eraser3.png" ng-show="!package.EmailSupport"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" ng-show="package.TelephoneSupport"/>
+                                                    <img src="/Content/images/eraser3.png" ng-show="!package.TelephoneSupport"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ui-select ng-model="package.PackagePricing" theme="bootstrap" ng-show="package.SubscriptionPackageId > 1">
+                                                        <ui-select-match placeholder="{{package.PackagePricings[0].BillingCycleName}}">{{$select.selected.BillingCycleName}}</ui-select-match>
+                                                        <ui-select-choices repeat="pricing in package.PackagePricings | propsFilter: {BillingCycleName: $select.search} track by pricing.PackagePricingId">
+                                                            <div ng-bind-html="pricing.BillingCycleName | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <br/>
+                                                    <button class="btnGreen btn btn-primary" ng-click="setPackage(package)">Subscribe</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+        </div>
+    </div>
+        
+        <div class="row check-element animate-show" ng-show="subSel == true" style="background: whitesmoke; width: 70%; border: 3px solid #27ae60;">
+            <div class=" modal-header">
+                <div class="row">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-md-8" style="padding-left: 0px;">
+                                <h4>Account Information</h4>
+                            </div>
+                        </div>
+                        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true" style="margin-top: 18px; ">
+                            <div class="col-md-12">
+                                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="row">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" data-ng-model="store.StoreName" ng-change="updatealias(store.StoreName)" class="form-control" placeholder=" Store Name" style="font-size: 1em" />
+                                </div>
+                                <div class="col-md-6">
+                                    <div class=" input-group">
+                                        <input type="text" data-ng-model="store.StoreAlias" class="form-control" placeholder="Alias (Eg: mystorename)" style="font-size: 1em" disabled="disabled"/>
+                                        <span class="input-group-addon">.shopkepeer.com.ng</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" data-ng-model="store.CompanyName" class="form-control" placeholder="Company Name" style="font-size: 1em" />
+                                </div>
+                                <div class="col-md-6">
+                                    <ui-select ng-model="store.Currency" theme="bootstrap">
+                                        <ui-select-match placeholder="-- Default Currency --">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="currency in genericList.currencies | propsFilter: {Name: $select.search} track by currency.CurrencyId">
+                                            <div ng-bind-html="currency.Name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div id="captchContaner" class="col-md-6 g-recaptcha" data-sitekey="6LfhKxETAAAAAKvuueQuNAku7HJ0fx0lJ9QeXQvE" style="margin-top: 7px">
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="password" data-ng-model="registerModel.Password" class="form-control" placeholder="Password (at leaset 8 charaters wide)" style="font-size: 1em"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="email" data-ng-model="registerModel.Email" class="form-control" placeholder="Email" style="font-size: 1em"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="tel" data-ng-model="registerModel.PhoneNumber" class="form-control" placeholder="Phone Number(optional)" style="font-size: 1em"/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </form>
+
+                        <br />
+                        <div class="modal-header">
+                            <div class="row">
+                                <div class="col-md-3" style="padding-right: 0px;">
+                                    <label>Subscription Plan:</label>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px;">
+                                    <h4 class="modal-title">{{header}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <form method="POST">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ui-select ng-model="package" theme="bootstrap" ng-change="setNewPackage(package)">
+                                            <ui-select-match placeholder="-- choose Another Plan --">{{$select.selected.PackageTitle}}</ui-select-match>
+                                            <ui-select-choices repeat="pax in allPackages | propsFilter: {PackageTitle: $select.search} track by pax.SubscriptionPackageId">
+                                                <div ng-bind-html="pax.PackageTitle | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row" ng-show="trial == false">
+                                            <div class="col-md-6">
+                                                <ui-select ng-model="package.PackagePricing" theme="bootstrap">
+                                                    <ui-select-match placeholder="{{package.PackagePricings2[0].BillingCycleName}}">{{$select.selected.BillingCycleName}}</ui-select-match>
+                                                    <ui-select-choices repeat="pricing in package.PackagePricings2 | propsFilter: {BillingCycleName: $select.search} track by pricing.PackagePricingId">
+                                                        <div ng-bind-html="pricing.BillingCycleName | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ui-select ng-model="store.PaymentMethod" theme="bootstrap">
+                                                    <ui-select-match placeholder="-- Payment Method --">{{$select.selected.Name}}</ui-select-match>
+                                                    <ui-select-choices repeat="paymentmethod in genericList.paymentMethods | propsFilter: {Name: $select.search} track by paymentmethod.PaymentMethodId">
+                                                        <div ng-bind-html="paymentmethod.Name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row modal-footer">
+                                <div class="col-md-3">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3" style="padding-right: 0px;">
+                                    <input type="button" value="<< Cancel" ng-click="initializeController()" class="btn btn-default" style="margin-top: 7px; float: right" />
+                                </div>
+                                <div class="col-md-3" style="padding-left: 0px;">
+                                    <input type="button" value="Subscribe" ng-click="processSubscription()" ng-disabled="inprogress == true" class="btn btn-default" style="margin-top: 7px;" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        
+</fieldset>

@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A84EC41A-E0EF-44FC-A8DD-29B575CF0CD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shopkeeper.Datacontracts</RootNamespace>
+    <AssemblyName>Shopkeeper.Datacontracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ShopKeeper\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomizedDataObjects\GenericObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedAddressObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedMessageObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedMessageTemplateObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedStoreSettingObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedSubscriptionPackageObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedCurrencyObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedCityObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedStateObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedStoreBankAccountObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedCompanyContactObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedPackagePricingObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedSubscriptionPricingObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedStoreSubscriptionObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedStoreObject.cs" />
+    <Compile Include="CustomizedDataObjects\Master\CustomizedTransactionObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedInvoiceObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedPurchaseOrderItemObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedPurchaseOrderObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedDeliveryObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedCustomerInvoiceObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedMessageObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedMessageTemplateObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedParentMenuRoleObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedParentMenuObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedDeliveryAddressObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedShoppingCartItemObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedPurchaseOrderItemDeliveryObject.cs" />
+    <Compile Include="DataObjects\Master\AspNetRoleObject.cs" />
+    <Compile Include="DataObjects\Master\AspNetUserClaim.cs" />
+    <Compile Include="DataObjects\Master\AspNetUserLoginObject.cs" />
+    <Compile Include="DataObjects\Master\AspNetUserObject.cs" />
+    <Compile Include="DataObjects\Master\MessageObject.cs" />
+    <Compile Include="DataObjects\Master\MessageTemplateObject.cs" />
+    <Compile Include="DataObjects\Master\SalutationObject.cs" />
+    <Compile Include="DataObjects\Master\UserProfileObject.cs" />
+    <Compile Include="DataObjects\Store\ChildMenuRoleObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedChildMenuObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedRegisterObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedSalePaymentObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreItemSoldObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedSaleObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedEmployeeObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedItemPriceObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStockUploadObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedShoppingCartObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedUserProfileObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedCustomerObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedCouponObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreItemStockObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedBankAccountObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreOutletObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedChartOfAccountObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreAddressObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedCityObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStateObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreItemCategoryObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedSupplierObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreItemObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreCurrencyObject.cs" />
+    <Compile Include="CustomizedDataObjects\Store\CustomizedStoreTransactionObject.cs" />
+    <Compile Include="DataObjects\Store\CustomerInvoiceObject.cs" />
+    <Compile Include="DataObjects\Store\EstimateItemObject.cs" />
+    <Compile Include="DataObjects\Store\EstimateObject.cs" />
+    <Compile Include="DataObjects\Store\InvoiceRequestItemObject.cs" />
+    <Compile Include="DataObjects\Store\InvoiceRequestObject.cs" />
+    <Compile Include="DataObjects\Store\PurchaseOrderItemDeliveryObject.cs" />
+    <Compile Include="DataObjects\Store\RefundNoteObject.cs" />
+    <Compile Include="DataObjects\Store\StockItemVariationObject.cs" />
+    <Compile Include="DataObjects\Store\ShoppingCartInvoiceObject.cs" />
+    <Compile Include="DataObjects\Store\DeliveryAddressObject.cs" />
+    <Compile Include="DataObjects\Store\StoreMessageObject.cs" />
+    <Compile Include="DataObjects\Store\StoreMessageTemplateObject.cs" />
+    <Compile Include="DataObjects\Store\ParentMenuRoleObject.cs" />
+    <Compile Include="DataObjects\Master\ActiveSubscriptionObject.cs" />
+    <Compile Include="DataObjects\Master\AddressObject.cs" />
+    <Compile Include="DataObjects\Master\AlaCarteObject.cs" />
+    <Compile Include="DataObjects\Master\BankObject.cs" />
+    <Compile Include="DataObjects\Master\BillingCycleObject.cs" />
+    <Compile Include="DataObjects\Master\CityObject.cs" />
+    <Compile Include="DataObjects\Master\ContactTagObject.cs" />
+    <Compile Include="DataObjects\Master\CountryObject.cs" />
+    <Compile Include="DataObjects\Master\CurrencyObject.cs" />
+    <Compile Include="DataObjects\Master\PackagePricingObject.cs" />
+    <Compile Include="DataObjects\Master\PaymentGatewayObject.cs" />
+    <Compile Include="DataObjects\Master\PaymentMethodObject.cs" />
+    <Compile Include="DataObjects\Master\PersonObject.cs" />
+    <Compile Include="DataObjects\Master\StateObject.cs" />
+    <Compile Include="DataObjects\Master\StoreObject.cs" />
+    <Compile Include="DataObjects\Master\StoreBankAccountObject.cs" />
+    <Compile Include="DataObjects\Master\StoreContactObject.cs" />
+    <Compile Include="DataObjects\Master\StorePaymentGatewayObject.cs" />
+    <Compile Include="DataObjects\Store\ChildMenuObject.cs" />
+    <Compile Include="DataObjects\Store\ParentMenuObject.cs" />
+    <Compile Include="DataObjects\Store\RegisterModels.cs" />
+    <Compile Include="DataObjects\Store\AspNetRoleObject.cs" />
+    <Compile Include="DataObjects\Store\AspNetUserObject.cs" />
+    <Compile Include="DataObjects\Store\AspNetUserClaim.cs" />
+    <Compile Include="DataObjects\Store\AspNetUserLoginObject.cs" />
+    <Compile Include="DataObjects\Store\CouponObject.cs" />
+    <Compile Include="DataObjects\Store\ImageViewObject.cs" />
+    <Compile Include="DataObjects\Store\GenericSaleObject.cs" />
+    <Compile Include="DataObjects\Store\IssueTypeObject.cs" />
+    <Compile Include="DataObjects\Store\ItemPriceObject.cs" />
+    <Compile Include="DataObjects\Store\ItemReviewObject.cs" />
+    <Compile Include="DataObjects\Store\PaymentTypeObject.cs" />
+    <Compile Include="DataObjects\Store\PurchaseOrderPaymentObject.cs" />
+    <Compile Include="DataObjects\Store\RegisterObject.cs" />
+    <Compile Include="DataObjects\Store\ReturnedProductObject.cs" />
+    <Compile Include="DataObjects\Store\SaleObject.cs" />
+    <Compile Include="DataObjects\Store\SalePaymentObject.cs" />
+    <Compile Include="DataObjects\Store\SaleTransactionObject.cs" />
+    <Compile Include="DataObjects\Store\SalutationObject.cs" />
+    <Compile Include="DataObjects\Store\ShopingCartItemObject.cs" />
+    <Compile Include="DataObjects\Store\ShoppingCartObject.cs" />
+    <Compile Include="DataObjects\Store\StockUploadObject.cs" />
+    <Compile Include="DataObjects\Store\SessionObj.cs" />
+    <Compile Include="DataObjects\Store\StoreItemIssueObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemSoldObject.cs" />
+    <Compile Include="DataObjects\Store\StoreObject.cs" />
+    <Compile Include="DataObjects\Store\StoreOutletCouponObject.cs" />
+    <Compile Include="DataObjects\Store\StorePaymentGatewayObject.cs" />
+    <Compile Include="DataObjects\Master\StoreSettingObject.cs" />
+    <Compile Include="DataObjects\Master\StoreSubscriptionHistoryObject.cs" />
+    <Compile Include="DataObjects\Master\SubscriptionPackageObject.cs" />
+    <Compile Include="DataObjects\Master\TransactionObject.cs" />
+    <Compile Include="DataObjects\Master\TransactionTypeObject.cs" />
+    <Compile Include="DataObjects\Store\AccountGroupObject.cs" />
+    <Compile Include="DataObjects\Store\AddressTypeObject.cs" />
+    <Compile Include="DataObjects\Store\BankObject.cs" />
+    <Compile Include="DataObjects\Store\ChartOfAccountObject.cs" />
+    <Compile Include="DataObjects\Store\StoreCityObject.cs" />
+    <Compile Include="DataObjects\Store\CompanyObject.cs" />
+    <Compile Include="DataObjects\Store\ContactTagObject.cs" />
+    <Compile Include="DataObjects\Store\ContactTypeObject.cs" />
+    <Compile Include="DataObjects\Store\StoreCountryObject.cs" />
+    <Compile Include="DataObjects\Store\DeliveryMethodObject.cs" />
+    <Compile Include="DataObjects\Store\DocumentTypeObject.cs" />
+    <Compile Include="DataObjects\Store\EmployeeAssigmentObject.cs" />
+    <Compile Include="DataObjects\Store\EmployeeDocumentObject.cs" />
+    <Compile Include="DataObjects\Store\OrderStoreItemObject.cs" />
+    <Compile Include="DataObjects\Store\PersonContactObject.cs" />
+    <Compile Include="DataObjects\Store\StateStateObject.cs" />
+    <Compile Include="DataObjects\Store\StoreContactObject.cs" />
+    <Compile Include="DataObjects\Store\StoreCurrencyObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemBrandObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemCategoryObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemStockObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemSupplierObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemTypeObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemVariationObject.cs" />
+    <Compile Include="DataObjects\Store\StoreItemVariationValueObject.cs" />
+    <Compile Include="DataObjects\Store\StoreSettingObject.cs" />
+    <Compile Include="DataObjects\Store\SubscriptionPackageObject.cs" />
+    <Compile Include="DataObjects\Store\SubscriptionSettingObject.cs" />
+    <Compile Include="DataObjects\Store\SupplierAddressObject.cs" />
+    <Compile Include="DataObjects\Store\TransferNoteItemObject.cs" />
+    <Compile Include="DataObjects\Store\TransferNoteObject.cs" />
+    <Compile Include="DataObjects\Store\UnitsOfMeasurementObject.cs" />
+    <Compile Include="DataObjects\Store\StoreAddressObject.cs" />
+    <Compile Include="DataObjects\Store\BankAccounObject.cs" />
+    <Compile Include="DataObjects\Store\CustomerObject.cs" />
+    <Compile Include="DataObjects\Store\DailyInventoryObject.cs" />
+    <Compile Include="DataObjects\Store\DailySaleObject.cs" />
+    <Compile Include="DataObjects\Store\DeliveryObject.cs" />
+    <Compile Include="DataObjects\Store\DeliveryVesselObject.cs" />
+    <Compile Include="DataObjects\Store\EmployeeObject.cs" />
+    <Compile Include="DataObjects\Store\EmployeeSalesLogStoreOutletObject.cs" />
+    <Compile Include="DataObjects\Store\InvoiceObject.cs" />
+    <Compile Include="DataObjects\Store\JobRoleObject.cs" />
+    <Compile Include="DataObjects\Store\OrderObject.cs" />
+    <Compile Include="DataObjects\Store\OrderPaymentObject.cs" />
+    <Compile Include="DataObjects\Store\PaymentOptionObject.cs" />
+    <Compile Include="DataObjects\Store\UserProfileObject.cs" />
+    <Compile Include="DataObjects\Store\PersonPhoneContactObject.cs" />
+    <Compile Include="DataObjects\Store\PurchaseObject.cs" />
+    <Compile Include="DataObjects\Store\PurchaseOrderObject.cs" />
+    <Compile Include="DataObjects\Store\PurchaseOrderItemObject.cs" />
+    <Compile Include="DataObjects\Store\StoreCustomerTypeObject.cs" />
+    <Compile Include="DataObjects\Store\StoreDepartmentObject.cs" />
+    <Compile Include="DataObjects\Store\StoreOutletObject.cs" />
+    <Compile Include="DataObjects\Store\StorePaymentMethodObject.cs" />
+    <Compile Include="DataObjects\Store\StoreTransactionObject.cs" />
+    <Compile Include="DataObjects\Store\StoreTransactionTypeObject.cs" />
+    <Compile Include="DataObjects\Store\SupplierObject.cs" />
+    <Compile Include="DataObjects\Store\WarehouseObject.cs" />
+    <Compile Include="DataObjects\Store\ShoppingCartDeliveryObject.cs" />
+    <Compile Include="DataObjects\Store\WayBillObject.cs" />
+    <Compile Include="DataObjects\Store\WayBillItemObject.cs" />
+    <Compile Include="DataObjects\Store\XKeyUnPObject.cs" />
+    <Compile Include="Helpers\EnumManager.cs" />
+    <Compile Include="Helpers\ErrorLogger.cs" />
+    <Compile Include="Helpers\GenericValidator.cs" />
+    <Compile Include="Helpers\PhysicalToVirtualPathMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

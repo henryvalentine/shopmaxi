@@ -1,0 +1,67 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="settingsController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Store Operational Setting</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label "> Database Synchronization Schedule Time</label>
+                <input type="text" data-ng-model="storeOutlet.OutletName" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label class="control-label "> Default Tax</label>
+                <input type="text" data-ng-model="storeOutlet.DefaultTax" class="form-control" />
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Facebook ID </label>
+                    <input type="text" data-ng-model="storeOutlet.FacebookHandle" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Twitter ID </label>
+                    <input type="text" data-ng-model="storeOutlet.TwitterHandle" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="padding-right: 0px">
+                    <label class="control-label"> Is Main Outlet?</label>
+                </div>
+                <div class="col-md-1" style="padding-left: 0px">
+                    <input type="checkbox" data-ng-model="storeOutlet.IsMainOutlet" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
+                </div>
+                <div class="col-md-4" style="padding-right: 0px">
+                    <label class="control-label "> Is Outlet Operational? </label>
+                </div>
+                <div class="col-md-1" style="padding-left: 0px">
+                    <input type="checkbox" data-ng-model="storeOutlet.IsOperational" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="control-label "> Address *</label>
+                <textarea class=" form-control" required ng-model="storeOutlet.StoreAddress" required>{{storeOutlet.StoreAddress}}</textarea>
+            </div>
+            <div class="col-md-12">
+                <label class="control-label "> City *</label>
+                <select id="ngIx" ng-model="storeOutlet.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required>
+                    <option value="">-- Select City --</option>
+                </select>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save Settings" ng-click="processSettings()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

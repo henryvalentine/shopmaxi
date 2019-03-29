@@ -1,0 +1,503 @@
+﻿
+
+<div class="row" ng-controller="salesReportController" ng-init="initializeController()">
+    <div style="display: none" ng-default></div>
+<div class="row" ng-show="details===false" style="border-bottom: 1px solid #e0e0e0">
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Sales Reports</h4>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="control-label ">Generate Report By *</label>
+            <ui-select ng-model="reportChoice" theme="bootstrap" ng-change="setOption(reportChoice)" class="fullWdith" ng-disabled ="processing===true">
+                <ui-select-match placeholder=" -- Select Option --">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="option in reportOptions | propsFilter: {name: $select.search} track by option.typeId">
+                    <div ng-bind-html="option.name  | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label">Start Date *</label>
+                    <p class="input-group">
+                        <input ng-disabled="processing===true" type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                               min-date="minDate" max-date="maxDate"
+                               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="startDate" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>   <!--min-date="minDate" max-date="'2015-06-22'"-->
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label">End Date *</label>
+                    <p class="input-group">
+                        <input ng-disabled="processing===true" type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="openEnDate($event)" datepicker-popup="{{endDateformat}}" is-open="endDateOpened"
+                               min-date="minDate" max-date="maxEndDate"
+                               datepicker-options="endDateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="endDate" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openEnDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>   <!--min-date="minDate" max-date="'2015-06-22'"-->
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br />
+<br/>
+
+    <div class="row" ng-show="option.typeId===1 && details===false && endDate != null && startDate != null" ng-cloak>
+        <div class="row" ng-show="showEmpSearch===true">
+            <div class="col-md-4">
+                <!--<label class="control-label ">Get Employee *</label>-->
+                <angucomplete id="employeeControl"
+                                placeholder="Search Employee by Name"
+                                pause="10"
+                                selectedobject="employee"
+                                localdata="employees"
+                                searchfields="Name"
+                                titlefield="Name"
+                                minlength="1" inputclass="form-control"
+                                callback="getEmployeeReports" clearselection="true" />
+            </div>
+            <div class="col-md-3" id="prtEmpTbl" style="display: none">
+                <input type="button" value="Print Report" ng-click="printEmpReport('cllCollection')" class="btn btn-primary" style="float: left; font-weight: bold;" />
+            </div>
+        </div>
+
+        <br/>
+        <div class="row" ng-show="empReport===true" id="empReport" style="margin-top: 2%">
+            <div class="row" ng-show="employee.EmployeeId > 0">
+                <h5>Sales by <b>{{employee.Name}}</b> for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" ng-show="employee.EmployeeId === undefined || employee.EmployeeId === null || employee.EmployeeId < 1 ">
+                <h5>Sales by all cashiers for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" id="empSummary"></div>
+            <div class="row">
+                <table ng-emp-report-table id="empRepTbl" style="border: solid 1px #ddd; width: 100%">
+                    <thead style="background-color: #008000; height: 40px">
+                        <tr style="color: #fff; border-top: solid 1px #ddd;">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Invoice No.
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Customer
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount Due({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 8%; text-align: left">
+                                VAT({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Discount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Net Amount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount Paid({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 5%; text-align: center">
+                                View
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="option.typeId=='2' && details===false && endDate != null && startDate != null" ng-cloak>
+        <div class="row" ng-show="showPrSearch===true">
+            <div class="col-md-4">
+                <angucomplete id="productControl"
+                              placeholder="Search Product by Name or SKU"
+                              pause="10"
+                              selectedobject="product"
+                              localdata="items"
+                              searchfields="Name,SKU"
+                              titlefield="Name"
+                              minlength="1" inputclass="form-control"
+                              callback="getProductReports" clearselection="true" />
+            </div>
+            <div class="col-md-3" id="prtPrTbl" style="display: none">
+                <input type="button" value="Print Report" ng-click="printProductReport('prCollection')" class="btn btn-primary" style="float: left; font-weight: bold;" />
+            </div>
+        </div>
+        <br />
+        <div class="row" ng-show="productReport===true">
+            <div class="row" ng-show="product.StoreItemStockId > 0">
+                <h5>Sales for <b>{{product.Name}}</b> for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" ng-show="employee.EmployeeId === undefined || employee.EmployeeId === null || employee.EmployeeId < 1 ">
+                <h5>Sales for all Product for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" id="prSummary">
+            </div>
+            <div class="row">
+                <table ng-emp-report-table id="proRepTbl" style="border: 1px solid #ddd">
+                    <thead style="background-color: #008000; height: 40px">
+                        <tr style="color: #fff; border-top: solid 1px #ddd;">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Invoice No.
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                SKU
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Item
+                            </th>
+                            <th style="width: 8%; text-align: left">
+                                Qty. Sold
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Rate({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Qty. in Stock
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Stock Value
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="option.typeId==3 && details===false && endDate != null && startDate != null" ng-cloak>
+        <div class="row" ng-show="showPyTypeSearch===true">
+            <div class="col-md-4">
+                <ui-select ng-model="pyT" theme="bootstrap" ng-change="getPaymentTypeReports(pyT)" class="fullWdith">
+                    <ui-select-match placeholder=" -- Select Payment Method --">{{$select.selected.Name}}</ui-select-match>
+                    <ui-select-choices repeat="ptype in paymentMethods | propsFilter: {Name: $select.search} track by ptype.StorePaymentMethodId">
+                        <div ng-bind-html="ptype.Name  | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <br />
+        <div class="row" ng-show="paymentReport===true">
+            <div class="row" ng-show="paymentType.StorePaymentMethodId > 0">
+                <h5>Transaction Payments made using <b>{{pyT.Name}}</b> for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" ng-show="pyT.StorePaymentMethodId === undefined || pyT.StorePaymentMethodId === null || pyT.StorePaymentMethodId < 1 ">
+                <h5>Transactions for all Payment Methods within the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row">
+                <div class="col-md-9" id="pyTypeSummary">
+
+                </div>
+                <div class="col-md-3" id="prtPyTbl" style="display: none">
+                    <input type="button" value="Print Report" ng-click="printPaymentTypeReport('ptyCollection')" class="btn btn-primary" style="float: left; font-weight: bold;" />
+                </div>
+            </div>
+            <div class="row">
+                <table ng-emp-report-table id="paymentTypeRepTbl">
+                    <thead style="background-color: #008000; height: 40px">
+                        <tr style="color: #fff">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 15%; text-align: left">
+                                Payment Method
+                            </th>
+                            <th style="width: 15%; text-align: left">
+                                Description
+                            </th>
+                            <th style="width: 16%; text-align: left">
+                                Total Number of Transactions
+                            </th>
+                            <th style="width: 13%; text-align: left">
+                                Total Value of Transaction({{store.DefaultCurrencySymbol}})
+                            </th>
+                        </tr> 
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="option.typeId=='4' && details===false && endDate != null && startDate != null" ng-cloak>
+            <div class="row" ng-show="showoutletReport===true">
+                <div class="col-md-4">
+                    <ui-select ng-model="sOutlet" theme="bootstrap" ng-change="getOutletReports(sOutlet)" class="fullWdith">
+                        <ui-select-match placeholder=" -- Select Sales Outlet --">{{$select.selected.OutletName}}</ui-select-match>
+                        <ui-select-choices repeat="outlet in outlets | propsFilter: {OutletName: $select.search} track by outlet.StoreOutletId">
+                            <div ng-bind-html="outlet.OutletName  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-3" id="prtOutletTbl" style="display: none">
+                    <input type="button" value="Print Report" ng-click="printOutletReport('outletCollection')" class="btn btn-primary" style="float: left; font-weight: bold; float: right" />
+                </div>
+            </div>
+            <br />
+            <div class="row" ng-show="outletsReport===true">
+                <div class="row" ng-show="outlet.StoreOutletId > 0">
+                    <h5>Sales at <b>{{outlet.OutletName}}</b> for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+                </div>
+                <div class="row" ng-show="outlet.StoreOutletId === undefined || outlet.StoreOutletId === null || outlet.StoreOutletId < 1 ">
+                    <h5>Sales at all Sales Outlet for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+                </div>
+                <div class="row" id="outletSummary">
+
+                </div>
+                <div class="row">
+                    <table ng-emp-report-table id="outletRepTbl" style="width: 100%;">
+                        <thead style="background-color: #008000; height: 40px">
+                            <tr style="color: #fff; border-top: solid 1px #ddd;">
+                                <th style="width: 3%; text-align: left">
+                                    S/N
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Invoice No.
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Date
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Customer
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Amount Due({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 8%; text-align: left">
+                                    VAT({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 10%; text-align: left">
+                                    Discount({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Net Amount({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Amount Paid({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 5%; text-align: center">
+                                    View
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <div class="row" ng-show="option.typeId=='5' && details===false && endDate != null && startDate != null" ng-cloak>
+        <div class="row" ng-show="showCustomerReport===true">
+            <div class="col-md-4">
+                <ui-select ng-model="cusr" theme="bootstrap" class="fullWdith" ng-change="GetCustomerSalesReport(cusr)">
+                    <ui-select-match placeholder="-- Select Customer --">{{$select.selected.UserProfileName}}</ui-select-match>
+                    <ui-select-choices repeat="cst in customers | propsFilter: {UserProfileName: $select.search} track by cst.CustomerId">
+                        <div ng-bind-html="cst.UserProfileName | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-3" id="prtCustomerTbl" style="display: none">
+                <input type="button" value="Print Report" ng-click="printCustomerReport()" class="btn btn-primary" style="float: left; font-weight: bold;" />
+            </div>
+        </div>
+        <br/>
+        <div class="row" ng-show="customerReport===true">
+            <div class="row" ng-show="repCustomer.CustomerId > 0">
+                <h5>Sales Transactions with Customer: <b>{{customer.UserProfileName}}</b> for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" ng-show="repCustomer.CustomerId === undefined || repCustomer.CustomerId === null || repCustomer.CustomerId < 1 ">
+                <h5>Sales Transactions with all Customers for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+            <div class="row" id="customerSummary">
+
+            </div>
+            <div class="row">
+                <table ng-emp-report-table id="allCustomerTbl"  style="width: 100%;">
+                    <thead style="height: 40px;  background-color: #008000">
+                        <tr style="color: #fff">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Invoice No.
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Customer
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Outlet
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount Due({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                VAT({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Discount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Net Amount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 14%; text-align: left">
+                                Amount Paid({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 5%">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <table ng-emp-report-table id="singleCustomerTbl" style="display: none; width: 100%;">
+                    <thead style="height: 40px;  background-color: #008000">
+                        <tr style="color: #fff">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Invoice No.
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Outlet
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Amount Due({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                VAT({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 10%; text-align: left">
+                                Discount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Net Amount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 14%; text-align: left">
+                                Amount Paid({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 5%">
+                                View
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+<div class="row" ng-show="option.typeId=='6' && details===false && endDate != null && startDate != null" ng-cloak>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Customer Invoice Report</h4>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-md-4">
+                <label class="control-label ">Customer</label>
+                <ui-select ng-model="customer" theme="bootstrap" class="fullWdith" ng-change="GetCustomerInvoiceReports(customer)">
+                    <ui-select-match placeholder="-- Select Customer --">{{$select.selected.UserProfileName}}</ui-select-match>
+                    <ui-select-choices repeat="cst in customers | propsFilter: {UserProfileName: $select.search} track by cst.CustomerId">
+                        <div ng-bind-html="cst.UserProfileName | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>-->
+        <br />
+        <div class="row" ng-show="customerInvoiceReport===true">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Invoice report for Customers for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+                </div>
+            </div>
+            <div class="row">
+                <table ng-emp-report-table id="invoiceRepTbl" style="width: 100%;">
+                    <thead style="height: 40px">
+                        <tr style="color: #fff">
+                            <th style="width: 3%; text-align: left">
+                                S/N
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Customer
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Total Amount Due({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Total VAT({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Total Discount({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Total Amount Paid({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Total Balance({{store.DefaultCurrencySymbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Date Registered
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="details === true" style="border: 3px solid #008000" ng-cloak>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Print Report" ng-click="printReport()" class="btn btn-primary" style="float: left; font-weight: bold; float: right" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="margin-top: 7px; float: right" />
+                </div>
+            </div>
+            <br />
+            <div class="row" id="rep">
+
+            </div>
+        </div>
+    <br />
+    <br />
+</div>
+
+

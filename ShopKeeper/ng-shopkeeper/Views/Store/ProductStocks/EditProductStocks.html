@@ -1,0 +1,75 @@
+﻿
+
+<div class="row fsEdit" style="width: 100%;" ng-controller="editInventoryController" ng-init="initializeComponents()">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{productVariant.Header}} : {{productVariant.StoreItem}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label ">Cost Price *</label>
+                <input type="text" ng-model="productVariant.CostPrice" class=" form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label ">Quantity In Stock *</label>
+                <input type="text" ng-model="productVariant.QuantityInStock" class=" form-control" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label ">Product Variant Property *</label>
+                <ui-select ng-model="productVariant.productVariation" theme="bootstrap">
+                    <ui-select-match placeholder="-- Select Currency --">{{$select.selected.VariationProperty}}</ui-select-match>
+                    <ui-select-choices repeat="storeItemVariation in genericListObject.storeItemVariations | propsFilter: {VariationProperty: $select.search} track by storeItemVariation.StoreItemVariationId">
+                        <div ng-bind-html="storeItemVariation.VariationProperty | highlight: $select.search"></div> <!--| propsFilter: {VariationProperty: $select.search}-->
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label ">Product Variant Value *</label>
+                <ui-select ng-model="productVariant.productVariationValue" theme="bootstrap">
+                    <ui-select-match placeholder=" -- Select Product Variant Value --">{{$select.selected.Value}}</ui-select-match>
+                    <ui-select-choices repeat="storeItemVariationValue in genericListObject.storeItemVariationValues | propsFilter: {Value: $select.search} track by storeItemVariationValue.StoreItemVariationValueId">
+                        <div ng-bind-html="storeItemVariationValue.Value  | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">Expiry Date</label>
+                <p class="input-group">
+                    <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="productVariant.ExpirationDate" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <img ng-src="{{productVariant.ImagePath}}" style="height: 40%; width: 50%" id="hImg" />
+            </div>
+            <div class="row">
+                <label class="control-label "> Attach Product Image </label>
+            </div>
+            <div class="row">
+                <input type="file" class="form-control" name="file" ng-variant-img accept="image/*" />
+            </div>
+        </div>
+        <br />
+        <div class="row modal-footer">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+                <input type="button" value="Save" ng-click="editInventory()" class="btn btn-default" style="margin-top: 7px;" />
+            </div>
+        </div>
+    </div>
+</div>

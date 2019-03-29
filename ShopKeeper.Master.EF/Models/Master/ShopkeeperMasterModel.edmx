@@ -1,0 +1,2052 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopKeeperMasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActiveSubscription">
+          <Key>
+            <PropertyRef Name="ActiveSubscriptionId" />
+          </Key>
+          <Property Name="ActiveSubscriptionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreIdId" Type="bigint" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="bigint" Nullable="false" />
+          <Property Name="SubscriptionStatus" Type="int" Nullable="false" />
+          <Property Name="DateSubscribed" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetNo" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlaCarte">
+          <Key>
+            <PropertyRef Name="AlaCarteId" />
+          </Key>
+          <Property Name="AlaCarteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserInfo_Id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SortCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LogoPath" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingCycle">
+          <Key>
+            <PropertyRef Name="BillingCycleId" />
+          </Key>
+          <Property Name="BillingCycleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="PercentageDiscount" Type="float" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="StateId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactTag">
+          <Key>
+            <PropertyRef Name="ContactTagId" />
+          </Key>
+          <Property Name="ContactTagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="MessageTemplateId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="DateSent" Type="datetime" Nullable="false" />
+          <Property Name="MessageBody" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTypeId" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MessageContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Footer" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PackagePricing">
+          <Key>
+            <PropertyRef Name="PackagePricingId" />
+          </Key>
+          <Property Name="PackagePricingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="bigint" Nullable="false" />
+          <Property Name="BillingCycleId" Type="bigint" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentGateway">
+          <Key>
+            <PropertyRef Name="PaymentGatewayId" />
+          </Key>
+          <Property Name="PaymentGatewayId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GatewayName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LogoPath" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OtherNames" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="PhotofilePath" Type="nvarchar(max)" />
+          <Property Name="DateRegistered" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="TotalOutlets" Type="int" Nullable="false" />
+          <Property Name="StoreAlias" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerEmail" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SubscriptionStatus" Type="int" Nullable="false" />
+          <Property Name="BillingCycleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StoreLogoPath" Type="nvarchar(max)" />
+          <Property Name="DefaultCurrency" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="SecreteKey" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreBankAccount">
+          <Key>
+            <PropertyRef Name="StoreBankAccountId" />
+          </Key>
+          <Property Name="StoreBankAccountId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="bigint" Nullable="false" />
+          <Property Name="BankId" Type="bigint" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AccountNo" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreContact">
+          <Key>
+            <PropertyRef Name="StoreContactId" />
+          </Key>
+          <Property Name="StoreContactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="bigint" Nullable="false" />
+          <Property Name="ContactTagId" Type="int" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StorePaymentGateway">
+          <Key>
+            <PropertyRef Name="StorePaymentgatewayId" />
+          </Key>
+          <Property Name="StorePaymentgatewayId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentGatewayId" Type="bigint" Nullable="false" />
+          <Property Name="StoreId" Type="bigint" Nullable="false" />
+          <Property Name="MerchantId" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreSetting">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="bigint" Nullable="false" />
+          <Property Name="InitialCatalog" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StorePsswd" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="DataSource" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreSubscriptionHistory">
+          <Key>
+            <PropertyRef Name="StoreSubscriptionHistoryId" />
+          </Key>
+          <Property Name="StoreSubscriptionHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="bigint" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="bigint" Nullable="false" />
+          <Property Name="PaymentId" Type="bigint" />
+          <Property Name="DateSubscribed" Type="datetime" Nullable="false" />
+          <Property Name="SubscriptionExpiryDate" Type="datetime" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SubscriptionPackage">
+          <Key>
+            <PropertyRef Name="SubscriptionPackageId" />
+          </Key>
+          <Property Name="SubscriptionPackageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackageTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FileStorageSpace" Type="bigint" Nullable="false" />
+          <Property Name="NumberOfStoreProducts" Type="int" Nullable="false" />
+          <Property Name="NumberOfOutlets" Type="int" Nullable="false" />
+          <Property Name="Registers" Type="int" Nullable="false" />
+          <Property Name="NumberOfUsers" Type="int" Nullable="false" />
+          <Property Name="UseReportBuilder" Type="bit" Nullable="false" />
+          <Property Name="GenerateReports" Type="bit" Nullable="false" />
+          <Property Name="MaximumTransactions" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="LiveChat" Type="bit" Nullable="false" />
+          <Property Name="EmailSupport" Type="bit" Nullable="false" />
+          <Property Name="TelephoneSupport" Type="bit" Nullable="false" />
+          <Property Name="DedicatedAccountManager" Type="bit" Nullable="false" />
+          <Property Name="MaximumCustomer" Type="bigint" Nullable="false" />
+          <Property Name="TransactionFee" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionTypeId" Type="int" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeId" />
+          </Key>
+          <Property Name="TransactionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalutationId" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OtherNames" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="15" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="PhotofilePath" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OfficeLine" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ActiveSubscription_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="ActiveSubscription" Type="Self.ActiveSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="ActiveSubscription">
+              <PropertyRef Name="StoreIdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActiveSubscription_SubscriptionPackage">
+          <End Role="SubscriptionPackage" Type="Self.SubscriptionPackage" Multiplicity="1" />
+          <End Role="ActiveSubscription" Type="Self.ActiveSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="ActiveSubscription">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currency_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Currency" Type="Self.Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id">
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="UserInfo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_MessageTemplate">
+          <End Role="MessageTemplate" Type="Self.MessageTemplate" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="MessageTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_UserProfiles">
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackagePricing_BillingCycle">
+          <End Role="BillingCycle" Type="Self.BillingCycle" Multiplicity="1" />
+          <End Role="PackagePricing" Type="Self.PackagePricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingCycle">
+              <PropertyRef Name="BillingCycleId" />
+            </Principal>
+            <Dependent Role="PackagePricing">
+              <PropertyRef Name="BillingCycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackagePricing_SubscriptionPackage">
+          <End Role="SubscriptionPackage" Type="Self.SubscriptionPackage" Multiplicity="1" />
+          <End Role="PackagePricing" Type="Self.PackagePricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="PackagePricing">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_SubscriptionPackage">
+          <End Role="SubscriptionPackage" Type="Self.SubscriptionPackage" Multiplicity="1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreBankAccount_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="StoreBankAccount" Type="Self.StoreBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="StoreBankAccount">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreBankAccount_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreBankAccount" Type="Self.StoreBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreBankAccount">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreContact_ContactTag">
+          <End Role="ContactTag" Type="Self.ContactTag" Multiplicity="1" />
+          <End Role="StoreContact" Type="Self.StoreContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactTag">
+              <PropertyRef Name="ContactTagId" />
+            </Principal>
+            <Dependent Role="StoreContact">
+              <PropertyRef Name="ContactTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreContact_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="StoreContact" Type="Self.StoreContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="StoreContact">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorePaymentGateway_PaymentGateway">
+          <End Role="PaymentGateway" Type="Self.PaymentGateway" Multiplicity="1" />
+          <End Role="StorePaymentGateway" Type="Self.StorePaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentGateway">
+              <PropertyRef Name="PaymentGatewayId" />
+            </Principal>
+            <Dependent Role="StorePaymentGateway">
+              <PropertyRef Name="PaymentGatewayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorePaymentGateway_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StorePaymentGateway" Type="Self.StorePaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StorePaymentGateway">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSeting_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreSetting" Type="Self.StoreSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreSetting">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSubscriptionHistory_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreSubscriptionHistory" Type="Self.StoreSubscriptionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreSubscriptionHistory">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSubscriptionHistory_SubscriptionPackage">
+          <End Role="SubscriptionPackage" Type="Self.SubscriptionPackage" Multiplicity="1" />
+          <End Role="StoreSubscriptionHistory" Type="Self.StoreSubscriptionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="StoreSubscriptionHistory">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopKeeperMasterModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActiveSubscription" EntityType="Self.ActiveSubscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlaCarte" EntityType="Self.AlaCarte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingCycle" EntityType="Self.BillingCycle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactTag" EntityType="Self.ContactTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageTemplate" EntityType="Self.MessageTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackagePricing" EntityType="Self.PackagePricing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentGateway" EntityType="Self.PaymentGateway" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreBankAccount" EntityType="Self.StoreBankAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreContact" EntityType="Self.StoreContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorePaymentGateway" EntityType="Self.StorePaymentGateway" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreSetting" EntityType="Self.StoreSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreSubscriptionHistory" EntityType="Self.StoreSubscriptionHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionPackage" EntityType="Self.SubscriptionPackage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActiveSubscription_Store" Association="Self.FK_ActiveSubscription_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="ActiveSubscription" EntitySet="ActiveSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActiveSubscription_SubscriptionPackage" Association="Self.FK_ActiveSubscription_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackage" />
+            <End Role="ActiveSubscription" EntitySet="ActiveSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_City" Association="Self.FK_Address_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Currency_Country" Association="Self.FK_Currency_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Currency" EntitySet="Currency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" Association="Self.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id">
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_MessageTemplate" Association="Self.FK_Message_MessageTemplate">
+            <End Role="MessageTemplate" EntitySet="MessageTemplate" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_UserProfiles" Association="Self.FK_Message_UserProfiles">
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackagePricing_BillingCycle" Association="Self.FK_PackagePricing_BillingCycle">
+            <End Role="BillingCycle" EntitySet="BillingCycle" />
+            <End Role="PackagePricing" EntitySet="PackagePricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackagePricing_SubscriptionPackage" Association="Self.FK_PackagePricing_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackage" />
+            <End Role="PackagePricing" EntitySet="PackagePricing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_SubscriptionPackage" Association="Self.FK_Store_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackage" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreBankAccount_Bank" Association="Self.FK_StoreBankAccount_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="StoreBankAccount" EntitySet="StoreBankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreBankAccount_Store" Association="Self.FK_StoreBankAccount_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreBankAccount" EntitySet="StoreBankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreContact_ContactTag" Association="Self.FK_StoreContact_ContactTag">
+            <End Role="ContactTag" EntitySet="ContactTag" />
+            <End Role="StoreContact" EntitySet="StoreContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreContact_Person" Association="Self.FK_StoreContact_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="StoreContact" EntitySet="StoreContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorePaymentGateway_PaymentGateway" Association="Self.FK_StorePaymentGateway_PaymentGateway">
+            <End Role="PaymentGateway" EntitySet="PaymentGateway" />
+            <End Role="StorePaymentGateway" EntitySet="StorePaymentGateway" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorePaymentGateway_Store" Association="Self.FK_StorePaymentGateway_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StorePaymentGateway" EntitySet="StorePaymentGateway" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSeting_Store" Association="Self.FK_StoreSeting_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreSetting" EntitySet="StoreSetting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSubscriptionHistory_Store" Association="Self.FK_StoreSubscriptionHistory_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreSubscriptionHistory" EntitySet="StoreSubscriptionHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSubscriptionHistory_SubscriptionPackage" Association="Self.FK_StoreSubscriptionHistory_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackage" />
+            <End Role="StoreSubscriptionHistory" EntitySet="StoreSubscriptionHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod" Association="Self.FK_Transaction_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_TransactionType" Association="Self.FK_Transaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopKeeperMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShopKeeperMasterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="ShopKeeperMasterModel.C__MigrationHistory" />
+          <EntitySet Name="ActiveSubscriptions" EntityType="ShopKeeperMasterModel.ActiveSubscription" />
+          <EntitySet Name="Addresses" EntityType="ShopKeeperMasterModel.Address" />
+          <EntitySet Name="AlaCartes" EntityType="ShopKeeperMasterModel.AlaCarte" />
+          <EntitySet Name="AspNetRoles" EntityType="ShopKeeperMasterModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="ShopKeeperMasterModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="ShopKeeperMasterModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="ShopKeeperMasterModel.AspNetUser" />
+          <EntitySet Name="Banks" EntityType="ShopKeeperMasterModel.Bank" />
+          <EntitySet Name="BillingCycles" EntityType="ShopKeeperMasterModel.BillingCycle" />
+          <EntitySet Name="Cities" EntityType="ShopKeeperMasterModel.City" />
+          <EntitySet Name="ContactTags" EntityType="ShopKeeperMasterModel.ContactTag" />
+          <EntitySet Name="Countries" EntityType="ShopKeeperMasterModel.Country" />
+          <EntitySet Name="Currencies" EntityType="ShopKeeperMasterModel.Currency" />
+          <EntitySet Name="Messages" EntityType="ShopKeeperMasterModel.Message" />
+          <EntitySet Name="MessageTemplates" EntityType="ShopKeeperMasterModel.MessageTemplate" />
+          <EntitySet Name="PackagePricings" EntityType="ShopKeeperMasterModel.PackagePricing" />
+          <EntitySet Name="PaymentGateways" EntityType="ShopKeeperMasterModel.PaymentGateway" />
+          <EntitySet Name="PaymentMethods" EntityType="ShopKeeperMasterModel.PaymentMethod" />
+          <EntitySet Name="People" EntityType="ShopKeeperMasterModel.Person" />
+          <EntitySet Name="States" EntityType="ShopKeeperMasterModel.State" />
+          <EntitySet Name="Stores" EntityType="ShopKeeperMasterModel.Store" />
+          <EntitySet Name="StoreBankAccounts" EntityType="ShopKeeperMasterModel.StoreBankAccount" />
+          <EntitySet Name="StoreContacts" EntityType="ShopKeeperMasterModel.StoreContact" />
+          <EntitySet Name="StorePaymentGateways" EntityType="ShopKeeperMasterModel.StorePaymentGateway" />
+          <EntitySet Name="StoreSettings" EntityType="ShopKeeperMasterModel.StoreSetting" />
+          <EntitySet Name="StoreSubscriptionHistories" EntityType="ShopKeeperMasterModel.StoreSubscriptionHistory" />
+          <EntitySet Name="SubscriptionPackages" EntityType="ShopKeeperMasterModel.SubscriptionPackage" />
+          <EntitySet Name="Transactions" EntityType="ShopKeeperMasterModel.Transaction" />
+          <EntitySet Name="TransactionTypes" EntityType="ShopKeeperMasterModel.TransactionType" />
+          <EntitySet Name="UserProfiles" EntityType="ShopKeeperMasterModel.UserProfile" />
+          <AssociationSet Name="FK_ActiveSubscription_Store" Association="ShopKeeperMasterModel.FK_ActiveSubscription_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="ActiveSubscription" EntitySet="ActiveSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActiveSubscription_SubscriptionPackage" Association="ShopKeeperMasterModel.FK_ActiveSubscription_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackages" />
+            <End Role="ActiveSubscription" EntitySet="ActiveSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_City" Association="ShopKeeperMasterModel.FK_Address_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ShopKeeperMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ShopKeeperMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" Association="ShopKeeperMasterModel.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreBankAccount_Bank" Association="ShopKeeperMasterModel.FK_StoreBankAccount_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="StoreBankAccount" EntitySet="StoreBankAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackagePricing_BillingCycle" Association="ShopKeeperMasterModel.FK_PackagePricing_BillingCycle">
+            <End Role="BillingCycle" EntitySet="BillingCycles" />
+            <End Role="PackagePricing" EntitySet="PackagePricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_State" Association="ShopKeeperMasterModel.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreContact_ContactTag" Association="ShopKeeperMasterModel.FK_StoreContact_ContactTag">
+            <End Role="ContactTag" EntitySet="ContactTags" />
+            <End Role="StoreContact" EntitySet="StoreContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Currency_Country" Association="ShopKeeperMasterModel.FK_Currency_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Currency" EntitySet="Currencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="ShopKeeperMasterModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_MessageTemplate" Association="ShopKeeperMasterModel.FK_Message_MessageTemplate">
+            <End Role="MessageTemplate" EntitySet="MessageTemplates" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_UserProfiles" Association="ShopKeeperMasterModel.FK_Message_UserProfiles">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackagePricing_SubscriptionPackage" Association="ShopKeeperMasterModel.FK_PackagePricing_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackages" />
+            <End Role="PackagePricing" EntitySet="PackagePricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorePaymentGateway_PaymentGateway" Association="ShopKeeperMasterModel.FK_StorePaymentGateway_PaymentGateway">
+            <End Role="PaymentGateway" EntitySet="PaymentGateways" />
+            <End Role="StorePaymentGateway" EntitySet="StorePaymentGateways" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod" Association="ShopKeeperMasterModel.FK_Transaction_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreContact_Person" Association="ShopKeeperMasterModel.FK_StoreContact_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="StoreContact" EntitySet="StoreContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_SubscriptionPackage" Association="ShopKeeperMasterModel.FK_Store_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackages" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreBankAccount_Store" Association="ShopKeeperMasterModel.FK_StoreBankAccount_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreBankAccount" EntitySet="StoreBankAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorePaymentGateway_Store" Association="ShopKeeperMasterModel.FK_StorePaymentGateway_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StorePaymentGateway" EntitySet="StorePaymentGateways" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSeting_Store" Association="ShopKeeperMasterModel.FK_StoreSeting_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreSetting" EntitySet="StoreSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSubscriptionHistory_Store" Association="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreSubscriptionHistory" EntitySet="StoreSubscriptionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreSubscriptionHistory_SubscriptionPackage" Association="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_SubscriptionPackage">
+            <End Role="SubscriptionPackage" EntitySet="SubscriptionPackages" />
+            <End Role="StoreSubscriptionHistory" EntitySet="StoreSubscriptionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_TransactionType" Association="ShopKeeperMasterModel.FK_Transaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="ShopKeeperMasterModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ActiveSubscription">
+          <Key>
+            <PropertyRef Name="ActiveSubscriptionId" />
+          </Key>
+          <Property Name="ActiveSubscriptionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreIdId" Type="Int64" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="Int64" Nullable="false" />
+          <Property Name="SubscriptionStatus" Type="Int32" Nullable="false" />
+          <Property Name="DateSubscribed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Store" Relationship="ShopKeeperMasterModel.FK_ActiveSubscription_Store" FromRole="ActiveSubscription" ToRole="Store" />
+          <NavigationProperty Name="SubscriptionPackage" Relationship="ShopKeeperMasterModel.FK_ActiveSubscription_SubscriptionPackage" FromRole="ActiveSubscription" ToRole="SubscriptionPackage" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetNo" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="CityId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="ShopKeeperMasterModel.FK_Address_City" FromRole="Address" ToRole="City" />
+        </EntityType>
+        <EntityType Name="AlaCarte">
+          <Key>
+            <PropertyRef Name="AlaCarteId" />
+          </Key>
+          <Property Name="AlaCarteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ShopKeeperMasterModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_Id" Type="Int64" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="UserProfile" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" FromRole="AspNetUser" ToRole="UserProfile" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ShopKeeperMasterModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LogoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoreBankAccounts" Relationship="ShopKeeperMasterModel.FK_StoreBankAccount_Bank" FromRole="Bank" ToRole="StoreBankAccount" />
+        </EntityType>
+        <EntityType Name="BillingCycle">
+          <Key>
+            <PropertyRef Name="BillingCycleId" />
+          </Key>
+          <Property Name="BillingCycleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PercentageDiscount" Type="Double" />
+          <NavigationProperty Name="PackagePricings" Relationship="ShopKeeperMasterModel.FK_PackagePricing_BillingCycle" FromRole="BillingCycle" ToRole="PackagePricing" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="ShopKeeperMasterModel.FK_Address_City" FromRole="City" ToRole="Address" />
+          <NavigationProperty Name="State" Relationship="ShopKeeperMasterModel.FK_City_State" FromRole="City" ToRole="State" />
+        </EntityType>
+        <EntityType Name="ContactTag">
+          <Key>
+            <PropertyRef Name="ContactTagId" />
+          </Key>
+          <Property Name="ContactTagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoreContacts" Relationship="ShopKeeperMasterModel.FK_StoreContact_ContactTag" FromRole="ContactTag" ToRole="StoreContact" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Currencies" Relationship="ShopKeeperMasterModel.FK_Currency_Country" FromRole="Country" ToRole="Currency" />
+          <NavigationProperty Name="States" Relationship="ShopKeeperMasterModel.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="ShopKeeperMasterModel.FK_Currency_Country" FromRole="Currency" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="MessageTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="DateSent" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MessageBody" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MessageTemplate" Relationship="ShopKeeperMasterModel.FK_Message_MessageTemplate" FromRole="Message" ToRole="MessageTemplate" />
+          <NavigationProperty Name="UserProfile" Relationship="ShopKeeperMasterModel.FK_Message_UserProfiles" FromRole="Message" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="MessageTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MessageContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Footer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Messages" Relationship="ShopKeeperMasterModel.FK_Message_MessageTemplate" FromRole="MessageTemplate" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="PackagePricing">
+          <Key>
+            <PropertyRef Name="PackagePricingId" />
+          </Key>
+          <Property Name="PackagePricingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscriptionPackageId" Type="Int64" Nullable="false" />
+          <Property Name="BillingCycleId" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BillingCycle" Relationship="ShopKeeperMasterModel.FK_PackagePricing_BillingCycle" FromRole="PackagePricing" ToRole="BillingCycle" />
+          <NavigationProperty Name="SubscriptionPackage" Relationship="ShopKeeperMasterModel.FK_PackagePricing_SubscriptionPackage" FromRole="PackagePricing" ToRole="SubscriptionPackage" />
+        </EntityType>
+        <EntityType Name="PaymentGateway">
+          <Key>
+            <PropertyRef Name="PaymentGatewayId" />
+          </Key>
+          <Property Name="PaymentGatewayId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GatewayName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LogoPath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StorePaymentGateways" Relationship="ShopKeeperMasterModel.FK_StorePaymentGateway_PaymentGateway" FromRole="PaymentGateway" ToRole="StorePaymentGateway" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transactions" Relationship="ShopKeeperMasterModel.FK_Transaction_PaymentMethod" FromRole="PaymentMethod" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Salutation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherNames" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhotofilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateRegistered" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StoreContacts" Relationship="ShopKeeperMasterModel.FK_StoreContact_Person" FromRole="Person" ToRole="StoreContact" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="ShopKeeperMasterModel.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="ShopKeeperMasterModel.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TotalOutlets" Type="Int32" Nullable="false" />
+          <Property Name="StoreAlias" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerEmail" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionStatus" Type="Int32" Nullable="false" />
+          <Property Name="BillingCycleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreLogoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultCurrency" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SecreteKey" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionPackageId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ActiveSubscriptions" Relationship="ShopKeeperMasterModel.FK_ActiveSubscription_Store" FromRole="Store" ToRole="ActiveSubscription" />
+          <NavigationProperty Name="SubscriptionPackage" Relationship="ShopKeeperMasterModel.FK_Store_SubscriptionPackage" FromRole="Store" ToRole="SubscriptionPackage" />
+          <NavigationProperty Name="StoreBankAccounts" Relationship="ShopKeeperMasterModel.FK_StoreBankAccount_Store" FromRole="Store" ToRole="StoreBankAccount" />
+          <NavigationProperty Name="StorePaymentGateways" Relationship="ShopKeeperMasterModel.FK_StorePaymentGateway_Store" FromRole="Store" ToRole="StorePaymentGateway" />
+          <NavigationProperty Name="StoreSetting" Relationship="ShopKeeperMasterModel.FK_StoreSeting_Store" FromRole="Store" ToRole="StoreSetting" />
+          <NavigationProperty Name="StoreSubscriptionHistories" Relationship="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_Store" FromRole="Store" ToRole="StoreSubscriptionHistory" />
+        </EntityType>
+        <EntityType Name="StoreBankAccount">
+          <Key>
+            <PropertyRef Name="StoreBankAccountId" />
+          </Key>
+          <Property Name="StoreBankAccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int64" Nullable="false" />
+          <Property Name="BankId" Type="Int64" Nullable="false" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="ShopKeeperMasterModel.FK_StoreBankAccount_Bank" FromRole="StoreBankAccount" ToRole="Bank" />
+          <NavigationProperty Name="Store" Relationship="ShopKeeperMasterModel.FK_StoreBankAccount_Store" FromRole="StoreBankAccount" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="StoreContact">
+          <Key>
+            <PropertyRef Name="StoreContactId" />
+          </Key>
+          <Property Name="StoreContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int64" Nullable="false" />
+          <Property Name="ContactTagId" Type="Int32" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ContactTag" Relationship="ShopKeeperMasterModel.FK_StoreContact_ContactTag" FromRole="StoreContact" ToRole="ContactTag" />
+          <NavigationProperty Name="Person" Relationship="ShopKeeperMasterModel.FK_StoreContact_Person" FromRole="StoreContact" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="StorePaymentGateway">
+          <Key>
+            <PropertyRef Name="StorePaymentgatewayId" />
+          </Key>
+          <Property Name="StorePaymentgatewayId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentGatewayId" Type="Int64" Nullable="false" />
+          <Property Name="StoreId" Type="Int64" Nullable="false" />
+          <Property Name="MerchantId" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentGateway" Relationship="ShopKeeperMasterModel.FK_StorePaymentGateway_PaymentGateway" FromRole="StorePaymentGateway" ToRole="PaymentGateway" />
+          <NavigationProperty Name="Store" Relationship="ShopKeeperMasterModel.FK_StorePaymentGateway_Store" FromRole="StorePaymentGateway" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="StoreSetting">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="Int64" Nullable="false" />
+          <Property Name="InitialCatalog" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StorePsswd" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="DataSource" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Store" Relationship="ShopKeeperMasterModel.FK_StoreSeting_Store" FromRole="StoreSetting" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="StoreSubscriptionHistory">
+          <Key>
+            <PropertyRef Name="StoreSubscriptionHistoryId" />
+          </Key>
+          <Property Name="StoreSubscriptionHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int64" Nullable="false" />
+          <Property Name="SubscriptionPackageId" Type="Int64" Nullable="false" />
+          <Property Name="PaymentId" Type="Int64" />
+          <Property Name="DateSubscribed" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SubscriptionExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Store" Relationship="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_Store" FromRole="StoreSubscriptionHistory" ToRole="Store" />
+          <NavigationProperty Name="SubscriptionPackage" Relationship="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_SubscriptionPackage" FromRole="StoreSubscriptionHistory" ToRole="SubscriptionPackage" />
+        </EntityType>
+        <EntityType Name="SubscriptionPackage">
+          <Key>
+            <PropertyRef Name="SubscriptionPackageId" />
+          </Key>
+          <Property Name="SubscriptionPackageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackageTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FileStorageSpace" Type="Int64" Nullable="false" />
+          <Property Name="NumberOfStoreProducts" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfOutlets" Type="Int32" Nullable="false" />
+          <Property Name="Registers" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfUsers" Type="Int32" Nullable="false" />
+          <Property Name="UseReportBuilder" Type="Boolean" Nullable="false" />
+          <Property Name="GenerateReports" Type="Boolean" Nullable="false" />
+          <Property Name="MaximumTransactions" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LiveChat" Type="Boolean" Nullable="false" />
+          <Property Name="EmailSupport" Type="Boolean" Nullable="false" />
+          <Property Name="TelephoneSupport" Type="Boolean" Nullable="false" />
+          <Property Name="DedicatedAccountManager" Type="Boolean" Nullable="false" />
+          <Property Name="MaximumCustomer" Type="Int64" Nullable="false" />
+          <Property Name="TransactionFee" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ActiveSubscriptions" Relationship="ShopKeeperMasterModel.FK_ActiveSubscription_SubscriptionPackage" FromRole="SubscriptionPackage" ToRole="ActiveSubscription" />
+          <NavigationProperty Name="PackagePricings" Relationship="ShopKeeperMasterModel.FK_PackagePricing_SubscriptionPackage" FromRole="SubscriptionPackage" ToRole="PackagePricing" />
+          <NavigationProperty Name="Stores" Relationship="ShopKeeperMasterModel.FK_Store_SubscriptionPackage" FromRole="SubscriptionPackage" ToRole="Store" />
+          <NavigationProperty Name="StoreSubscriptionHistories" Relationship="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_SubscriptionPackage" FromRole="SubscriptionPackage" ToRole="StoreSubscriptionHistory" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentMethod" Relationship="ShopKeeperMasterModel.FK_Transaction_PaymentMethod" FromRole="Transaction" ToRole="PaymentMethod" />
+          <NavigationProperty Name="TransactionType" Relationship="ShopKeeperMasterModel.FK_Transaction_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeId" />
+          </Key>
+          <Property Name="TransactionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transactions" Relationship="ShopKeeperMasterModel.FK_Transaction_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalutationId" Type="Int32" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherNames" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="PhotofilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ShopKeeperMasterModel.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" FromRole="UserProfile" ToRole="AspNetUser" />
+          <NavigationProperty Name="Messages" Relationship="ShopKeeperMasterModel.FK_Message_UserProfiles" FromRole="UserProfile" ToRole="Message" />
+        </EntityType>
+        <Association Name="FK_ActiveSubscription_Store">
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.ActiveSubscription" Role="ActiveSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="ActiveSubscription">
+              <PropertyRef Name="StoreIdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActiveSubscription_SubscriptionPackage">
+          <End Type="ShopKeeperMasterModel.SubscriptionPackage" Role="SubscriptionPackage" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.ActiveSubscription" Role="ActiveSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="ActiveSubscription">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_City">
+          <End Type="ShopKeeperMasterModel.City" Role="City" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="ShopKeeperMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopKeeperMasterModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="ShopKeeperMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopKeeperMasterModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id">
+          <End Type="ShopKeeperMasterModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ShopKeeperMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="UserInfo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreBankAccount_Bank">
+          <End Type="ShopKeeperMasterModel.Bank" Role="Bank" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreBankAccount" Role="StoreBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="StoreBankAccount">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackagePricing_BillingCycle">
+          <End Type="ShopKeeperMasterModel.BillingCycle" Role="BillingCycle" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.PackagePricing" Role="PackagePricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingCycle">
+              <PropertyRef Name="BillingCycleId" />
+            </Principal>
+            <Dependent Role="PackagePricing">
+              <PropertyRef Name="BillingCycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_State">
+          <End Type="ShopKeeperMasterModel.State" Role="State" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreContact_ContactTag">
+          <End Type="ShopKeeperMasterModel.ContactTag" Role="ContactTag" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreContact" Role="StoreContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactTag">
+              <PropertyRef Name="ContactTagId" />
+            </Principal>
+            <Dependent Role="StoreContact">
+              <PropertyRef Name="ContactTagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currency_Country">
+          <End Type="ShopKeeperMasterModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Currency" Role="Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Type="ShopKeeperMasterModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_MessageTemplate">
+          <End Type="ShopKeeperMasterModel.MessageTemplate" Role="MessageTemplate" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="MessageTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_UserProfiles">
+          <End Type="ShopKeeperMasterModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackagePricing_SubscriptionPackage">
+          <End Type="ShopKeeperMasterModel.SubscriptionPackage" Role="SubscriptionPackage" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.PackagePricing" Role="PackagePricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="PackagePricing">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorePaymentGateway_PaymentGateway">
+          <End Type="ShopKeeperMasterModel.PaymentGateway" Role="PaymentGateway" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StorePaymentGateway" Role="StorePaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentGateway">
+              <PropertyRef Name="PaymentGatewayId" />
+            </Principal>
+            <Dependent Role="StorePaymentGateway">
+              <PropertyRef Name="PaymentGatewayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_PaymentMethod">
+          <End Type="ShopKeeperMasterModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreContact_Person">
+          <End Type="ShopKeeperMasterModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreContact" Role="StoreContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="StoreContact">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_SubscriptionPackage">
+          <End Type="ShopKeeperMasterModel.SubscriptionPackage" Role="SubscriptionPackage" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreBankAccount_Store">
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreBankAccount" Role="StoreBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreBankAccount">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorePaymentGateway_Store">
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StorePaymentGateway" Role="StorePaymentGateway" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StorePaymentGateway">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSeting_Store">
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreSetting" Role="StoreSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreSetting">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSubscriptionHistory_Store">
+          <End Type="ShopKeeperMasterModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreSubscriptionHistory" Role="StoreSubscriptionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreSubscriptionHistory">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreSubscriptionHistory_SubscriptionPackage">
+          <End Type="ShopKeeperMasterModel.SubscriptionPackage" Role="SubscriptionPackage" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.StoreSubscriptionHistory" Role="StoreSubscriptionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionPackage">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Principal>
+            <Dependent Role="StoreSubscriptionHistory">
+              <PropertyRef Name="SubscriptionPackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_TransactionType">
+          <End Type="ShopKeeperMasterModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="ShopKeeperMasterModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="ShopKeeperMasterModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="ShopKeeperMasterModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopKeeperMasterModelStoreContainer" CdmEntityContainer="ShopKeeperMasterEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveSubscriptions">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.ActiveSubscription">
+              <MappingFragment StoreEntitySet="ActiveSubscription">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="DateSubscribed" ColumnName="DateSubscribed" />
+                <ScalarProperty Name="SubscriptionStatus" ColumnName="SubscriptionStatus" />
+                <ScalarProperty Name="SubscriptionPackageId" ColumnName="SubscriptionPackageId" />
+                <ScalarProperty Name="StoreIdId" ColumnName="StoreIdId" />
+                <ScalarProperty Name="ActiveSubscriptionId" ColumnName="ActiveSubscriptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StreetNo" ColumnName="StreetNo" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlaCartes">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.AlaCarte">
+              <MappingFragment StoreEntitySet="AlaCarte">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="AlaCarteId" ColumnName="AlaCarteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserInfo_Id" ColumnName="UserInfo_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingCycles">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.BillingCycle">
+              <MappingFragment StoreEntitySet="BillingCycle">
+                <ScalarProperty Name="PercentageDiscount" ColumnName="PercentageDiscount" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BillingCycleId" ColumnName="BillingCycleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactTags">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.ContactTag">
+              <MappingFragment StoreEntitySet="ContactTag">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactTagId" ColumnName="ContactTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MessageTemplateId" ColumnName="MessageTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageTemplates">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.MessageTemplate">
+              <MappingFragment StoreEntitySet="MessageTemplate">
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackagePricings">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.PackagePricing">
+              <MappingFragment StoreEntitySet="PackagePricing">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BillingCycleId" ColumnName="BillingCycleId" />
+                <ScalarProperty Name="SubscriptionPackageId" ColumnName="SubscriptionPackageId" />
+                <ScalarProperty Name="PackagePricingId" ColumnName="PackagePricingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentGateways">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.PaymentGateway">
+              <MappingFragment StoreEntitySet="PaymentGateway">
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="GatewayName" ColumnName="GatewayName" />
+                <ScalarProperty Name="PaymentGatewayId" ColumnName="PaymentGatewayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="DateRegistered" ColumnName="DateRegistered" />
+                <ScalarProperty Name="PhotofilePath" ColumnName="PhotofilePath" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="SubscriptionPackageId" ColumnName="SubscriptionPackageId" />
+                <ScalarProperty Name="SecreteKey" ColumnName="SecreteKey" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DefaultCurrency" ColumnName="DefaultCurrency" />
+                <ScalarProperty Name="StoreLogoPath" ColumnName="StoreLogoPath" />
+                <ScalarProperty Name="BillingCycleCode" ColumnName="BillingCycleCode" />
+                <ScalarProperty Name="SubscriptionStatus" ColumnName="SubscriptionStatus" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="StoreAlias" ColumnName="StoreAlias" />
+                <ScalarProperty Name="TotalOutlets" ColumnName="TotalOutlets" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreBankAccounts">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.StoreBankAccount">
+              <MappingFragment StoreEntitySet="StoreBankAccount">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="StoreBankAccountId" ColumnName="StoreBankAccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreContacts">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.StoreContact">
+              <MappingFragment StoreEntitySet="StoreContact">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="ContactTagId" ColumnName="ContactTagId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="StoreContactId" ColumnName="StoreContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorePaymentGateways">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.StorePaymentGateway">
+              <MappingFragment StoreEntitySet="StorePaymentGateway">
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="PaymentGatewayId" ColumnName="PaymentGatewayId" />
+                <ScalarProperty Name="StorePaymentgatewayId" ColumnName="StorePaymentgatewayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreSettings">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.StoreSetting">
+              <MappingFragment StoreEntitySet="StoreSetting">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+                <ScalarProperty Name="StorePsswd" ColumnName="StorePsswd" />
+                <ScalarProperty Name="InitialCatalog" ColumnName="InitialCatalog" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreSubscriptionHistories">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.StoreSubscriptionHistory">
+              <MappingFragment StoreEntitySet="StoreSubscriptionHistory">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SubscriptionExpiryDate" ColumnName="SubscriptionExpiryDate" />
+                <ScalarProperty Name="DateSubscribed" ColumnName="DateSubscribed" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="SubscriptionPackageId" ColumnName="SubscriptionPackageId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="StoreSubscriptionHistoryId" ColumnName="StoreSubscriptionHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionPackages">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.SubscriptionPackage">
+              <MappingFragment StoreEntitySet="SubscriptionPackage">
+                <ScalarProperty Name="TransactionFee" ColumnName="TransactionFee" />
+                <ScalarProperty Name="MaximumCustomer" ColumnName="MaximumCustomer" />
+                <ScalarProperty Name="DedicatedAccountManager" ColumnName="DedicatedAccountManager" />
+                <ScalarProperty Name="TelephoneSupport" ColumnName="TelephoneSupport" />
+                <ScalarProperty Name="EmailSupport" ColumnName="EmailSupport" />
+                <ScalarProperty Name="LiveChat" ColumnName="LiveChat" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="MaximumTransactions" ColumnName="MaximumTransactions" />
+                <ScalarProperty Name="GenerateReports" ColumnName="GenerateReports" />
+                <ScalarProperty Name="UseReportBuilder" ColumnName="UseReportBuilder" />
+                <ScalarProperty Name="NumberOfUsers" ColumnName="NumberOfUsers" />
+                <ScalarProperty Name="Registers" ColumnName="Registers" />
+                <ScalarProperty Name="NumberOfOutlets" ColumnName="NumberOfOutlets" />
+                <ScalarProperty Name="NumberOfStoreProducts" ColumnName="NumberOfStoreProducts" />
+                <ScalarProperty Name="FileStorageSpace" ColumnName="FileStorageSpace" />
+                <ScalarProperty Name="PackageTitle" ColumnName="PackageTitle" />
+                <ScalarProperty Name="SubscriptionPackageId" ColumnName="SubscriptionPackageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="TransactionTypeId" ColumnName="TransactionTypeId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TransactionTypeId" ColumnName="TransactionTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ShopKeeperMasterModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="OfficeLine" ColumnName="OfficeLine" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PhotofilePath" ColumnName="PhotofilePath" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ShopKeeperMasterModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

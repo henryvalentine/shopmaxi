@@ -1,0 +1,59 @@
+﻿
+
+<div class="row" ng-controller="stockReport" ng-init="initializeController()">
+    <div style="display: none" ng-default></div>
+    <br/>
+    <div class="row" style="border-bottom: 1px solid #e0e0e0">
+        <div class="col-md-8">
+            <h4>Stock Report</h4>
+        </div>
+        <div class="col-md-3" id="prtStockTbl" style="display: none">
+            <input type="button" value="Print Report" ng-click="printStockReport()" class="btn btn-primary" style="float: left; font-weight: bold; margin-top:1%" />
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row" id="stockDate">
+
+    </div>
+    <br />
+    <div class="row" id="stockSummary">
+
+    </div>
+    <div class="row">
+        <table id="stockRepTbl" style="border: solid 1px #ddd; width: 100%">
+            <thead style="background-color: #008000; height: 40px">
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Product
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        SKU
+                    </th>
+                    <!--<th style="width: 25%; text-align: left">
+                        Description
+                    </th>-->
+                    <th style="width: 12%; text-align: left">
+                        Stock Balance
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Cost Price({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                       Stock Value({{store.DefaultCurrencySymbol}})
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <br />
+    <br />
+</div>
+
+

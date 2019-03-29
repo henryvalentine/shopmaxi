@@ -1,0 +1,35 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="productBrandController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+               <h4 class="modal-title">{{productBrand.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessProductBrandes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="productBrand.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Description</label>
+                    <textarea data-ng-model="productBrand.Description" class="form-control">{{productBrand.Description}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processProductBrand()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<script>
+    //angular.element('popDiv').draggable();
+</script>

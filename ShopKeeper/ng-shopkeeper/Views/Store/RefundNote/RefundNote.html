@@ -1,0 +1,550 @@
+﻿<br />
+<div class="row" ng-controller="refundNoteController" ng-init="initializeController()">
+<div class="row" ng-hide="newRevoke === true||details===true">
+    <br/>
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Sales Refund Notes</h4>
+        </div>
+        <div class="3" ng-if="isCashier === true">
+            <a ng-click="newRefund()" class="btnAdd btn" style="width: 115px; float: right; text-align: right">New Refund</a>
+        </div>
+    </div>
+    <br/>
+    <table ng-revoked-slaes>
+        <thead>
+        <tr style="color: #fff">
+            <th style="width: 3%; text-align: left">
+                S/N
+            </th>
+            <th style="width: 12%; text-align: left;">
+                Invoice No.
+            </th>
+            <th style="width: 20%; text-align: left">
+                Customer
+            </th>
+            <th style="width: 13%; text-align: left">
+                Amount Due({{store.DefaultCurrencySymbol}})
+            </th>
+            <th style="width: 12%; text-align: left">
+                Net Amount({{store.DefaultCurrencySymbol}})
+            </th>
+            <th style="width: 12%; text-align: left">
+                Date Generated
+            </th>
+            <th style="width: 12%; text-align: left">
+                Date Refunded
+            </th>
+            <th style="width: 6%">
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<br/><br/>
+    <div class="row" ng-show="newRevoke === true && isCashier === true" style="border: 1px solid #008000;">
+        <div class="row" style="margin-bottom: 1%">
+            <div class="col-md-10">
+                <h4>Refund Note</h4>
+            </div>
+            <div class="col-md-2  divlesspadding">
+                <br />
+                <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="float: left" />
+            </div>
+        </div>
+        <div class="row" style="border-bottom: solid 1px #e0e0e0; margin-top: 1%">
+            <div class="col-md-6">
+                <div class="row" style="margin-bottom: 3%">
+                    <div class="col-md-11 divlesspadding">
+                        <label class="control-label">Invoice Number *</label>
+                        <p class="input-group">
+                            <input ng-disabled="processing===true" type="text" class="form-control" ng-model="invoiceNumber" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" ng-disabled="processing===true" ng-click="getInvoiceDetails(invoiceNumber)"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-10  divlesspadding" style="border-left: solid 1px #e0e0e0">
+                        <div class="row  divlesspadding">
+                            <div class="col-md-4">
+                                <label>Print Options:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-control" style="color: #357ebd; float: left"><input type="radio" ng-value="1" value="1" name="refPrintchoice" ng-model="refPrintOption" />&nbsp;A4</label>&nbsp;&nbsp;
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-control" style="color: #ff6c3a; float: left"><input type="radio" ng-value="2" value="2" name="refPrintchoice" ng-model="refPrintOption" />&nbsp;Thermal</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="border-left: 1px solid #e0e0e0">
+                <div class="row" style="border-bottom: solid 1px #e0e0e0; margin-bottom: 2%">
+                    <div class="col-md-12">
+                        <h4>Original Invoice Details</h4>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1%">
+                    <div class="col-md-12">
+                        <h5>Invoice Number: <b>{{refundObject.Sale.InvoiceNumber}}</b></h5>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1%">
+                    <div class="col-md-12">
+                        <h5 class="control-label ">Customer: <b>{{refundObject.Sale.CustomerName}}</b></h5>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1%">
+                    <div class="col-md-12">
+                        <h5>Date Invoice : <b>{{refundObject.Sale.DateStr}}</b></h5>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1%">
+                    <div class="col-md-4">
+                        <h5>Amount Due({{store.DefaultCurrencySymbol}}) : <b>{{refundObject.Sale.AmountDue | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Net Amount({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.NetAmount | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Amount Paid({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.AmountPaid | currency: " "}}</b></h5>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 2%">
+                    <div class="col-md-4">
+                        <h5>Discount({{refundObject.Sale.Discount}}%) : <b>{{store.DefaultCurrencySymbol}}{{refundObject.Sale.DiscountAmount | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 style="padding-left: 0px;">{{refundObject.Sale.VAT}}% VAT : <b>{{store.DefaultCurrencySymbol}}{{refundObject.Sale.VATAmount | currency: " "}} </b></h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Balance({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.Balance | currency: " "}}</b></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row fsEdit" style="width: 100%;" ng-show="refundObject.Sale.SaleId > 0">
+
+            <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+                <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+            </div>
+            <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+            </div>
+
+
+            <div class="row" ng-show="fullyRefunded === false;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Generate New Refund Note</h4>
+                    </div>
+                </div>
+                <br />
+                <div class="row" style="margin-bottom: 1%">
+                    <div class="col-md-3">
+                        <h5>Amount Due Returned({{store.DefaultCurrencySymbol}}) : <b>{{refundNote.AmountDue | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Net Amount Returned({{store.DefaultCurrencySymbol}}) :<b>{{refundNote.NetAmount | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Total Amount Refunded({{store.DefaultCurrencySymbol}}) :<b>{{refundNote.TotalAmountRefunded | currency: " "}}</b></h5>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 2%">
+                    <div class="col-md-3">
+                        <h5>Discount({{refundNote.Discount}}%) : <b>{{store.DefaultCurrencySymbol}}{{refundNote.DiscountAmount | currency: " "}}</b></h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 style="padding-left: 0px;">{{refundObject.Sale.VAT}}% VAT : <b>{{store.DefaultCurrencySymbol}}{{refundNote.VATAmount | currency: " "}} </b></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="border-bottom: solid 1px #e0e0e0; margin-bottom: 1%" ng-show="fullyRefunded === false;">
+                <div class="col-md-8">
+
+                </div>
+                <!--#357ebd-->
+                <div class="col-md-4">
+                    <label style="color: #357ebd"><input type="radio" ng-value="3" value="3" name="choice" ng-model="choice" ng-change="setChoice(choice)" />&nbsp;Return Product(s)</label>&nbsp;&nbsp;
+                    <label style="color: #ff6c3a"><input type="radio" ng-value="4" value="4" name="choice" ng-model="choice" ng-change="setChoice(choice)" />&nbsp;Revoke Transaction</label>
+                </div>
+            </div>
+            <div class="row" ng-show="fullyRefunded === false;">
+                <div class="col-md-12">
+                    <table class="table-responsive table" role="grid" style="float: left">
+                        <thead>
+                            <tr style="text-align: left; background-color: whitesmoke;">
+                                <th style="color: #000; width: 20%">
+                                    Item
+                                </th>
+                                <th style="color: #000; width: 11%">
+                                    Quantity Sold
+                                </th>
+                                <th style="color: #000; width: 15%">
+                                    Total Value({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="width: 5%; color: #000; width: 12%">
+                                    Quantity Returned
+                                </th>
+                                <th style="color: #000; width: 15%">
+                                    Amount Refunded({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="color: #000; width: 20%" ng-show="refundProduct === true">
+                                    Reason to return Product
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="soldItem in refundObject.SoldItems" style="color: #000;" ng-show="soldItem.fullyRefunded === false">
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-4" style="padding-right: 10px" ng-if="soldItem.ImagePath !== null && soldItem.ImagePath.length > 0">
+                                            <img src="{{soldItem.ImagePath}}" style="width: 50%" />
+                                        </div>
+                                        <div class="col-md-8" style="padding: 0px">
+                                            <div class="row" style="padding: 0px">
+                                                <label style="font-weight: normal">{{soldItem.StoreItemName}}</label>
+                                            </div>
+                                            <div class="row" style="padding: 0px">
+                                                <div class="col-md-4" style="padding: 0px">
+                                                    <label class="control-label " style="font-weight: normal">SKU:</label>
+                                                </div>
+                                                <div class="col-md-8" style="padding: 0px">
+                                                    <label class="control-label " style="font-weight: normal">{{soldItem.Sku}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <label class="control-label">{{soldItem.QuantitySold}}</label>
+                                </td>
+
+                                <td>
+                                    <label class="control-label " style="font-weight: normal">{{soldItem.AmountSold | currency: " "}}</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-show="refundProduct === true" ng-model="soldItem.QuantityReturned" ng-change="updateAmount(soldItem)" class="form-control" />
+                                    <label ng-show="refundProduct === false || refundProduct === undefined || refundProduct === null" class="control-label " style="font-weight: normal">{{soldItem.QuantityReturned | currency: " "}}</label>
+                                </td>
+                                <td>
+                                    <label class="control-label " style="font-weight: normal">{{soldItem.AmountRefunded | currency: " "}}</label>
+                                </td>
+                                <td>
+                                    <ui-select ng-model="soldItem.IssueType" theme="bootstrap" class="fullWdith" ng-show="refundProduct === true">
+                                        <ui-select-match placeholder="-- Select Reason --">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="cst in issuTypes | propsFilter: {Name: $select.search} track by cst.IssueTypeId">
+                                            <div ng-bind-html="cst.Name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                    <label ng-show="refundProduct === false || refundProduct === undefined || refundProduct === null" class="control-label " style="font-weight: normal">{{soldItem.Reason | currency: " "}}</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <br />
+            <div class="row modal-footer" style="border-bottom: 1px solid #e0e0e0" ng-show="fullyRefunded === false;">
+                <div class="col-md-4">
+                    <ui-select ng-model="refundObject.Sale.IssueType" theme="bootstrap" class="fullWdith" ng-show="revokeSale === true">
+                        <ui-select-match placeholder="-- Select Reason to revoke transaction --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="cst in issuTypes | propsFilter: {Name: $select.search} track by cst.IssueTypeId">
+                            <div ng-bind-html="cst.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-4">
+                    <input type="button" ng-show="(refundProduct === true || revokeSale === true) && edit === true" value="Continue" ng-disabled="processing === true" ng-click="checkAdmin()" class="btn btn-primary" style="font-weight: bold" />
+                </div>
+            </div>
+            <br />
+            <br />
+
+
+            <div class="row" ng-show="refundExists === true;">
+                <div class="col-md-12">
+                    <h4>Refund Note(s)</h4>
+                </div>
+                <br />
+                <div class="col-md-12" ng-repeat="refundNote in saleRefundNotes" style="margin-bottom: 1.5%" id="refunds">
+                    <table style="width: 100%; padding-left: 10px; border: none; margin-bottom: 1%" class="table">
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Date Refunded: <b>{{refundNote.DateReturnedStr}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color: #000">Invoice No.: <b>{{refundObject.Sale.InvoiceNumber}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Refund Note: <b>{{refundNote.RefundNoteNumber}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">
+                                Returned Amount Due({{store.DefaultCurrencySymbol}}):<b>{{refundNote.AmountDue | currency: " "}}</b>
+                            </td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Returned Discount({{store.DefaultCurrencySymbol}}):<b>{{refundNote.DiscountAmount | currency: " "}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Refunded VAT({{store.DefaultCurrencySymbol}}):<b>{{refundNote.VATAmount | currency: " "}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Returned Net Amount({{store.DefaultCurrencySymbol}}):<b>{{refundNote.NetAmount | currency: " "}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="color:#000">Total Amount Refunded({{store.DefaultCurrencySymbol}}):<b>{{refundNote.NetAmount | currency: " "}}</b></td>
+                        </tr>
+                        <tr style="border-top: #ddd solid 1px;">
+                            <td style="text-align: right"></td>
+                        </tr>
+                    </table>
+                    <table class="table-responsive table" role="grid" style="float: left">
+                        <thead>
+                            <tr style="text-align: left;">
+                                <th style="color: #000; width: 20%">
+                                    Item
+                                </th>
+                                <th style="width: 5%; color: #000; width: 12%">
+                                    Quantity Returned
+                                </th>
+                                <th style="color: #000; width: 15%">
+                                    Total Refunded({{store.DefaultCurrencySymbol}})
+                                </th>
+                                <th style="color: #000; width: 20%">
+                                    Reason For Product return
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="returnedProduct in refundNote.ReturnedProductObjects" style="color: #000;">
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-4" style="padding-right: 10px" ng-if="returnedProduct.ImagePath !== undefined && returnedProduct.ImagePath !== null && returnedProduct.ImagePath.length > 0">
+                                            <img src="{{returnedProduct.ImagePath}}" style="width: 50%" />
+                                        </div>
+                                        <div class="col-md-8" style="padding: 0px">
+                                            <div class="row" style="padding: 0px">
+                                                <label style="font-weight: normal">{{returnedProduct.StoreItemName}}</label>
+                                            </div>
+                                            <div class="row" style="padding: 0px">
+                                                <div class="col-md-4" style="padding: 0px">
+                                                    <label class="control-label " style="font-weight: normal">SKU:</label>
+                                                </div>
+                                                <div class="col-md-8" style="padding: 0px">
+                                                    <label class="control-label " style="font-weight: normal">{{returnedProduct.Sku}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <label>{{returnedProduct.QuantityReturned | number:0}}</label>
+                                </td>
+                                <td>
+                                    <label class="control-label " style="font-weight: normal">{{returnedProduct.AmountRefunded | currency: " "}}</label>
+                                </td>
+                                <td>
+                                    <label class="control-label " style="font-weight: normal">{{returnedProduct.Reason}}</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row modal-footer">
+            </div>
+        </div>
+
+    </div>
+    
+    <br /><br />
+    <div class="row" style="border: 3px solid #008000" ng-show="details === true">
+        <div class="row" style="border: 1px solid #e0e0e0;">
+            <!--<div class="col-md-6">
+                <br />
+                <div class="row divlesspadding">
+                    <div class="col-md-5">
+                        <label>Refund Note print options:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-control" style="color: #357ebd"><input type="radio" ng-value="5" value="1" name="refPrintDetail" ng-model="setRefPrintDetail" />&nbsp;A4</label>&nbsp;&nbsp;
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control" style="color: #ff6c3a"><input type="radio" ng-value="6" value="2" name="refPrintDetail" ng-model="setRefPrintDetail" />&nbsp;Thermal</label>
+                    </div>
+                </div>
+            </div>-->
+            <div class="col-md-9">
+                <br />
+                <!--<input type="button" value="Print" ng-click="printRefund()" class="btn btn-primary" style="float: right" />-->
+            </div>
+            <div class="col-md-3">
+                <br />
+                <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="float: right" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="row" style="width: 100%;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6" style="border-left: 1px solid #e0e0e0">
+                                <div class="row" style="border-bottom: solid 1px #e0e0e0; margin-bottom: 2%">
+                                    <div class="col-md-12">
+                                        <h4>Original Invoice Details</h4>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1%">
+                                    <div class="col-md-12">
+                                        <h5>Invoice Number: <b>{{refundObject.Sale.InvoiceNumber}}</b></h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1%">
+                                    <div class="col-md-12">
+                                        <h5 class="control-label ">Customer: <b>{{refundObject.Sale.CustomerName}}</b></h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1%">
+                                    <div class="col-md-12">
+                                        <h5>Date Invoice : <b>{{refundObject.Sale.DateStr}}</b></h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 1%">
+                                    <div class="col-md-4">
+                                        <h5>Amount Due({{store.DefaultCurrencySymbol}}) : <b>{{refundObject.Sale.AmountDue | currency: " "}}</b></h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Net Amount({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.NetAmount | currency: " "}}</b></h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Amount Paid({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.AmountPaid | currency: " "}}</b></h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 2%">
+                                    <div class="col-md-4">
+                                        <h5>Discount({{refundObject.Sale.Discount}}%) : <b>{{store.DefaultCurrencySymbol}}{{refundObject.Sale.DiscountAmount | currency: " "}}</b></h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 style="padding-left: 0px;">{{store.VAT}}% VAT : <b>{{store.DefaultCurrencySymbol}}{{refundObject.Sale.VATAmount | currency: " "}} </b></h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Balance({{store.DefaultCurrencySymbol}}) :<b>{{refundObject.Sale.Balance | currency: " "}}</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Refund Note(s)</h4>
+                            </div>
+                            <br />
+                            <div class="col-md-12" ng-repeat="refundNote in detailRefundNotes" style="margin-bottom: 1.5%" id="refundDetails">
+                                <table style="width: 100%; padding-left: 10px; border: none; margin-bottom: 1%" class="table">
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Date Refunded: <b>{{refundNote.DateReturnedStr}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color: #000">Invoice No.: <b>{{refundObject.Sale.InvoiceNumber}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Invoice No.: <b>{{refundNote.RefundNoteNumber}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">
+                                            Returned Amount Due({{store.DefaultCurrencySymbol}}):<b>{{refundNote.AmountDue | currency: " "}}</b>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Returned Discount({{store.DefaultCurrencySymbol}}):<b>{{refundNote.DiscountAmount | currency: " "}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Refunded VAT({{store.DefaultCurrencySymbol}}):<b>{{refundNote.VATAmount | currency: " "}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Returned Net Amount({{store.DefaultCurrencySymbol}}):<b>{{refundNote.NetAmount | currency: " "}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="color:#000">Total Amount Refunded({{store.DefaultCurrencySymbol}}):<b>{{refundNote.NetAmount | currency: " "}}</b></td>
+                                    </tr>
+                                    <tr style="border-top: #ddd solid 1px;">
+                                        <td style="text-align: right"></td>
+                                    </tr>
+                                </table>
+                                <table class="table-responsive table" role="grid" style="float: left">
+                                    <thead>
+                                        <tr style="text-align: left;">
+                                            <th style="color: #000; width: 20%">
+                                                Item
+                                            </th>
+                                            <th style="width: 5%; color: #000; width: 12%">
+                                                Quantity Returned
+                                            </th>
+                                            <th style="color: #000; width: 15%">
+                                                Total Refunded({{store.DefaultCurrencySymbol}})
+                                            </th>
+                                            <th style="color: #000; width: 20%">
+                                                Reason For Product return
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="returnedProduct in refundNote.ReturnedProductObjects" style="color: #000;">
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-4" style="padding-right: 10px" ng-if="returnedProduct.ImagePath !== undefined && returnedProduct.ImagePath !== null && returnedProduct.ImagePath.length > 0">
+                                                        <img src="{{returnedProduct.ImagePath}}" style="width: 50%" />
+                                                    </div>
+                                                    <div class="col-md-8" style="padding: 0px">
+                                                        <div class="row" style="padding: 0px">
+                                                            <label style="font-weight: normal">{{returnedProduct.StoreItemName}}</label>
+                                                        </div>
+                                                        <div class="row" style="padding: 0px">
+                                                            <div class="col-md-4" style="padding: 0px">
+                                                                <label class="control-label " style="font-weight: normal">SKU:</label>
+                                                            </div>
+                                                            <div class="col-md-8" style="padding: 0px">
+                                                                <label class="control-label " style="font-weight: normal">{{returnedProduct.Sku}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>{{returnedProduct.QuantityReturned | number:0}}</label>
+                                            </td>
+                                            <td>
+                                                <label class="control-label " style="font-weight: normal">{{returnedProduct.AmountRefunded | currency: " "}}</label>
+                                            </td>
+                                            <td>
+                                                <label class="control-label " style="font-weight: normal">{{returnedProduct.Reason}}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <div id="receipt" style="visibility: visible; display:none" class="col-md-12">
+
+    </div>
+</div>
+<br /><br />

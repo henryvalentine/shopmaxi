@@ -1,0 +1,40 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="storeCurrencyController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{currency.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessCurrencyes" method="POST">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Currency *</label>
+                    <input type="text" data-ng-model="currency.Name" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "> Symbol *</label>
+                    <input type="text" data-ng-model="currency.Symbol" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "> Country *</label>
+                    <select ng-model="currency.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select Country --</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "><input type="checkbox" ng-model="currency.IsDefaultCurrency" />Is Default currency?</label>
+                </div>
+            </div>
+
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processCurrency()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

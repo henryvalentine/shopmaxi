@@ -1,0 +1,131 @@
+﻿
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="employeeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{employee.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="email">Email address *</label>
+                    <input type="email" class="form-control" id="email" ng-model="employee.Email" placeholder="Enter email">
+                </div>
+                <div class="col-md-6">
+                    <label for="password">Password *</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" ng-model="employee.Password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="email">Last Name *</label>
+                    <input type="text" class="form-control" ng-model="employee.LastName" placeholder="Last Name">
+                </div>
+                <div class="col-md-6">
+                    <label for="password">Other Names *</label>
+                    <input type="text" class="form-control" placeholder="Other Names" ng-model="employee.OtherNames">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Department *</label>
+                    <ui-select ng-model="employee.department" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder=" -- Select Department --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="dept in genericListObject.departments | propsFilter: {Name: $select.search} track by dept.StoreDepartmentId">
+                            <div ng-bind-html="dept.Name  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Role * </label>
+                    <ui-select ng-model="employee.Role" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Role --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="role in genericListObject.roles | propsFilter: {Name: $select.search} track by role.Id">
+                            <div ng-bind-html="role.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-6">
+                    <label for="email">Phone Number *</label>
+                    <input type="tel" data-ng-model="employee.PhoneNumber" class="form-control" placeholder="Phone Number" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Status *</label>
+                    <ui-select ng-model="employee.StatusObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder=" -- Select Status --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="status in genericListObject.Statuses | propsFilter: {Name: $select.search} track by status.StatusId">
+                            <div ng-bind-html="status.Name  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Country *</label>
+                    <select ng-disable="processing===true" theme="bootstrap" ng-change="getStates(employee.Country, getStatesCompleted)" ng-model="employee.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select --</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>State/Province *</label>
+                    <select ng-disable="processing===true" theme="bootstrap" ng-change="getCities(employee.State, getCitiesCompleted)" ng-model="employee.State" ng-options="state as state.Name for state in states track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>City *</label>
+                    <select ng-disable="processing===true" theme="bootstrap" ng-model="employee.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required> 
+                        <option value="">-- Select --</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Address *</label>
+                    <input type="text" ng-model="employee.StreetNo" class="form-control" />  
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label">Date Hired *</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                               min-date="minDate" max-date="maxDate"
+                               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="employee.DateHiredStr" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="control-label">Date Left</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-click="openEnDate($event)" datepicker-popup="{{endDateFormats}}" is-open="endDateOpened"
+                               min-date="minEndDate" max-date="maxEndDate"
+                               datepicker-options="endDateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="employee.DateLeftStr" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openEnDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Save" ng-click="processEmployee()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+          
+         

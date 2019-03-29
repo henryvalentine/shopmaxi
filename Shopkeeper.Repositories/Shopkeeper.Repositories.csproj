@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A796A8A0-6DA0-4D67-A8AC-9885A71FB34E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shopkeeper.Repositories</RootNamespace>
+    <AssemblyName>Shopkeeper.Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContextSwitcher\DbContextSwitcher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\AlaCarteRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\BankRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\MessageRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\MessageTemplateRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StoreBankAccountRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\ContactTagRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StoreContactRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\CurrencyRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StoreRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\BulkCustomerRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ChartOfAccountRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ChildMenuRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\EstimateRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreMessageTemplateRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\PurchaseOrderRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreMessageRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ParentMenuRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\PaymentTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\RegisterRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\OnlineStoreRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\DefaultsRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SaleTransactionRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SalePaymentRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ItemSoldRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ItemPriceRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SalutationRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\JobRoleRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\EmployeeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SaleRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ImageViewRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StockUploadRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\PersonRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\CustomerRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\CountryRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ShoppingCartRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreAddressRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\CityRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ContactTagRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\CouponRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\DocumentTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\SubscriptionRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\ReportRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemStockUploadRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StorePaymentGatewayRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StorePaymentMethodRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StateRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreOutletRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemStockRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SubscriptionSettingRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreTransactionRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreTransactionTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\AccountGroupRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\TransferNoteRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\UnitOfMeasurementRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreCustomerTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreVariationValueRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemVariationRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StoreSubscriptionHistoryRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StoreSettingRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\PaymentGatewayRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\PackagePricingRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreDepartmentRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\SupplierRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\SubscriptionPackageRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\TransactionRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\PaymentMethodRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemCategoryRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\TransactionTypeRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemBrandRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\DeliveryMethodRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\CountryRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreCurrencyRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\StateRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\CityRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperMasterRepositories\BillingCycleRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreBankRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\BankAccountRepository.cs" />
+    <Compile Include="ShopkeeperRepositories\ShopkeeperStoreRepositories\StoreItemUploadRepository.cs" />
+    <Compile Include="Utilities\EnumManager.cs" />
+    <Compile Include="Utilities\PhysicalToVirtualPathMapper.cs" />
+    <Compile Include="Utilities\SessionHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IShopkeeperServices\Shopkeeper.ModelMapper.csproj">
+      <Project>{EDA8EC9A-0F9D-450F-BE91-A1D078F79A3F}</Project>
+      <Name>Shopkeeper.ModelMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shopkeeper.Datacontracts\Shopkeeper.DataObjects.csproj">
+      <Project>{A84EC41A-E0EF-44FC-A8DD-29B575CF0CD1}</Project>
+      <Name>Shopkeeper.DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shopkeeper.Infrastructures\Shopkeeper.Infrastructures.csproj">
+      <Project>{F56061FF-858F-4747-B636-B5AFC9F5E199}</Project>
+      <Name>Shopkeeper.Infrastructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShopKeeper.Master.EF\ShopKeeper.Master.EF.csproj">
+      <Project>{b66aa403-76ff-4962-a843-7311ee0ee769}</Project>
+      <Name>ShopKeeper.Master.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShopkeeperStore.EF\Shopkeeper.EF.csproj">
+      <Project>{71e7c595-afcd-417a-8346-faf64495c146}</Project>
+      <Name>Shopkeeper.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

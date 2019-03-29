@@ -1,0 +1,84 @@
+﻿<!--ng-init="initializeController"-->
+   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="subscriptionPackageController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{subscriptionPackage.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessSubscriptionPackagees" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Package Title *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.PackageTitle" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> File Storage Space(MB) *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.FileStorageSpace" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Number Of Store Products *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.NumberOfStoreProducts" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Number Of Outlets *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.NumberOfOutlets" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Registers *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.Registers" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Number Of Users *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.NumberOfUsers" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> MaximumTransactions *</label>
+                    <input type="text" data-ng-model="subscriptionPackage.MaximumTransactions" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12" style="padding-left: 0">
+                            <div class="col-md-9" style="padding-left: 0">
+                                <label style="font-weight: normal"> Generate Reports?</label>
+                            </div>
+                            <div class="col-md-3" style="padding-left: 0">
+                                <input type="checkbox" data-ng-model="subscriptionPackage.GenerateReports" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="padding-left: 0">
+                            <div class="col-md-9" style="padding-left: 0">
+                                <label style="font-weight: normal"> Use Report Builder?</label>
+                            </div>
+                            <div class="col-md-3" style="padding-left: 0">
+                                <input type="checkbox" data-ng-model="subscriptionPackage.UseReportBuilder" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Note</label>
+                    <textarea data-ng-model="subscriptionPackage.Note" class="form-control">{{subscriptionPackage.Note}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processSubscriptionPackage()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

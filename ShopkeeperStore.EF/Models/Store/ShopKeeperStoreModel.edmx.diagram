@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f71b4a0f2f8458a9ad5796138f365a9" Name="Diagram1">
+        <EntityTypeShape EntityType="SHPKPR2Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AccountGroup" Width="1.5" PointX="5.25" PointY="55.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AddressType" Width="1.5" PointX="7.5" PointY="72.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AspNetRole" Width="1.5" PointX="28.75" PointY="56.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AspNetUserClaim" Width="1.5" PointX="33.25" PointY="65.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AspNetUserLogin" Width="1.5" PointX="33.25" PointY="68" />
+        <EntityTypeShape EntityType="SHPKPR2Model.AspNetUser" Width="1.5" PointX="31" PointY="65.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.BankAccount" Width="1.5" PointX="28.5" PointY="71.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ChartOfAccount" Width="1.5" PointX="7.5" PointY="55.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ChildMenu" Width="1.5" PointX="28.75" PointY="49.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ChildMenuRole" Width="1.5" PointX="31" PointY="56.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ContactType" Width="1.5" PointX="15.75" PointY="88.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Coupon" Width="1.5" PointX="23.25" PointY="59.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Customer" Width="1.5" PointX="20.25" PointY="70.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.CustomerInvoice" Width="1.5" PointX="22.5" PointY="83.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DailyInventory" Width="1.5" PointX="14.25" PointY="98.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DailySale" Width="1.5" PointX="12" PointY="74.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Delivery" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DeliveryAddress" Width="1.5" PointX="7.5" PointY="64.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DeliveryMethod" Width="1.5" PointX="28.5" PointY="59.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DeliveryVessel" Width="1.5" PointX="28.5" PointY="87.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.DocumentType" Width="1.5" PointX="18" PointY="81" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Employee" Width="1.5" PointX="18" PointY="70" />
+        <EntityTypeShape EntityType="SHPKPR2Model.EmployeeAssigment" Width="1.5" PointX="23.25" PointY="78.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.EmployeeDocument" Width="1.5" PointX="20.25" PointY="79.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.EmployeeSalesLog" Width="1.5" PointX="20.25" PointY="76.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Estimate" Width="1.5" PointX="22.5" PointY="72.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.EstimateItem" Width="1.5" PointX="20.25" PointY="58.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ImageView" Width="1.5" PointX="15" PointY="53.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Invoice" Width="1.5" PointX="30.5" PointY="80.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.InvoiceRequest" Width="1.5" PointX="30.75" PointY="84.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.InvoiceRequestItem" Width="1.5" PointX="25.5" PointY="64.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.IssueType" Width="1.5" PointX="18" PointY="54.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ItemPrice" Width="1.5" PointX="17.25" PointY="58.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ItemReview" Width="1.5" PointX="14.25" PointY="101.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.JobRole" Width="1.5" PointX="21" PointY="86.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ParentMenu" Width="1.5" PointX="28.75" PointY="53.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ParentMenuRole" Width="1.5" PointX="31" PointY="53.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PaymentType" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PersonContact" Width="1.5" PointX="18" PointY="88.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PurchaseOrder" Width="1.5" PointX="28.25" PointY="75.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PurchaseOrderItem" Width="1.5" PointX="17.25" PointY="65.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PurchaseOrderItemDelivery" Width="1.5" PointX="23.25" PointY="63.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.PurchaseOrderPayment" Width="1.5" PointX="33.5" PointY="72.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.RefundNote" Width="1.5" PointX="25.5" PointY="73.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Register" Width="1.5" PointX="12" PointY="92.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ReturnedProduct" Width="1.5" PointX="14.25" PointY="63.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Sale" Width="1.5" PointX="25.5" PointY="79.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.SalePayment" Width="1.5" PointX="27.75" PointY="84.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.SaleTransaction" Width="1.5" PointX="30.5" PointY="75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Salutation" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.schema_info" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.scope_config" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.scope_info" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ShopingCartItem" Width="1.5" PointX="14.25" PointY="60.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ShoppingCart" Width="1.5" PointX="25.5" PointY="68.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ShoppingCartDelivery" Width="1.5" PointX="30.75" PointY="70.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.ShoppingCartInvoice" Width="1.5" PointX="27.75" PointY="62.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StockUpload" Width="1.5" PointX="17.25" PointY="62.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreAddress" Width="1.5" PointX="7.5" PointY="69.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreBank" Width="1.5" PointX="26.25" PointY="55.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreCity" Width="1.5" PointX="5.25" PointY="65.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreContact" Width="1.5" PointX="29" PointY="90.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreContactTag" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreCountry" Width="1.5" PointX="0.75" PointY="64.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreCurrency" Width="1.5" PointX="3" PointY="59.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreCustomerType" Width="1.5" PointX="18" PointY="77.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreDepartment" Width="1.5" PointX="15.75" PointY="81.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItem" Width="1.5" PointX="9.75" PointY="56.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemBrand" Width="1.5" PointX="7.5" PointY="52.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemCategory" Width="1.5" PointX="7.5" PointY="61.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemIssue" Width="1.5" PointX="20.25" PointY="62.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemSold" Width="1.5" PointX="20.25" PointY="65.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemStock" Width="1.5" PointX="12" PointY="63.875" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemSupplier" Width="1.5" PointX="12" PointY="56.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemType" Width="1.5" PointX="7.5" PointY="58.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemVariation" Width="1.5" PointX="9.75" PointY="79.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemVariation_tracking" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreItemVariationValue" Width="1.5" PointX="9.75" PointY="63.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreMessage" Width="1.5" PointX="18" PointY="84.25" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreMessageTemplate" Width="1.5" PointX="15.75" PointY="84.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreOutlet" Width="1.5" PointX="9.75" PointY="70.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreOutletCoupon" Width="1.5" PointX="15" PointY="68" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StorePaymentGateway" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StorePaymentMethod" Width="1.5" PointX="23.25" PointY="86.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreSetting" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreState" Width="1.5" PointX="3" PointY="65.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreTransaction" Width="1.5" PointX="28.25" PointY="67" />
+        <EntityTypeShape EntityType="SHPKPR2Model.StoreTransactionType" Width="1.5" PointX="26" PointY="59" />
+        <EntityTypeShape EntityType="SHPKPR2Model.SubscriptionSetting" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Supplier" Width="1.5" PointX="26" PointY="87.625" />
+        <EntityTypeShape EntityType="SHPKPR2Model.SupplierAddress" Width="1.5" PointX="9.75" PointY="66.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.TransferNote" Width="1.5" PointX="15" PointY="71.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.TransferNoteItem" Width="1.5" PointX="23.25" PointY="67.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.UnitsOfMeasurement" Width="1.5" PointX="15" PointY="56.5" />
+        <EntityTypeShape EntityType="SHPKPR2Model.UserProfile" Width="1.5" PointX="15.75" PointY="76.125" />
+        <EntityTypeShape EntityType="SHPKPR2Model.Warehouse" Width="1.5" PointX="9.75" PointY="76.375" />
+        <EntityTypeShape EntityType="SHPKPR2Model.WayBill" Width="1.5" PointX="20.25" PointY="90" />
+        <EntityTypeShape EntityType="SHPKPR2Model.WayBillItem" Width="1.5" PointX="22.5" PointY="90.375" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ChartOfAccount_AccountGroup" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SupplierAddress_AddressType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ChildMenuRole_AspNetRoles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ParentMenuRole_AspNetRoles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SHPKPR2Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SHPKPR2Model.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" />
+        <AssociationConnector Association="SHPKPR2Model.FK_BankAccount_Bank" />
+        <AssociationConnector Association="SHPKPR2Model.FK_BankAccount_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrder_ChartOfAccount" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItem_ChartOfAccount" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ChildMenu_ParentMenu" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ChildMenuRole_ChildMenu" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PersonContact_ContactType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCart_Coupon" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreOutletCoupon_Coupon" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Customer_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Customer_Person" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Customer_StoreCustomerType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Customer_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_CustomerInvoice_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_DeliveryAddress_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Estimate_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Sale_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCart_Customer" />
+        <AssociationConnector Association="SHPKPR2Model.FK_DailyInventory_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_DailySale_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_DeliveryAddress_StoreCity" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCart_DeliveryAddress" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCartDelivery_DeliveryMethod" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCartDelivery_DeliveryVessel" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeDocument_DocumentType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Employee_StoreAddress" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Employee_StoreDepartment" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Employee_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Employee_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeAssigment_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeDocument_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeSalesLog_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrder_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderItemDelivery_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Sale_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCartDelivery_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreTransaction_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_WayBill_Employee" />
+        <AssociationConnector Association="SHPKPR2Model.FK_WayBill_Employee1" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeAssigment_JobRole" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EmployeeAssigment_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Estimate_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Estimate_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EstimateItem_Estimate" />
+        <AssociationConnector Association="SHPKPR2Model.FK_EstimateItem_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StockUpload_ImageView" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Invoice_PurchaseOrder" />
+        <AssociationConnector Association="SHPKPR2Model.FK_InvoiceRequest_Sale" />
+        <AssociationConnector Association="SHPKPR2Model.FK_InvoiceRequest_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_InvoiceRequestItem_InvoiceRequest" />
+        <AssociationConnector Association="SHPKPR2Model.FK_InvoiceRequestItem_StoreItemSold" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_IssueType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ReturnedProduct_IssueType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemIssue_IssueType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ItemPrice_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ItemPrice_UnitsOfMeasurement" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ItemReview_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ParentMenuRole_ParentMenu" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PersonContact_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrder_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrder_Supplier" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderItem_PurchaseOrder" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderPayment_PurchaseOrder" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderItem_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderItemDelivery_PurchaseOrderItem" />
+        <AssociationConnector Association="SHPKPR2Model.FK_PurchaseOrderPayment_StoreTransaction" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_Sale" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_StorePaymentMethod" />
+        <AssociationConnector Association="SHPKPR2Model.FK_RefundNote_StoreTransaction" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ReturnedProduct_RefundNote" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Register_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Sale_Register" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ReturnedProduct_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SalePayment_Sale" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SaleTransaction_Sale" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemSold_Sale" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SaleTransaction_StoreTransaction" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShopingCartItem_ShoppingCart" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShopingCartItem_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCartDelivery_ShoppingCart" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ShoppingCartInvoice_ShoppingCart" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StockUpload_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreAddress_StoreCity" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreOutlet_StoreAddress" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SupplierAddress_StoreAddress" />
+        <AssociationConnector Association="SHPKPR2Model.FK_Warehouse_StoreAddress" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreCity_StoreState" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreContact_Person" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreContact_StoreDepartment" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreCurrency_StoreCountry" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreState_StoreCountry" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemStock_StoreCurrency" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItem_StoreItemBrand" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItem_StoreItemCategory" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItem_StoreItemType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemStock_StoreItem" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemSupplier_StoreItem" />
+        <AssociationConnector Association="SHPKPR2Model.FK_WayBillItem_StoreItem" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemIssue_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemSold_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_ProductStock_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemStock_StoreItemVariation" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreItemStock_StoreItemVariationValue" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNoteItem_StoreItemStock" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreMessage_StoreMessageTemplate" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreMessage_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreOutletCoupon_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreTransaction_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNote_StoreOutlet" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNote_StoreOutlet1" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreTransaction_StorePaymentMethod" />
+        <AssociationConnector Association="SHPKPR2Model.FK_StoreTransaction_StoreTransactionType" />
+        <AssociationConnector Association="SHPKPR2Model.FK_SupplierAddress_Supplier" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNote_UserProfiles" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNoteItem_TransferNote" />
+        <AssociationConnector Association="SHPKPR2Model.FK_TransferNoteItem_UnitsOfMeasurement" />
+        <AssociationConnector Association="SHPKPR2Model.FK_WayBillItem_WayBill" />
+        <AssociationConnector Association="SHPKPR2Model.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

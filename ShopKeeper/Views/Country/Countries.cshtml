@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "Countries";
+}
+<br />
+<br />
+<br />
+<h4>Countries</h4>
+
+<br />
+
+<fieldset id="fsCountryList" style="border: none; background: whitesmoke" ng-app="countryManagement" ng-controller="manageCountryCntroller">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table id="tblCountrys" country-table="">
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Name
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</fieldset>
+
+<style type="text/css">
+    a, a:visited, a:hover {
+        color: #fff;
+    }
+</style>
+
+<script type="text/javascript">
+
+    var countryManager = angular.module('countryManagement', ['ngResource', 'ngDialog']);
+    countryManager.config(['ngDialogProvider', function (ngDialogProvider) {
+        ngDialogProvider.setDefaults({
+            className: 'ngdialog-theme-default',
+            showClose: true,
+            closeByDocument: true,
+            closeByEscape: true
+        });
+    }]);
+
+    countryManager.directive('countryTable', function ($compile) {
+        return function ($scope, countryTable) {
+
+            var tableOptions = {};
+            tableOptions.sourceUrl = "/Country/GetCountryObjects";
+            tableOptions.itemId = 'CountryId';
+            tableOptions.columnHeaders = ['Name'];
+            tableManager($scope, $compile, countryTable, tableOptions, 'New Country', 'prepareCountryTemplate', 'getCountry', 'deleteCountry');
+
+        };
+    });
+
+    countryManager.factory("countryClientService", function ($http) {
+
+        return {
+            addCountry: function (country) {
+                var dxcv = JSON.stringify({ country: country });
+                return $http({ method: 'POST', url: "/Country/AddCountry", data: dxcv });
+            },
+            getCountry: function (id) {
+                return $http({ method: 'GET', url: "/Country/GetCountry?id=" + id });
+            },
+
+            editCountry: function (country) {
+                var dxcv = JSON.stringify({ country: country });
+                return $http({ method: 'POST', url: "/Country/EditCountry", data: dxcv });
+            },
+
+            deleteCountry: function (id) {
+                return $http({ method: 'POST', url: "/Country/DeleteCountry?id=" + id });
+            }
+        };
+    });
+
+    var id = 0;
+
+    countryManager.controller('manageCountryCntroller', ['$scope', 'countryClientService', 'ngDialog', function ($scope, countryClientService, ngDialog) {
+        $scope.initializeController = function () {
+            $scope.selectedCountry = new Object();
+            $scope.selectedCountry.CountryId = 0;
+            $scope.selectedCountry.Name = '';
+            $scope.selectedCountry.Header = 'Create New Country';
+        };
+
+        $scope.prepareCountryTemplate = function () {
+            $scope.initializeController();
+            ngDialog.open({
+                template: '/ng-shopkeeper/Views/Master/Country/ProcessCountries.html',
+                className: 'ngdialog-theme-flat',
+                scope: $scope
+            });
+        };
+
+        
+        $scope.processCountry = function ()
+        {
+            var country = new Object();
+            country.Name = $scope.selectedCountry.Name;
+            if (country.Name == undefined || country.Name.length < 1) {
+                alert("ERROR: Please provide Country Name. ");
+                return;
+            }
+           
+            var promise = '';
+            if ($scope.selectedCountry.CountryId < 1) {
+                promise = countryClientService.addCountry(country);
+            }
+            else {
+                promise = countryClientService.editCountry(country);
+            }
+            promise.success(
+            function (data) {
+                if (data.CountryId < 1)
+                {
+                    alert(data.Name);
+
+                }
+                else {
+                   
+                    if ($scope.selectedCountry.CountryId < 1)
+                    {
+                        alert("Country information was successfully added.");
+                    } else
+                    {
+                        alert("Country information was successfully updated."); 
+                    }
+                    ngDialog.close('/ng-shopkeeper/Views/Master/Country/ProcessCountries.html', '');
+                    $scope.dataTable.fnClearTable();
+                    $scope.initializeController();
+                }
+            });
+
+        };
+
+        $scope.getCountry = function (id) {
+            if (parseInt(id) < 1 || id == undefined || id == NaN) {
+                alert("ERROR: Invalid selection! ");
+                return;
+            }
+
+            countryClientService.getCountry(id).success(
+            function (data) {
+                if (data.CountryId < 1) {
+                    alert("ERROR: Country information could not be retrieved! ");
+
+                } else {
+                    $scope.initializeController();
+                    $scope.selectedCountry = data;
+                    $scope.selectedCountry.Header = 'Update Country Information';
+                    ngDialog.open({
+                        template: '/ng-shopkeeper/Views/Master/Country/ProcessCountries.html',
+                        className: 'ngdialog-theme-flat',
+                        //controller: 'manageCountryCntroller',
+                        scope: $scope
+                    });
+                }
+            });
+        };
+
+        $scope.deleteCountry = function (id) {
+            if (parseInt(id) > 0) {
+                if (!confirm("This Country information will be deleted permanently. Continue?")) {
+                    return;
+                }
+                countryClientService.deleteCountry(id).success(
+                function (data) {
+                    if (data.Code < 1) {
+                        alert(data.Error);
+
+                    }
+                    else {
+                        $scope.dataTable.fnClearTable();
+                        alert(data.Error);
+                    }
+                });
+            } else {
+                alert('Invalid selection.');
+            }
+        };
+
+    }]);
+</script>

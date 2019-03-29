@@ -1,0 +1,27 @@
+﻿
+   
+    <div class="row fsEdit" style="visibility: visible; width: 100%" ng-controller="customerController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <strong class="modal-title">Bulk Upload Feedback</strong>
+            </div>
+        </div>
+        <div class="row alert alert-danger" role="alert" ng-show="bulkError === true">
+            <span class="col-md-11">{{uploadError}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="bulkError = false">x</span>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row" ng-repeat="feedBack in errors">
+                        <div class="col-md-12">{{feedBack.Error}}</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   

@@ -1,0 +1,103 @@
+﻿<script type="text/ng-template" id="myModalContent.html">
+    <input type="hidden" id="brProcess" style="visibility: visible" />
+    @*<legend class="legend22" id="lgHeader">Add new Bank</legend>*@
+
+    <div class="modal-header">
+        <h3 class="modal-title">Product Inquiry</h3>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessBankes" @*class="fsEdit"*@ action="@Url.Action("AddBank", "Bank")" method="POST" style="visibility: visible" enctype="multipart/form-data">
+            <div class="row" style="width: 70%">
+                <div class="col-md-8">
+                    <div class="row">
+                        <label class="control-label ">Full Name *</label>
+                        <input type="text" name="bank.FullName" class="form-control" id="fName" />
+                    </div>
+                    <div class="row">
+                        <label class="control-label ">Short Name </label>
+                        <input type="text" name="bank.ShortName" class="form-control" />
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Sort Code</label>
+                        <input type="text" name="bank.SortCode" class="form-control" />
+                    </div>
+                    <div class="row">
+                        <label class="control-label "> Bank Logo </label>
+                        <input type="file" id="bankLogo" class="form-control" name="file" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <br /> <div class="row">
+                        <img src="" style="height: 70%; width: 70%" id="hImg" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+    <script type="text/javascript">
+        $('#bankLogo').on('change', function (z) {
+            var input = z.target.files;
+            //$('#hImg').val('');
+            var cdg = $('#bankLogo');
+            if (input.length > 0) {
+                var extension = cdg.val().split('.').pop();
+                // str.substring(str.lastIndexOf('~'));
+
+                switch (extension) {
+                    case 'bmp': alert("Please select only a jpeg/jpg image!"); cdg.val('');
+                        return;
+                    case 'gif': alert("Please select only a jpeg/jpg image!"); cdg.val('');
+                        return;
+                    case 'mp3': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'mp4': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'vob': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'flv': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'svg': alert("Please select only a jpeg/jpg image!"); cdg.val('');
+                        return;
+                    case 'wma': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'aac': alert("Invalid file format"); cdg.val('');
+                        return;
+                    case 'jpg': case 'png':
+
+                        if (input[0].size > 200000000) {
+                            alert("Logo size should NOT be more than 500KB");
+                            document.getElementById('hImg').src = "";
+                            cdg.val('');
+                            return;
+                        }
+                        else {
+
+                            document.getElementById('hImg').src = "";
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                document.getElementById('hImg').src = e.target.result;
+
+                            };
+
+                            reader.readAsDataURL(input[0]);
+
+                        }
+
+                }
+                return;
+            }
+            else {
+                alert("Please select the logo to be uploaded.");
+            }
+        });
+    </script>

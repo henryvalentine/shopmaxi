@@ -1,0 +1,116 @@
+﻿
+   
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-show="details == true">
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="modal-title">{{productVariant.Header}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">SKU </label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.SKU}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Cost Price</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label "> {{productVariant.CurrencySymbol}}{{productVariant.CostPrice}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Quantity In Stock</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.QuantityInStock}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Quantity In Stock</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.QuantityInStock}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Shelf Location</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.ShelfLocation}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Reorder Quantity</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.ReorderQuantity}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Reorder Level</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.ReorderLevel}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Expiry Date</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.ExpiryDate}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Variant Property</label>
+                </div>
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.productVariation.VariationProperty}}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <label class="control-label ">{{productVariant.productVariationValue.Value}}</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-5">
+                    <label style="font-weight: normal">Variant Value</label>
+                </div>
+                <div class="row">
+                    <img ng-src="{{productVariant.ImagePath}}" style="height: 40%; width: 50%" id="hImg" />
+                </div>
+            </div>
+            <br />
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Close" ng-click="details == false" class="btn btn-default" style="margin-top: 7px; float: right" />
+                </div>
+            </div>
+        </div>
+    </div><br />
+</div>
+   

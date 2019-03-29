@@ -1,0 +1,62 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="personController" ng-init="initializeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{person.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessCityes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Title *</label>
+                    <ui-select ng-model="person.Salutation" theme="bootstrap">
+                        <ui-select-match placeholder=" -- Select --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="salutation in person.Salutations | propsFilter: {Name: $select.search} track by salutation.SalutationId">
+                            <div ng-bind-html="salutation.Name  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Last Name *</label>
+                    <input type="text" data-ng-model="person.LastName" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Other Names *</label>
+                    <input type="text" data-ng-model="person.OtherNames" class="form-control" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Birthday </label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                               date-disabled="disabled(date, mode)" close-text="Close" ng-model="person.BirthdayStr" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Gender *</label>
+                    <ui-select ng-model="person.Gender" theme="bootstrap">
+                        <ui-select-match placeholder=" -- Select Gender --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="gender in person.genders | propsFilter: {Name: $select.search} track by gender.GenderId">
+                            <div ng-bind-html="gender.Name  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processUserProfile()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

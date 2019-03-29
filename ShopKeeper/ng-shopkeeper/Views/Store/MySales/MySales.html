@@ -1,0 +1,181 @@
+﻿<br />
+<div class="col-md-12">
+    <h4>My Sales</h4>
+</div>
+<br />
+
+<div class="row" ng-controller="mySalesController" ng-init="initializeController()">
+<div style="display: none" ng-default></div>
+<div class="row">
+    
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">Start Date *</label>
+                <p class="input-group">
+                    <input type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                           min-date="minDate" max-date="maxDate"
+                           datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="startDate"/>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>   <!--min-date="minDate" max-date="'2015-06-22'"-->
+                        </span>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label">End Date *</label>
+                <p class="input-group">
+                    <input type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="openEnDate($event)" datepicker-popup="{{endDateformat}}" is-open="endDateOpened"
+                           min-date="minDate" max-date="maxEndDate"
+                           datepicker-options="endDateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="endDate"/>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openEnDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>   <!--min-date="minDate" max-date="'2015-06-22'"-->
+                        </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="row" ng-show="details===false" ng-cloak>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Sales for the period <b>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date:'dd/MM/yyyy'}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <table ng-emp-report-table id="empRepTbl">
+                <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Product(s)
+                    </th>
+                    <th style="width: 16%; text-align: left">
+                        Amount Due({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Amount Paid({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Transaction Date
+                    </th>
+                    <th style="width: 10%">
+                        Action
+                    </th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+<fieldset class="col-md-12" ng-if="details===true" ng-cloak>
+    <div class="row">
+        <div class="col-md-5">
+            <input type="button" value="Print" ng-click="printReport()" class="btn btn-primary" style="float: left; font-weight: bold" />
+        </div>
+    </div>
+
+    <div class="row" id="rep">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Sale Breakdown</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Outlet: <b>{{sale.OutletName}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <h5>Date: <b>{{sale.DateStr}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <h5>Receipt No: <b>{{sale.SaleId}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <h5>Customer: <b>{{sale.CustomerName}}</b></h5>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Details</h4>
+            </div>
+        </div>
+        <div class="row">
+            <table style="width: auto;" role="grid" class="table">
+                <thead>
+                    <tr style="text-align: left; background-color: whitesmoke;">
+                        <th style="color: #008000;">
+                            Item
+                        </th>
+                        <th style="color: #008000;">
+                            Qty
+                        </th>
+                        <th style="color: #008000;">
+                            Rate(₦)
+                        </th>
+                        <th style="color: #008000;">
+                            Total(₦)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in sale.StoreItemSoldObjects">
+                        <td>{{item.StoreItemName}}</td>
+                        <td>{{item.QuantitySold | number:0}}{{item.UoMCode}}</td>
+                        <td ng-currency>{{ item.Rate | currency: " " }}</td>
+                        <td ng-currency>{{ item.AmountSold | currency: " " }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Total(₦):</td>
+                        <td style="text-align: center" ng-currency="" class="ng-binding"><label style="float: left; text-align: center"> {{sale.AmountDue | currency: " "}}</label></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row" ng-show="sale.Transactions != null && sale.Transactions.length > 0">
+            <div class="col-md-12">
+                <h5>Payment Information</h5>
+            </div>
+            <div class="row" ng-repeat="p in sale.Transactions">
+                <div class="col-md-9" style="padding-right: 0px">
+                    <h5>{{p.PaymentMethodName}} : <strong>{{p.TransactionAmount | currency: " "}}</strong> </h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Total Amount paid(₦): <b>{{sale.AmountPaid | currency: " "}}</b></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Sold by: <b>{{sale.Transactions[0].TransactionEmployeeName}}</b></h5>
+            </div>
+        </div>
+    </div>   
+   
+     <div class="row">
+        <div class="col-md-4">
+            <input type="button" value="<< Back" ng-click="details=false" class="btn btn-default" style="margin-top: 7px;"/>
+        </div>
+    </div>
+</fieldset>
+</div>
+<br/>
+<br />
+<br />
+

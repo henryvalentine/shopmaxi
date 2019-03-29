@@ -1,0 +1,63 @@
+﻿<br />
+<br />
+<br />
+<br />
+<h4>Price Look Up</h4>
+<br />
+<fieldset style="border: none; background: whitesmoke" ng-controller="priceLookUpController" ng-init="initializeController()">
+    <div class="row" ng-hide="clicked == true">
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight: bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5" style="padding-right: 7px; padding-left: 0px;">
+                <input type="text" ng-sku ng-model="skuName" class=" form-control" ng-keyup="getItemPrices(skuName)" required placeholder="Search Product by Name or SKU" style="font-size: 1.1em" />
+            </div>
+            <div class="col-md-1" style="padding-left: 0px;">
+                <a ng-click="scanSKU()" style="float: left; cursor: pointer" title="Scan Item"> <img src="/Content/images/Barcode_scanner.png" style="width: 25px; height: 25px" /></a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <table>
+                <thead>
+                <tr style="color: #000; ">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 19%; text-align: left">
+                        Item
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Description
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Price({{defaultCurrency.Symbol}})/Min. Quantity
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Quantity in stock
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="price in priceList">
+                        <td>
+                            {{price.StoreItemStockName}}
+                        </td>
+                        <td>
+                            {{price.Description}}
+                        </td>
+                        <td>
+                            {{price.Price}}/{{price.MinimumQuantity}}
+                        </td>
+                        <td>
+                            {{price.QuantityInStock}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,194 @@
+﻿
+<fieldset style="border: none; background: whitesmoke" ng-controller="dashboardController">
+
+    <div class="row" ng-dashboard id="no-admin" ng-if="isAdmin === false;">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <img style="height: 80px" alt="" src="{{store.StoreLogoPath}}" />
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+                <h3 style="font-weight: bold">
+                    {{store.StoreName}}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <h4>
+                    {{store.StoreAddress}}
+                </h4>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <br />
+  
+        <div class="row" ng-if="isMarketer === true;">
+            <div class="col-md-7">
+                <a href="/ngy.html#Store/CustomerInvoice/CustomerInvoice" style="cursor: pointer; color: #228b22">View all</a>
+                <div class="row" id="ct-customer_Perf">
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <br />
+                    <div class="row" id="ct-sale_summary" style="display: none">
+
+                    </div>
+                </div>
+                <div class="row" id="ct-no_summary" style="display: none">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h4>Sales Summary from 7 days ago till date : DATA NOT AVAILABLE</h4>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+
+    <div class="row" ng-dashboard id="i_admin" ng-if="isAdmin === true;">
+        <br/>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="page-head-no-line">Dashboard</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="dashboard-div-wrapper bk-clr-0">
+                    <a style="cursor: pointer" href="/ngy.html#Store/DailySales/DailySales">
+                      <i class="fa2 dailySale">
+                            {{store.DefaultCurrencySymbol}}{{reportSnapshots.TotalDailySales | currency: " "}}
+                        </i>
+                        <h5>Today's Sales</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-div-wrapper bk-clr-five">
+                    <a style="cursor: pointer" href="/ngy.html#Store/RefundNote/RefundNote">
+                        <i class="fa2 dailySale">
+                            {{store.DefaultCurrencySymbol}}{{reportSnapshots.TotalDailyRefunds | currency: " "}}
+                        </i>
+                        <h5>Today's Refunds</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-div-wrapper bk-clr-four">
+                    <a href="/ngy.html#Store/ReorderList/ReorderList" style="cursor: pointer">
+                        <i class="fa dashboard-div-icon">
+                            {{reportSnapshots.TotalItemsToReorder | number:0}}
+                        </i><br/>
+                        <h5>Items Due for purchase</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="dashboard-div-wrapper bk-clr-three">
+                    <a href="/ngy.html#Store/DueInvoices/DueInvoices" style="cursor: pointer">
+                        <i class="fa dashboard-div-icon">
+                            {{reportSnapshots.TotalDueInvoices | number:0}}
+                        </i><br />
+                        <h5>Due/Overdue Invoices</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <a href="/ngy.html#Store/CustomerInvoice/CustomerInvoice" style="cursor: pointer; color: #228b22">View all</a>
+                <div class="row" id="customer_Perf">
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <br/>
+                    <div class="row" id="sale_summary" style="display: none">
+
+                    </div>
+                </div>
+                <div class="row" id="no_summary" style="display: none">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Sales Summary from 7 days ago till date : DATA NOT AVAILABLE</h4>
+                </div>
+            </div>
+        </div>
+        <br/><br/>
+        <!--<div class="row">
+            <div class="col-md-12">
+                <h4>Five Today's Highest selling Products</h4>
+                <table ng-emp-report-table id="paymentTypeRepTbl">
+                    <thead style="height: 40px">
+                    <tr style="color: #000">
+                        <th style="width: 3%; text-align: left">
+                            S/N
+                        </th>
+                        <th style="width: 25%; text-align: left">
+                            Product
+                        </th>
+                        <th style="width: 18%; text-align: left">
+                            Brand
+                        </th>
+                        <th style="width: 16%; text-align: left">
+                            Total Quantity Sold
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="p in reportSnapshots.HighSalingStockList">
+                        <td>
+                            {{p.index}}
+                        </td>
+                        <td>
+                            {{p.StoreItemName}}
+                        </td>
+                        <td>
+                            {{p.BrandName}}
+                        </td>
+                        <td>
+                            {{p.QuantitySold | number:0}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>-->
+    </div>
+    <br/>
+    <br />
+</fieldset>
+
+
+       

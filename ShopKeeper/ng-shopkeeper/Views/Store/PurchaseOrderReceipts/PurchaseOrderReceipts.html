@@ -1,0 +1,439 @@
+﻿<br />
+<fieldset style="border: none; background: whitesmoke" ng-controller="purchaseOrderReceiptsController" ng-init="initializeController()">
+
+    <div class="row" ng-hide="newEdit===true||details===true">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Goods Receipt Note</h4>
+                <br />
+            </div>
+        </div>
+        <table ng-porder-receipts>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        LPO Number
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Supplier
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Issued By
+                    </th>
+                    <th style="width: 17%; text-align: left">
+                        Total Cost({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 15%; text-align: left">
+                        Date Initiated
+                    </th>
+                    <th style="width: 15%; text-align: left">
+                        Date Delivered
+                    </th>
+                    <th style="width: 15%; text-align: left">
+                        Status
+                    </th>
+                    <th style="width: 3%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;" ng-show="newEdit===true">
+        <div class="modal-body">
+            <form method="POST">
+                <div class=" modal-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="modal-title">Purchase Order Details</h4>
+                        </div>
+                        <div class="col-md-5">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="<< Back" ng-click="initialisePurchaseOrder()" class="btn btn-default" style="font-weight: bold; float: right" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+                    <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+                </div>
+                <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+                    <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+                </div>
+                <div class="row">
+
+                <table style="width: 100%; border-bottom: 1px #e0e0e0 solid">
+                    <tr >
+                        <td style="width: 30%">
+                            Order Number :
+                        </td>
+                        <td>
+                            <strong>{{purchaseOrder.PurchaseOrderNumber}}</strong>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td style="width: 30%">
+                            Supplier :
+                        </td>
+                        <td>
+                            <strong> {{purchaseOrder.SupplierName}} </strong>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td style="width: 30%">
+                            Chart of Account(Account Group) :
+                        </td>
+                        <td>
+                            <strong>{{purchaseOrder.AccountGroupName}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 30%">
+                            Expected Reception Date :
+                        </td>
+                        <td>
+                            <strong>{{purchaseOrder.ExpectedDeliveryDateStr}}</strong>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td style="width: 30%">
+                            Derived Total Cost :
+                        </td>
+                        <td>
+                             <strong>{{store.DefaultCurrencySymbol}}{{purchaseOrder.DerivedTotalCost | currency: " "}}</strong>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td style="width: 30%">
+                            Landing Cost :
+                        </td>
+                        <td>
+                            <strong>{{store.DefaultCurrencySymbol}}{{purchaseOrder.LandingCost | currency: " "}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 30%">
+                            Purchase Order Status :
+                        </td>
+                        <td>
+                            <strong>{{purchaseOrder.DeliveryStatus}}</strong>
+                        </td>
+                    </tr>
+                </table>
+                <br/><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Extra Cost(s) :</h4>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-4" >
+                        <label>VAT Amount({{store.DefaultCurrencySymbol}})</label>
+                        <input type="text" ng-model="purchaseOrder.VATAmount" ng-disabled="isPurchaser !== true;" class="form-control" ui-number-mask="0" ng-change="updateVatAmount(purchaseOrder.VATAmount)" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Discount Amount({{store.DefaultCurrencySymbol}})</label>
+                        <input type="text" ng-model="purchaseOrder.DiscountAmount" ng-disabled="isPurchaser !== true;" class="form-control" ui-number-mask="0" ng-change="updateDiscountAmount(purchaseOrder.DiscountAmount)" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Freight On Board - FOB({{store.DefaultCurrencySymbol}})</label>
+                        <input ng-disabled="isPurchaser !== true;" type="text" ng-model="purchaseOrder.FOB" class="form-control" ui-number-mask="0" ng-change="updateFobAmount(purchaseOrder.FOB)" />
+                    </div>
+                </div>
+                    <br />
+                <hr/>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6 divlesspadding right-border">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4>Invoice(s): </h4>
+                                    </div>
+                                    <div ng-if="isPurchaser === true" class="col-md-1"><a style="cursor: pointer" ng-click="addInvoice()"><img src="/Content/images/plus-green.png" style="width: 16px; height: 16px" /></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table-responsive table" role="grid" style="float: left">
+                                            <thead>
+                                                <tr style="text-align: left; background-color: whitesmoke;">
+                                                    <th style="color: #008000; width: 12%">
+                                                        Date Received
+                                                    </th>
+                                                    <th style="color: #008000; width: 5%">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="t in purchaseOrder.InvoiceObjects">
+                                                    <td style="width: 12%">
+                                                        <label>{{t.DateSentStr}}</label>
+                                                    </td>
+                                                    <td style="width: 5%">
+                                                        <a title="View" style="cursor: pointer" href="{{t.Attachment}}"><img src="/Content/images/details.png" /></a>
+                                                        &nbsp;&nbsp;
+                                                        <a ng-if="isPurchaser === true" title="Edit" style="cursor: pointer" ng-click="editInvoice(t)"><img src="/Content/images/edit.png" /></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 right-border" ng-if="invoice && isPurchaser === true">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Manage Invoice</h4> 
+                                    </div>
+                                </div>
+                                <!--<div class="row">
+                                <div class="col-md-4">
+                                    <img style="height: 40%; width: 40%" src="{{invoice.TempSource}}" />
+                                </div>
+                            </div>-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Attach Invoice *(<i style="color: brown">Max. size : 1MB</i>)*</label>
+                                        <input type="file" class="form-control" ng-file-select="setAttachment($event)" placeholder="Select Invoice" name="file" accept="application/pdf, image/*" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Date Received *</label>
+                                        <p class="input-group">
+                                            <input type="text" class="form-control datepicker" ng-click="openInvoiceDate($event, invoice)" datepicker-popup="{{endDateformat}}"
+                                                   is-open="invoice.isOpened" min-date="minEndDate" max-date="maxEndDate" datepicker-options="endDateOptions"
+                                                   date-disabled="disabled(date, mode)" name="IsExpOpened" close-text="Close" ng-model="invoice.DateSentStr" />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4" ng-if="isPurchaser === true">
+                                        <button title="Save" style="cursor: pointer; float: right" class="btn btn-primary" ng-click="ProcessInvoice()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <hr style="padding-bottom: 2px; padding-top: 2px; margin-bottom: 0px;" />
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>Ordered Items :</h4>
+                    </div>
+                    <div class="col-md-9">
+                        <p><strong>NB:</strong> <span style="font-weight: normal; font-size: 0.9em">For each of the ordered item, use the small green icon beside it's 'Reception Trail' to add up it's reception in a collection. When done, Click the 'Save All' button at the bottom of the page to save all the added items at once.</span></p>
+                    </div>
+                </div>
+                    <br/>
+                    <div class="row" ng-repeat="i in purchaseOrder.PurchaseOrderItemObjects">
+                        <table class="table-responsive table" role="grid" style="float: left">
+                            <thead>
+                            <tr style="text-align: left; background-color: whitesmoke;">
+                                <th style="color: #008000; width: 15%">
+                                    Product
+                                </th>
+                                <th style="color: #008000; width: 12%">
+                                    Total Qty Ordered
+                                </th>
+                                <th style="color: #008000; width: 12%">
+                                    Total Quantity Already Received
+                                </th>
+                                <th style="color: #008000; width: 12%">
+                                    Status
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="width: 15%">
+                                    <div class="row">
+                                        <div class="col-md-4" style="padding-right: 10px">
+                                            <img src="{{i.ImagePath}}" style="width: 100%"/>
+                                        </div>
+                                        <div class="col-md-8" style="padding: 0px">
+                                            <label style="font-weight: normal">{{i.StoreItemName}}</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 12%"> 
+                                    <label>{{i.QuantityOrdered | number:0}}</label>
+                                </td>
+                                <td style="width: 12%">
+                                    <label>{{i.TotalQuantityDelivered | number:0}}</label>
+                                </td>
+                                <td style="width: 13%">
+                                    <label>{{i.DeliveryStatus}}</label>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12 divlesspadding right-border">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h4>GRN Details :</h4>
+                                    </div>
+                                    <div class="col-md-1" ng-if="i.IsComplete === false">
+                                        <a ng-if="isPurchaser === true" style="cursor: pointer; float:left" title="Add new Reception" ng-click="addNewOrder(i)"><img src="/Content/images/plus-green.png" style="width: 16px; height: 16px" /></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table-responsive table" role="grid" style="float: left">
+                                            <thead>
+                                                <tr style="text-align: left; background-color: whitesmoke;">
+                                                    <th style="color: #008000; width: 12%">
+                                                        Quantity Received
+                                                    </th>
+                                                    <th style="color: #008000; width: 12%">
+                                                        Date Received
+                                                    </th>
+                                                    <th style="color: #008000; width: 12%">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-repeat="d in i.PurchaseOrderItemDeliveryObjects">
+                                                    <td style="width: 12%">
+                                                        {{d.QuantityDelivered | number:0}}
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            {{d.DateDeliveredStr}}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a title="Edit" style="cursor: pointer" ng-click="editReceivedOrder(i, d)"><img src="/Content/images/edit.png" /></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="modal-footer" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            
+                        </div>
+                        <div class="col-md-4" ng-if="isPurchaser === true">
+                            <button title="Save" ng-if="deliveries.length > 0;" style="cursor: pointer; float: right" class="btn btn-primary" ng-click="processPurchaseOrderDelivery()">Save All</button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;" ng-show="details===true">
+        <div class="modal-body">
+            <form method="POST">
+                <div class=" modal-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="modal-title">Purchase order Details</h4>
+                        </div>
+                        <div class="col-md-5">
+                            <strong>Total Cost : <span style="color: #008000;">{{store.DefaultCurrencySymbol}}{{purchaseOrder.DerivedTotalCost | currency: " "}}</span></strong>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="<< Back" ng-click="initialisePurchaseOrder()" class="btn btn-default" style="font-weight: bold; float: right" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Supplier : <strong> {{purchaseOrder.SupplierObject.CompanyName}} </strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Chart of Account(Account Group) : <strong>{{purchaseOrder.ChartOfAccountObject.AccountGroupName}}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Expected Delivery Date : <strong>{{purchaseOrder.ExpectedDeliveryDateStr}}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Delivery Status : <strong>{{purchaseOrder.DeliveryStatus}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table-responsive table" role="grid" style="float: left">
+                            <thead>
+                                <tr style="text-align: left; background-color: whitesmoke;">
+                                    <th style="color: #008000;width:15%">
+                                        Product
+                                    </th>
+                                    <th style="color: #008000; width: 12%">
+                                        Order Qty
+                                    </th>
+                                    <th style="color: #008000;width:12%">
+                                        Cost Price({{store.DefaultCurrencySymbol}})
+                                    </th>
+                                    <th style="color: #008000;width:13%">
+                                        Total({{store.DefaultCurrencySymbol}})
+                                    </th>
+                                    <th style="color: #008000;width:12%">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="i in purchaseOrder.PurchaseOrderItemObjects">
+                                    <td style="width:15%">
+                                        <div class="row">
+                                            <div class="col-md-4" style="padding-right: 10px">
+                                                <img src="{{i.ImagePath}}" style="width: 100%" />
+                                            </div>
+                                            <div class="col-md-8" style="padding: 0px">
+                                                <label style="font-weight: normal">{{i.StoreItemName}}</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:12%">
+                                        <label>{{i.QuantityOrdered | number:0}}</label>
+                                    </td>
+                                    <td style="width:12%">
+                                        <label>{{i.CostPrice | currency: " "}}</label>
+                                    </td>
+                                    <td style="width:13%">
+                                        <label class="control-label " style="font-weight: normal">{{i.TotalCost | currency: " "}}</label>
+                                    </td>
+                                    <td style="width:12%">
+                                        <label class="control-label " style="font-weight: normal">{{i.DeliveryStatus}}</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br />
+                <div class="row modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+</fieldset>
+<br/>

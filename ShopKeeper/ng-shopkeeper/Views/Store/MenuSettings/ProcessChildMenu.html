@@ -1,0 +1,53 @@
+﻿
+<div class="row" style="width: 100%" ng-controller="parentMenuController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{childHeader}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Child Menu Name *</label>
+                    <input type="text" class="form-control" ng-model="childMenu.Value" placeholder="Menu Name">
+                </div>
+                <div class="col-md-6">
+                    <label>Menu Order *</label>
+                    <input type="number" class="form-control" placeholder="Menu order" ng-model="childMenu.ChildMenuOrder">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Child Menu Icon</label>
+                    <input type="text" class="form-control" ng-model="childMenu.GlyphIconClass" placeholder="Menu Icon">
+                </div>
+                <div class="col-md-6">
+                    <label>Child Menu Link *</label>
+                    <input type="text" class="form-control" placeholder="Menu Link" ng-model="childMenu.Href">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Role(s) Accessible To * </label>
+                    <ul>
+                        <li ng-repeat="role in roles" style="float: left; margin-bottom: 1%">
+                            <label><input id="rl_{{role.Name}}" type="checkbox" ng-change="addChildRole(role.Status,role)" ng-model="role.Status" />&nbsp;{{role.Name}}</label>&nbsp;&nbsp;
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Save" ng-click="processChildMenu()" class="btn btn-default" ng-disabled="process === true;" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+          
+         

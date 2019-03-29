@@ -1,0 +1,86 @@
+﻿
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="employeeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{employee.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Name: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.Name}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">ID: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.EmployeeNo}} </label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Job Title: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.JobTitle}} </label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Department: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.Department}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Date Hired: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.DateHiredStr}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Date Left: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.DateLeftStr}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Address: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.Address}} {{employee.CityName}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label class="control-label" style="font-weight: normal">Status: </label>
+            </div>
+            <div class="col-md-7">
+                <label class="control-label ">{{employee.Status}}</label>
+            </div>
+        </div>
+        <br />
+        <div class="row modal-footer">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-3">
+                <input type="button" value="Close" ng-click="closeInfo()" class="btn btn-default" style="margin-top: 7px;" />
+            </div>
+        </div>
+    </div>
+</div>

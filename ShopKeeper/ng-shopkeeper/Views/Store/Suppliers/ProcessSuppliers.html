@@ -1,0 +1,48 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="supplierController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+               <h4 class="modal-title">{{supplier.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="supplier.CompanyName" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> TIN *</label>
+                    <input type="text" data-ng-model="supplier.TIN" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Date Joined *</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-click="openEnDate($event, invoice)" datepicker-popup="{{endDateformat}}"
+                               is-open="endDateOpened" min-date="minEndDate" max-date="maxEndDate" datepicker-options="endDateOptions"
+                               date-disabled="disabled(date, mode)" name="IsExpOpened" close-text="Close" ng-model="supplier.DateRegistered" />
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Note</label>
+                    <textarea data-ng-model="supplier.Note" class="form-control">{{supplier.Note}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processSupplier()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+ 

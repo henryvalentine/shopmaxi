@@ -1,0 +1,47 @@
+﻿
+<fieldset style="border: none; background: whitesmoke" ng-controller="employeeController" ng-init="initializeController()">
+
+    <br />
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Employees</h4>
+        </div>
+        <div class="3">
+            <a ng-click="prepareEmployeeTemplate()" class="btnAdd btn" style="width: 135px; float: right; text-align:right">New Employee</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <table ng-employee-table>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Name
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Employee No
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Role
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Outlet
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Department
+                    </th>
+                    <th style="width: 8%; text-align: left">
+                        Status
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</fieldset>

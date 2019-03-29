@@ -1,0 +1,37 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="saleController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Service: {{service.header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 7px; padding-left: 0px;">
+                    <label class="control-label ">Magnitude *</label>
+                    <input type="text" ng-change="updateServiceamount(service)" ng-model="service.QuantitySold" class=" form-control" required placeholder="Magnitude" style="font-size: 1.1em" ui-number-mask="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 7px; padding-left: 0px;">
+                    <label class="control-label ">Service Rate({{store.DefaultCurrencySymbol}})*</label>
+                    <input type="text" ng-model="service.Rate" ng-change="updateServiceamount(service)" class=" form-control" required placeholder="Service Rate" style="font-size: 1.1em" ui-number-mask="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 7px; padding-left: 0px;">
+                    <label class="control-label ">Total Cost({{store.DefaultCurrencySymbol}})</label>
+                    <label class="form-control" style="font-size: 1.1em">{{service.AmountSold | currency: " "}}</label>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Add" ng-click="AddService(service)" class="btn btn-primary" style="margin-top: 7px; float: right" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

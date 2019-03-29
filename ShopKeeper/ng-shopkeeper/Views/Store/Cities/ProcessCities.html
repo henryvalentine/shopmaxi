@@ -1,0 +1,33 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="manageCityCntroller" ng-init="initializeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{city.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessCityes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> City Name *</label>
+                    <input type="text" data-ng-model="city.Name" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "> State *</label>
+                    <select id="ngIx" ng-model="city.State" ng-options="state as state.Name for state in States track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select State --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processCity()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

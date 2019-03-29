@@ -1,0 +1,257 @@
+﻿
+<div class="center-vertical" ng-controller="defaultController" ng-init="getPackages()">
+    <div class="center-content content-box content-box-wrapper  center-margin">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-11">
+                <h3>
+                    SHOPKEEPER : Store Configuration
+                </h3>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row" ng-if="config === true && configResult === false;">
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-11">
+                <div class="row check-element animate-show" ng-show="allPackages !== undefined && allPackages !== null && allPackages.length > 0;" ng-cloak>
+                    <!--<div class="row">
+                    <div class="col-md-9">
+                        <h3>Subcription Plans</h3>
+                    </div>
+                </div>-->
+                    <div class="row" style="width: 100%;">
+                        <div class="row" style="margin-top: 18px;">
+                            <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true" style="width: 99%; margin: 7px;" ng-cloak>
+                                <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="positivefeedback = false">x</span>
+                            </div>
+                            <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true" style="width: 99%; margin: 7px;" ng-cloak>
+                                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="negativefeedback = false">x</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <table class="table2 center" ng-cloak>
+                                <tr>
+                                    <td ng-repeat="package in allPackages">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <h5>{{package.PackageTitle}}</h5>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>
+                                                    <h6>Disk Space(MB):</h6>
+                                                </td>
+                                                <td>
+                                                    <h5>{{package.FileStorageSpace | number:0}}</h5>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h6>Products:</h6>
+                                                </td>
+                                                <td>
+                                                    <h5>{{package.NumberOfStoreProducts | number:0}}</h5>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Number Of Outlets:</h6></td>
+                                                <td><h5>{{package.NumberOfOutlets | number:0}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Registers:</h6></td>
+                                                <td><h5>{{package.Registers | number:0}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Users:</h6></td>
+                                                <td><h5>{{package.NumberOfUsers | number:0}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Max. Transaction:</h6></td>
+                                                <td><h5>{{package.MaximumTransactions | number:0}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Transaction Fee(&#8358;):</h6></td>
+                                                <td><h5>{{package.TransactionFee | currency: " "}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Max. Customers:</h6></td>
+                                                <td><h5>{{package.MaximumCustomer | number:0}}</h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Dynamic Reporting:</h6></td>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.UseReportBuilder" />
+                                                    <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.UseReportBuilder" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Live Chat:</h6></td>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.LiveChat" />
+                                                    <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.LiveChat" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Emal</h6></td>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.EmailSupport" />
+                                                    <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.EmailSupport" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Telephone Support:</h6></td>
+                                                <td>
+                                                    <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.TelephoneSupport" />
+                                                    <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.TelephoneSupport" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <select ng-model="package.PackagePricing" class="form-control" ng-options="pricing  as pricing.BillingCycleName for pricing in package.PackagePricings track by pricing.PackagePricingId" ng-change="setPackage(package)">
+                                                        <option value="">-- select --</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Store Name:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="text" data-ng-model="accessInfo.StoreName" class="form-control" placeholder=" Store Name" /> 
+                        </div>
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <label for="email">Mobile Phone Number:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="tel" data-ng-model="accessInfo.PhoneNumber" class="form-control" placeholder="Phone Number" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Last Name:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="text" data-ng-model="accessInfo.LastName" class="form-control" placeholder=" Last name" />
+                        </div>
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <label for="email">Other Names:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="tel" data-ng-model="accessInfo.OtherNames" class="form-control" placeholder="Other Names" />
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Admin Login</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email address:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="email" class="form-control" id="email" ng-model="accessInfo.Email" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">Password:</label>
+                        <div class="input-group input-group-lg">
+                            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="accessInfo.Password">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 3%">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" ng-click="configureStore()" class="btn btn-block btn-primary" value="Save" />
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <!--<fieldset ng-show="config === false &&  configResult === true" style="border: none; background: whitesmoke; width: 50%; border: 3px solid #27ae60;" ng-cloak>
+            <div class="row alert alert-success" ng-show="subsuccessmsg == true" style="width: 99%; margin: 7px;" ng-cloak>
+                <span class="col-md-11">{{result.Error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="subsuccessmsg = false">x</span>
+            </div>
+            <div class="row" ng-invoice>
+                <div class="row"> 
+                    <div class="col-md-9">
+                        <h3>ShopKeeper<span style="font-size: 0.8em; font-weight: normal"> &nbsp; Subscription Details</span></h3>
+                    </div>
+                    <div class="col-md-3" style="padding-right: 0px;">
+                       
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Package:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.PackageName}}</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Duration(Days):</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.Duration | number:0}}</h4>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="result.isTrial == false">
+                    <div class="col-md-5">
+                        <label>Amount Due(&#8358;):</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.Magnitude | currency: " "}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Store: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label">{{result.StoreName}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-2" style="padding-right: 0px" >
+                </div>
+                <div class="col-md-2" style="padding-left: 0px">
+                    <input type="button" value="<< Login" ng-click="gotoLogin()" class="btn btn-default" style="margin-top: 7px; float: right" />
+                </div>
+            </div>
+            <br />
+        </fieldset>-->
+    </div>
+</div>

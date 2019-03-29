@@ -1,0 +1,114 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" style="width: 100%" ng-controller="saleController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">New Customer</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessCityes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Last Name *</label>
+                    <input type="text" ng-model="CustomerObject.LastName" style="text-transform: capitalize" class=" form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Other Names *</label>
+                    <input type="text" ng-model="CustomerObject.OtherNames" style="text-transform: capitalize" class=" form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Email</label>
+                    <input type="text" ng-model="CustomerObject.ContactEmail" class=" form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Mobile Number *</label>
+                    <input type="text" ng-model="CustomerObject.MobileNumber" class=" form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Office Line</label>
+                    <input type="text" ng-model="CustomerObject.OfficeLine" class=" form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Gender *</label>
+                    <ui-select ng-model="CustomerObject.GenderObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select --">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="gender in genders | propsFilter: {name: $select.search} track by gender.genderId">
+                            <div ng-bind-html="gender.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Customer Type *</label>
+                    <ui-select ng-model="CustomerObject.customerType" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="type in customerTypes | propsFilter: {Name: $select.search} track by type.StoreCustomerTypeId">
+                            <div ng-bind-html="type.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label">Birthday</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                               min-date="minDate" max-date="maxDate"
+                               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="CustomerObject.BirthdayStr" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Country *</label>
+                    <ui-select ng-model="CustomerObject.StoreCountryObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Country --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="country in countries | propsFilter: {Name: $select.search} track by country.StoreCountryId">
+                            <div ng-bind-html="country.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">State *</label>
+                    <ui-select ng-model="CustomerObject.StoreStateObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select state --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="state in CustomerObject.StoreCountryObject.StoreStateObjects | propsFilter: {Name: $select.search} track by state.StoreStateId">
+                            <div ng-bind-html="state.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">City *</label>
+                    <ui-select ng-model="CustomerObject.StoreCityObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select city --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="city in CustomerObject.StoreCityObject.StoreCityObjects | propsFilter: {Name: $select.search} track by city.StoreCityId">
+                            <div ng-bind-html="city.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label">Street No.</label>
+                    <input type="text" ng-model="CustomerObject.AddressLine1" class=" form-control">
+                </div>
+            </div>-->
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processCustomer()" class="btn btn-primary" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,32 @@
+﻿   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="saleController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Process Authorization</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 7px; padding-left: 0px;">
+                    <label class="control-label "> Email *</label>
+                    <input type="text" autocomplete="off" ng-model="delAuth.email" class=" form-control" required placeholder="Enter your email" style="font-size: 1.1em" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 7px; padding-left: 0px;">
+                    <label class="control-label "> Password *</label>
+                    <input type="password" autocomplete="off" ng-model="delAuth.password" class="form-control" required placeholder="Enter your password" style="font-size: 1.1em" />
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Submit" ng-click="verifyUser()" class="btn btn-primary" style="margin-top: 7px; float: right" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+ 

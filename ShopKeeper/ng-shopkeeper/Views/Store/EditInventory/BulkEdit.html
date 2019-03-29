@@ -1,0 +1,26 @@
+﻿<!--ng-init="initializeController"-->
+   
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="editInventoryController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Bulk Edit</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form enctype="multipart/form-data" style="width: 100%;">
+            <div class="row">
+                <label class="control-label "> Select Bulk Update Document * </label>
+                <input type="file" class="form-control" name="file" ng-product-stock-bulk-select accept=" application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+            </div>
+            <br />
+            <div class="row modal-footer">
+                <div>
+                    <input type="button" value="Upload Updates" ng-click="ProcessBulkEdit()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   

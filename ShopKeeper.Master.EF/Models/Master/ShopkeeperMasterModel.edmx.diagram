@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ff43105b1048496db24ad645d5389708" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.ActiveSubscription" Width="1.5" PointX="5.25" PointY="13.375" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Address" Width="1.5" PointX="19.5" PointY="16.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.AlaCarte" Width="1.5" PointX="2.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.AspNetRole" Width="1.5" PointX="8.75" PointY="2" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="3.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="6.25" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.AspNetUser" Width="1.5" PointX="11" PointY="3.75" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Bank" Width="1.5" PointX="3" PointY="21.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.BillingCycle" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.City" Width="1.5" PointX="17.25" PointY="16.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.ContactTag" Width="1.5" PointX="10.75" PointY="13.25" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Country" Width="1.5" PointX="12.75" PointY="15.25" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Currency" Width="1.5" PointX="15" PointY="13.75" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Message" Width="1.5" PointX="8" PointY="4.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.MessageTemplate" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.PackagePricing" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.PaymentGateway" Width="1.5" PointX="6" PointY="21" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.PaymentMethod" Width="1.5" PointX="5.75" PointY="24" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Person" Width="1.5" PointX="10.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.State" Width="1.5" PointX="15" PointY="16.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Store" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.StoreBankAccount" Width="1.5" PointX="5.25" PointY="17.5" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.StoreContact" Width="1.5" PointX="13" PointY="9.875" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.StorePaymentGateway" Width="1.5" PointX="8.25" PointY="17.75" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.StoreSetting" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.StoreSubscriptionHistory" Width="1.5" PointX="8.25" PointY="13.25" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.SubscriptionPackage" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.Transaction" Width="1.5" PointX="8" PointY="9.625" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.TransactionType" Width="1.5" PointX="5.75" PointY="10" />
+        <EntityTypeShape EntityType="ShopKeeperMasterModel.UserProfile" Width="1.5" PointX="5.75" PointY="4.125" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_ActiveSubscription_Store" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_ActiveSubscription_SubscriptionPackage" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Address_City" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_dbo_AspNetUsers_dbo_UserProfiles_UserInfo_Id" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreBankAccount_Bank" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_PackagePricing_BillingCycle" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_City_State" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreContact_ContactTag" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Currency_Country" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_State_Country" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Message_MessageTemplate" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Message_UserProfiles" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_PackagePricing_SubscriptionPackage" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StorePaymentGateway_PaymentGateway" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Transaction_PaymentMethod" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreContact_Person" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Store_SubscriptionPackage" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreBankAccount_Store" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StorePaymentGateway_Store" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreSeting_Store" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_Store" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_StoreSubscriptionHistory_SubscriptionPackage" />
+        <AssociationConnector Association="ShopKeeperMasterModel.FK_Transaction_TransactionType" />
+        <AssociationConnector Association="ShopKeeperMasterModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+﻿   
+    <div class="row" style="visibility: visible; width: 100%" ng-controller="accountGroupController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{accountGroup.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Account Group *</label>
+                    <input type="text" data-ng-model="accountGroup.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processAccountGroup()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<script>
+    //angular.element('popDiv').draggable();
+</script>

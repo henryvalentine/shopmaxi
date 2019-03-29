@@ -1,0 +1,277 @@
+﻿
+<fieldset style="border: none;" ng-controller="updateSalesController" ng-init="initializeController()">
+
+    <div class="row fsEdit" ng-hide="details===true">
+        <div class="row">
+            <div class="col-md-11">
+                <br />
+                <h4>Open Invoices</h4>
+                <br />
+            </div>
+        </div>
+
+        <table ng-update-sale>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left;">
+                        Invoice No.
+                    </th>
+                    <th style="width: 15%; text-align: left">
+                        Customer
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Date
+                    </th>
+                    <th style="width: 16%; text-align: left">
+                        Transaction Amount({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Amount Paid({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Balance({{store.DefaultCurrencySymbol}})
+                    </th>
+                    <th style="width: 6%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="row fsEdit" style="width: 100%;" ng-show="details===true">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <br />
+                <h4>Invoice Payment</h4>
+                <br />
+            </div>
+            <div class="col-md-5">
+                <br />
+                <div class="row divlesspadding">
+                    <div class="col-md-5">
+                        <label>Receipt print options:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-control" style="color: #357ebd"><input type="radio" ng-value="1" value="1" name="choice" ng-model="printChoice" />&nbsp;A4</label>&nbsp;&nbsp;
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control" style="color: #ff6c3a"><input type="radio" ng-value="2" value="2" name="choice" ng-model="printChoice" />&nbsp;Thermal</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <br />
+                <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="float: right" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Customer: <b>{{sale.CustomerName}}</b></h4>
+            </div>
+        </div>
+
+    <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+            <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+        </div>
+        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+            <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-8 right-border">
+                        <div class="row" style="margin-top: 8px">
+                            <table class="table-responsive table" role="grid" style="float: left">
+                                <thead>
+                                    <tr style="text-align: left; background-color: whitesmoke;">
+                                        <th style="color: #008000;">
+                                            Item
+                                        </th>
+                                        <th style="color: #008000;">
+                                            Quantity
+                                        </th>
+                                        <th style="color: #008000;">
+                                            Rate({{store.DefaultCurrencySymbol}})
+                                        </th>
+                                        <th style="color: #008000;">
+                                            Total({{store.DefaultCurrencySymbol}})
+                                        </th>
+                                        <th style="width: 5%; color: #008000;">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="soldItem in sale.StoreItemSoldObjects">
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-4" style="padding-right: 10px">
+                                                    <img src="{{soldItem.ImagePath}}" style="width: 70%" />
+                                                </div>
+                                                <div class="col-md-8" style="padding: 0px">
+                                                    <div class="row" style="padding: 0px">
+                                                        <label style="font-weight: normal">{{soldItem.StoreItemName}}</label>
+                                                    </div>
+                                                    <div class="row" style="padding: 0px">
+                                                        <div class="col-md-4" style="padding: 0px">
+                                                            <label class="control-label " style="font-weight: normal">SKU:</label>
+                                                        </div>
+                                                        <div class="col-md-8" style="padding: 0px">
+                                                            <label class="control-label " style="font-weight: normal">{{soldItem.SKU}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="soldItem.QuantitySold" ng-change="updateAmount(soldItem)" ng-blur="checkQuantity(soldItem)" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <label class="control-label " style="font-weight: normal">{{soldItem.Rate | currency: " "}}</label>
+                                        </td>
+                                        <td>
+                                            <label class="control-label " style="font-weight: normal">{{soldItem.AmountSold | currency: " "}}</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4 divlesspadding">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Amount Due({{store.DefaultCurrencySymbol}}):</h5>
+                            </div>
+                            <div class="col-md-6" style="padding-right: 5px;">
+                                <h4 style="padding-left: 0px;">{{sale.AmountDue | currency: " "}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Discount({{store.DefaultCurrencySymbol}}):</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 style="padding-left: 0px;">{{sale.DiscountAmount | currency: " "}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>{{store.VAT}}% VAT({{store.DefaultCurrencySymbol}}):</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 style="padding-left: 0px;">{{sale.VATAmount | currency: " "}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Net Amount({{store.DefaultCurrencySymbol}}):</h5>
+                            </div>
+                            <div class="col-md-6" style="padding-right: 5px;">
+                                <h4 style="padding-left: 0px;">{{sale.NetAmount | currency: " "}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label ">Payment Option *</label>
+                                    <ui-select ng-model="sale.paymentOption" theme="bootstrap" class="fullWdith" ng-change="setPaymentOption(sale.paymentOption)">
+                                        <ui-select-match placeholder="-- Select payment Option --">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="method in paymentMethods | propsFilter: {Name: $select.search} track by method.StorePaymentMethodId">
+                                            <div ng-bind-html="method.Name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <hr style="padding-bottom: 2px; padding-top: 2px; margin-bottom: 0px;" />
+                            <div class="row">
+                                <!--<div class="col-md-6" style="padding-right: 0px;">
+                                    <p ng-show="splitOption == true || cash == true">
+                                        <input type="text" ng-change="updateamountpaid(cashAmount)" ng-model="cashAmount" class=" form-control" required style="font-weight: bold;" placeholder="Cash Value" ui-number-mask=""/>
+                                    </p>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 9px;">
+                                    <p ng-show="splitOption == true || pos == true">
+                                        <input type="text" ng-model="posAmount" ng-change="updateamountpaid(posAmount)" class=" form-control" required readonly="readonly" style="font-weight: bold" placeholder="POS Value" ui-number-mask=""/>
+                                    </p>
+                                </div>-->
+                                <!--ng-show="splitOption == true || cash == true"-->
+
+                                <div class="col-md-6" style="padding-right: 0px;">
+                                    <p>
+                                        <input type="text" ng-change="updateamountpaid(cashAmount)" ng-model="cashAmount" class=" form-control" required style="font-weight: bold;" placeholder="Amount" ui-number-mask="" />
+                                    </p>
+                                </div>
+
+
+                                <!--<div class="col-md-6" style="padding-left: 9px;">
+                                    <p ng-show="splitOption == true || pos == true">
+                                        <input type="text" ng-model="posAmount" ng-change="updateamountpaid(posAmount)" class=" form-control" required readonly="readonly" style="font-weight: bold" placeholder="POS Value" ui-number-mask=""/>
+                                    </p>
+                                </div>-->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Amount Paid({{store.DefaultCurrencySymbol}}):</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>{{cashAmount | currency: " "}} </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Previous Payment({{store.DefaultCurrencySymbol}}):</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>{{sale.AmountPaid | currency: " "}} </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Outsatanding({{store.DefaultCurrencySymbol}}):</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 ng-class="{'lkp': balance > 0}">{{sale.outstanding | currency: " "}} </h4>
+                                </div>
+                            </div>
+                            <!--<div class="row">
+                                <div class="col-md-6">
+                                    <h5>Balance({{store.DefaultCurrencySymbol}}):</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 ng-class="col-md-6">{{sale.tempBalance | currency: " "}} </h4>
+                                </div>
+                            </div>-->
+                            
+                        </div>
+                        <div class="row modal-footer">
+                            <div class="col-md-4">
+                                <input type="button" ng-show="sale !== null && sale.currentAmountPaid > 0" value="Submit" ng-disabled="processing === true" ng-click="updateSalePayment()" class="btn btn-primary" style="font-weight: bold" />
+                            </div>
+                            <div class="col-md-7">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div class="row" id="receipt"></div>
+</fieldset>
+
+
+
+
+

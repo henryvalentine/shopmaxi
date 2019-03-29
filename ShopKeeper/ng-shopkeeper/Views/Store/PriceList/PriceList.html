@@ -1,0 +1,64 @@
+﻿
+
+<div class="row" ng-controller="priceListReports" ng-init="initializeController()">
+    <div style="display: none" ng-default></div>
+    <br/>
+    <div class="row" style="border-bottom: 1px solid #e0e0e0">
+        <div class="col-md-8">
+            <h4>Price List</h4>
+        </div>
+        <div class="col-md-3" id="prtPriceTbl" style="display: none">
+            <input type="button" value="Print Report" ng-click="printPriceListReport('priceListCollection')" class="btn btn-primary" style="float: left; font-weight: bold;margin-top:1%" />
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row" id="priceSummary">
+
+    </div>
+    <div class="row">
+        <table id="priceListRepTbl" style="border: solid 1px #ddd; width: 100%">
+            <thead style="background-color: #008000; height: 40px">
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Product
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        SKU
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Category
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Price 1
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Quantity 1
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Price 2
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Quantity 2
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Price 3
+                    </th>
+                    <th style="width: 10%; text-align: left">
+                        Quantity 3
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <br />
+    <br />
+</div>
+
+

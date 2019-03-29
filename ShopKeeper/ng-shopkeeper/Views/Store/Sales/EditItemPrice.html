@@ -1,0 +1,53 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="itemPriceController" ng-init="initializeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{editItem.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Inventory * </label>
+                    <ui-select ng-model="editItem.StoreItemStock" theme="bootstrap" ng-change="showVariantSection()">
+                        <ui-select-match placeholder="-- Select Inventory --">{{$select.selected.StoreItemName}}</ui-select-match>
+                        <ui-select-choices repeat="item in genericList.items | propsFilter: {StoreItemName: $select.search} track by item.StoreItemStockId">
+                            <div ng-bind-html="item.StoreItemName | highlight: $select.searc"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Quantity * </label>
+                    <input type="text" ng-model="editItem.MinimumQuantity" class=" form-control" required style="font-weight: 500;" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Unit Of Measurement *</label>
+                    <ui-select ng-model="editItem.unitofMeasurement" theme="bootstrap">
+                        <ui-select-match placeholder=" -- Select Unit Of Measurement --">{{$select.selected.UoMCode}}</ui-select-match>
+                        <ui-select-choices repeat="uom in genericList.unitsofMeasurement | propsFilter: {UoMCode: $select.search} track by uom.UnitOfMeasurementId">
+                            <div ng-bind-html="uom.UoMCode  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Price * </label>
+                    <input type="text" ng-model="editItem.Price" class=" form-control" required>
+                </div>
+            </div>
+            <br />
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Save" ng-click="updateItemPrice()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿<br/>
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%; border: 1px solid #008000" ng-controller="storeSettingsController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Default Settings</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <!--//item.PhoneNumber = store.PhoneNumber;
+        //item.StoreEmail = store.StoreEmail;
+        //item.StoreName = store.StoreName;
+        //item.CompanyName = store.CompanyName;
+        //item.DefaultCurrency = store.DefaultCurrency;
+        //item.StoreAlias = store.StoreAlias;
+        //item.VAT = store.VAT;
+        //item.StoreLogoPath = store.StoreLogoPath;-->
+
+        <form>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label "> Store Name *</label>
+                            <input type="text" data-ng-model="store.OutletName" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label "> Company Name</label>
+                            <input type="text" data-ng-model="store.CompanyName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label "> Phone Number </label>
+                            <input type="tel" data-ng-model="store.PhoneNumber" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label "> Email * </label>
+                            <input type="email" ng-model="store.StoreEmail" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label "> Operational Currency * </label>
+                            <ui-select ng-model="defaultCurrency" theme="bootstrap" class="fullWdith">
+                                <ui-select-match placeholder="-- Select Currency --">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="currency in genericListObject.currencies | propsFilter: {Name: $select.search} track by currency.StoreCurrencyId">
+                                    <div ng-bind-html="currency.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label "> VAT(%) </label>
+                            <input type="text" ng-model="store.VAT" class="form-control" valid-number />
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Country *</label>
+                            <select ng-disable="processing===true" theme="bootstrap" ng-change="getStates(store.Country)" ng-model="store.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                                <option value="">-- Select Country --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>State/Province *</label>
+                            <select ng-disable="processing===true" theme="bootstrap" ng-change="getCities(store.State)" ng-model="store.State" ng-options="state as state.Name for state in states track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                                <option value="">-- Select State --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>City *</label>
+                            <select ng-disable="processing===true" theme="bootstrap" ng-model="store.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required>
+                                <option value="">-- Select City --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label "> Address *</label>
+                            <input type="text" ng-model="store.StreetNo" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img ng-src="{{img.ImagePath2}}" style="height: 40%; width: 80%" />
+                            </div>
+                            <div class="row">
+                                <label class="control-label "> Attatch Store Logo </label>
+                                <input type="file" id="imgView" class="form-control" name="file" ng-file-select="previewImage($event)" accept="image/*" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <input type="button" value="Save" ng-click="processDefaultSettings()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B66AA403-76FF-4962-A843-7311EE0EE769}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShopKeeper.Master.EF</RootNamespace>
+    <AssemblyName>ShopKeeper.Master.EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Extensions\IMasterEntityExtension.cs" />
+    <Compile Include="Extensions\MasterEntityExtension.cs" />
+    <Compile Include="Models\Master\ActiveSubscription.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Address.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\AlaCarte.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\AspNetRole.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\AspNetUser.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\AspNetUserClaim.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\AspNetUserLogin.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Bank.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\BillingCycle.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\City.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\ContactTag.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Country.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Currency.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\C__MigrationHistory.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Message.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\MessageTemplate.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\PackagePricing.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\PaymentGateway.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\PaymentMethod.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Person.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\ShopkeeperMasterModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopkeeperMasterModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\ShopkeeperMasterModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\ShopkeeperMasterModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopkeeperMasterModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\State.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Store.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\StoreBankAccount.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\StoreContact.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\StorePaymentGateway.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\StoreSetting.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\StoreSubscriptionHistory.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\SubscriptionPackage.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\Transaction.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\TransactionType.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Master\UserProfile.cs">
+      <DependentUpon>ShopkeeperMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Models\Master\ShopkeeperMasterModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShopkeeperMasterModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Master\ShopkeeperMasterModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopkeeperMasterModel.edmx</DependentUpon>
+      <LastGenOutput>ShopkeeperMasterModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Master\ShopkeeperMasterModel.edmx.diagram">
+      <DependentUpon>ShopkeeperMasterModel.edmx</DependentUpon>
+    </None>
+    <None Include="Models\Master\ShopkeeperMasterModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopkeeperMasterModel.edmx</DependentUpon>
+      <LastGenOutput>ShopkeeperMasterModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

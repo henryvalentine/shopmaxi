@@ -1,0 +1,116 @@
+﻿<!--ng-init="initializeController"-->
+   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="productStockController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{storeItemStock.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product * </label>
+                    <select id="ngIx" ng-model="storeItemStock.StoreItem" ng-options="storeItemStock as storeItemStock.Name for storeItemStock in genericListObject.storeItems track by storeItemStock.StoreItemId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select Product --</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Quantity In Stock *</label>
+                    <input type="text" ng-model="storeItemStock.QuantityInStock" class=" form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Cost Price *</label>
+                    <input type="text" ng-model="storeItemStock.CostPrice" class=" form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">SKU *</label>
+                    <input type="text" ng-model="storeItemStock.SKU" class=" form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Shelf Location</label>
+                    <input type="text" ng-model="storeItemStock.ShelfLocation" class=" form-control" required>
+                </div>
+                <div class="input-group date" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+                    <label class="control-label"><i class="glyphicon glyphicon-th"></i> Expiration Date</label>
+                    <input class="form-control" ng-model="storeItemStock.ShelfLocation" data-date-format="yyyy-MM-dd" data-max-date="today" data-autoclose="1" bs-datepicker type="text">
+                </div>
+            </div>
+            <div class="row" ng-hide="checked">
+                <div class="col-md-12">
+                    <label class="control-label "> Attach Product Image </label>
+                    <img ng-src="{{storeItemStock.ImagePath}}" style="height: 50%; width: 100%" id="hImg" />
+                </div>
+                <input type="file" class="form-control" name="file" ng-product-stock-image-select accept="image/*" />
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Does Product have Variation(s)? </label>
+                    <input type="checkbox" ng-model="checked" />
+                </div>
+            </div>
+            <div class="row" ng-show="checked">
+                <div class="col-md-12">
+                    <div class="col-md-7">
+                        <table ng-product-table id="tblProducts" class="dataTable no-footer" ng-product-stock-table="" role="grid" aria-describedby="tblProducts_info" style="width: auto;">
+                            <thead>
+                                <tr style="color: #fff">
+                                    <th style="width: 3%; text-align: left">
+                                        S/N
+                                    </th>
+                                    <th style="width: 12%; text-align: left">
+                                        Product Variation Property
+                                    </th>
+                                    <th style="width: 16%; text-align: left">
+                                        Variation Value
+                                    </th>
+                                    <th style="width: 10%">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label "> Product Variation Property * </label>
+                                <select id="ngIx" ng-model="storeItemStock.StoreItemVariation" ng-options="storeItemVariation as storeItemVariation.VariationProperty for storeItemVariation in genericListObject.storeItemVariations track by storeItemVariation.StoreItemVariationId" data-inset="true" class=" form-control" required>
+                                    <option value="">-- Select Product Variation Property --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label ">Product Variation Value *</label>
+                                <select id="ngIx" ng-model="storeItemStock.StoreItemVariationValue" ng-options="storeItemVariationValue as storeItemVariationValue.Value for storeItemVariationValue in genericListObject.storeItemVariationValues track by storeItemVariationValue.StoreItemVariationValueId" data-inset="true" class=" form-control" required>
+                                    <option value=""> -- Select Product Variation Value -- </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label ">Does Product have Variation(s)? </label>
+                                <input type="checkbox" ng-model="checked" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div>
+                    <input type="button" value="Save" ng-click="processProductStock()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   

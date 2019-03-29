@@ -1,0 +1,35 @@
+﻿<br />
+<br />
+<br />
+<h4>Departments</h4>
+
+<br />
+
+<fieldset style="border: none; background: whitesmoke" ng-controller="storeDepartmentController">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table ng-store-department-table>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Department Name
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</fieldset>

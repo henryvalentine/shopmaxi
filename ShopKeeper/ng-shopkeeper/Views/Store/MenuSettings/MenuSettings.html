@@ -1,0 +1,169 @@
+﻿
+<fieldset style="border: none; background: whitesmoke" ng-controller="parentMenuController" ng-init="initializeController()">
+    <div class="row" ng-hide="menuView === true;">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <h4>Menu Configuration</h4>
+                <br />
+            </div>
+        </div>
+        <table ng-parent-menu>
+            <thead>
+            <tr style="color: #fff">
+                <th style="width: 3%; text-align: left">
+                    S/N
+                </th>
+                <th style="width: 20%; text-align: left">
+                    Menu Name
+                </th>
+                <th style="width: 12%; text-align: left">
+                    Menu Order
+                </th>
+                <th style="width: 30%; text-align: left">
+                    Role(s)
+                </th>
+                <th style="width: 7%">
+                    Action
+                </th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <br/><br />
+    <div class="row" style="width: 100%; border: 3px solid #27ae60;" ng-show="menuView === true">
+        <div class="modal-body">
+            <form method="POST">
+                <div class=" modal-header">
+                    <div class="col-md-4">
+                        <h4 class="modal-title">Menu Details</h4>
+                    </div>
+                    <div class="col-md-5">
+
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="font-weight: bold; float: right" />
+                    </div>
+                </div>
+                <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+                    <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+                </div>
+                <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+                    <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-5">
+                            Menu Name :
+                        </div>
+                        <div class="col-md-7 divlesspadding">
+                            <strong>{{parentMenu.Value}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            Menu Order :
+                        </div>
+                        <div class="col-md-7 divlesspadding">
+                            <strong> {{parentMenu.MenuOrder}} </strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            Link :
+                        </div>
+                        <div class="col-md-7 divlesspadding">
+                            <strong>{{parentMenu.Href}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            Icon Class :
+                        </div>
+                        <div class="col-md-7 divlesspadding">
+                            <strong>{{parentMenu.GlyphIconClass}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            Role(s) :
+                        </div>
+                        <div class="col-md-7 divlesspadding">
+                            <strong>{{parentMenu.RoleName}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="Edit" ng-click="setParentMenuForEdit()" class="btn btn-primary" style="font-weight: bold; float: right"/>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <hr style="padding-bottom: 2px; padding-top: 2px; margin-bottom: 0px;"/>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Sub Menu :</h4>
+                        </div>
+                        <div class="col-md-1">
+                            <a style="cursor: pointer; float: left" title="Add new Child Menu" ng-click="prepareChildMenuTemplate()"><img src="/Content/images/plus-green.png" style="width: 16px; height: 16px"/></a>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <table class="table-responsive table" role="grid" style="float: left">
+                            <thead>
+                            <tr style="text-align: left; background-color: whitesmoke;">
+                                <th style="color: #008000; width: 12%">
+                                    Name
+                                </th>
+                                <th style="color: #008000; width: 8%">
+                                    Menu Order
+                                </th>
+                                <th style="color: #008000; width: 15%">
+                                    Link
+                                </th>
+                                <th style="color: #008000; width: 18%">
+                                    Role(s)
+                                </th>
+                                <th style="color: #008000; width: 5%">
+                                    Action
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="i in parentMenu.ChildMenuObjects">
+                                    <td style="width: 12%">
+                                        <label>{{i.Value}}</label>
+                                    </td>
+                                    <td style="width: 10%">
+                                        <label>{{i.ChildMenuOrder}}</label>
+                                    </td>
+                                    <td style="width: 13%">
+                                        <label>{{i.Href}}</label>
+                                    </td>
+                                    <td style="width: 20%">
+                                        <label>{{i.RoleName}}</label>
+                                    </td>
+                                    <td style="width: 8%">
+                                        <a title="Edit" style="cursor: pointer" ng-click="setChildMenuForEdit(i)"><img src="/Content/images/edit.png" /></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="modal-footer"/>
+                    </div>
+                </div>
+                <br/>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <br />
+</fieldset>

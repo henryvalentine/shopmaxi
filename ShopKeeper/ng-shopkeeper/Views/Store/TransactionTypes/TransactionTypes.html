@@ -1,0 +1,41 @@
+﻿
+<br />
+<br />
+<br />
+<h4>Transaction Types</h4>
+
+<br />
+
+<fieldset id="fsTransactionTypeList" ng-app="mainModule" style="border: none; background: whitesmoke" ng-controller="storeTransactionTypeController">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table id="tblTransactionTypes" ng-transaction-type-table>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 40%; text-align: left">
+                        Transaction Type
+                    </th>
+                    <th style="width: 40%">
+                       Required Action
+                    </th>
+                    <th style="width: 10%">
+                        Edit/Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+</fieldset>
+
+

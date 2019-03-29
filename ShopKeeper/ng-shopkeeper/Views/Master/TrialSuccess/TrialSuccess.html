@@ -1,0 +1,78 @@
+﻿
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<fieldset style="border: none; background: whitesmoke; width: 50%; border: 3px solid #27ae60;" ng-controller="subscriptionSuccessController">
+    <div class="row alert alert-success" ng-show="subsuccessmsg == true" style="width: 99%; margin: 7px;">
+        <span class="col-md-11">{{result.successMessage}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="subsuccessmsg = false">x</span>
+    </div>
+    <div class="row" ng-invoice>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>ShopKeeper<span style="font-size: 0.8em; font-weight: normal"> &nbsp; Subscription Payment Slip</span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label>Reference:</label>
+            </div>
+            <div class="col-md-7">
+                <h4 class="control-label" style="font-weight: bold">{{result.referenceCode}}</h4>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <label>Package:</label>
+            </div>
+            <div class="col-md-7">
+                <h4 class="control-label" style="font-weight: bold">{{result.packageName}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <label>Duration(Days):</label>
+            </div>
+            <div class="col-md-7">
+                <h4 class="control-label" style="font-weight: bold">{{result.duration}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label>Company:</label>
+            </div>
+            <div class="col-md-7">
+                <h4 class="control-label">{{result.companyName}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label>Store: </label>
+            </div>
+            <div class="col-md-7">
+                <h4 class="control-label">{{result.storeName}}</h4>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-2" style="padding-left: 0px">
+            
+        </div>
+        <div class="col-md-2" style="padding-right: 0px">
+            <a href="index.html#Master/Payments/ePayment" class=" btn btn-default btn-large" style="float: right; color: #000">Pay Now >></a>
+        </div>
+    </div>
+</fieldset>
+
+

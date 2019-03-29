@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Shopkeeper</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <nav class="ddg-dropdown navbar-inverse navbar-fixed-top">
+            <ul class="main-menu">
+                <li>
+                    <a title="Dashboard" href="#">Dashboard</a>
+                    <ul>
+                        <li><a href="ngy.html#Store/Sale/Mysales">My Sales</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="Sales" href="#">POS</a>
+                    <ul>
+                        <li>
+                            <a href="ngy.html#Store/Sales/Sales">New Transaction</a>
+                        </li>
+                        <li>
+                            <a href="ngy.html#Store/SalesLog/SalesLog">Sales Log</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="Link title here" href="#">Inventory</a>
+                    <ul>
+                        <li><a href="ngy.html#Store/Products/Products">Products</a></li>
+                        <li><a href="ngy.html#Store/ProductStocks/ProductStocks">New Inventory</a></li>
+                        <li><a href="ngy.html#Store/EditInventory/EditInventory">Inventory Updates</a></li>
+                        <li><a href="ngy.html#Store/ItemPrice/ItemPrice">Price List</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="My Subscription" href="#">Payroll</a>
+                    <ul>
+                        <li><a href="ngy.html#Store/Employees/Employees">Employees</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                    <ul>
+                        <li><a title="Way Bill" href="#">Way Bill</a></li>
+                        <li><a title="Shipping" href="#">Shipping</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="Reports" href="#">Reports</a>
+                    <ul>
+                        <li><a href="#">Standard Reports</a></li>
+                        <li><a href="#">Report Builders</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="Link title here" href="#">Support</a>
+                    <ul>
+                        <li><a title="Link title here" href="#">Service Requests</a></li>
+                        <li><a title="Link title here" href="#">FAQs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="My Subscription" href="#">My Subscription</a>
+                    <ul>
+                        <li><a href="ngy.html#Store/Outlets/Outlets">Outlets</a></li>
+                        <li><a href="#">Subscription History</a></li>
+                        <li><a href="ngy.html#Store/MySettings/MySettings">Settings</a></li>
+                        <li><a href="#">Subscription</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a title="Link title here" href="ngy.html#Store/GeneralSettings/GeneralSettings">General Settings</a>
+                </li>
+                
+                <li>
+                    <a title="My Subscription" href="#">@User.Identity.GetUserName()</a>
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Update Account", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                        <li>
+                            <form method="POST" action="/Account/SignOut" id="signoutForm">
+                                @*@Html.AntiForgeryToken()*@
+                                <a href="javascript:document.getElementById('signoutForm').submit()">Sign Out</a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+           
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+   
+    $("a[href^='ngy.html#']")
+   .each(function () {
+       this.href = this.href.replace("/Account", "");
+   });
+</script>

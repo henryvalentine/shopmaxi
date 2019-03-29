@@ -1,0 +1,142 @@
+﻿<br />
+<br />
+<br />
+<br />
+<h4>Price List</h4>
+<br />
+<fieldset style="border: none; background: whitesmoke" ng-controller="itemPriceController" ng-init="initializeController()">
+    <div class="row" ng-hide="clicked == true">
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <div class="row"></div>
+        <table ng-item-price-table>
+            <thead>
+                <tr style="color: #fff">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Inventory
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Price({{defaultCurrency.Symbol}})
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Quantity
+                    </th>
+                    <th style="width: 12%; text-align: left">
+                        Unit
+                    </th>
+                    <th style="width: 7%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <div class="row fsEdit" id="newStockContainer" style="width: 100%; border: 3px solid #27ae60;" ng-show="clicked == true">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="modal-title">{{itemPrice.Header}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label ">Inventory * </label>
+                                <ui-select ng-model="itemPrice.StoreItemStock" theme="bootstrap">
+                                    <ui-select-match placeholder="-- Select Inventory --">{{$select.selected.StoreItemName}}</ui-select-match>
+                                    <ui-select-choices repeat="item in genericList.items | propsFilter: {StoreItemName: $select.search} track by item.StoreItemStockId">
+                                        <div ng-bind-html="item.StoreItemName | highlight: $select.searc"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label ">Quantity * </label>
+                                <input type="text" ng-model="itemPrice.MinimumQuantity" class=" form-control" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label ">Unit Of Measurement *</label>
+                                <ui-select ng-model="itemPrice.unitofMeasurement" theme="bootstrap">
+                                    <ui-select-match placeholder=" -- Select Unit Of Measurement --">{{$select.selected.UoMCode}}</ui-select-match>
+                                    <ui-select-choices repeat="uom in genericList.unitsofMeasurement | propsFilter: {UoMCode: $select.search} track by uom.UnitOfMeasurementId">
+                                        <div ng-bind-html="uom.UoMCode  | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label "> Price * </label>
+                                <input type="text" ng-model="itemPrice.Price" class=" form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+                                <div>&nbsp;</div>
+                                <input type="button" value="{{buttonText}}" ng-click="saveItemPrice()" class="btn btn-default" style="float: right" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h5>New Price List</h5>
+                        </div>
+                        <table class="dataTable no-footer" role="grid" style="width: auto;">
+                            <thead>
+                                <tr style="color: #fff">
+                                    <th style="width: 12%; text-align: left">
+                                        Price(#)
+                                    </th>
+                                    <th style="width: 12%; text-align: left">
+                                        Quantity
+                                    </th>
+                                    <th style="width: 12%; text-align: left">
+                                        Unit
+                                    </th>
+                                    <th style="width: 7%">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="itemPrice in itemPrices">
+                                    <td>{{itemPrice.Price}}</td>
+                                    <td>{{itemPrice.MinimumQuantity}}</td>
+                                    <td>{{itemPrice.unitofMeasurement.UoMCode}}</td>
+                                    <td>
+                                        <a title="Edit" style="cursor: pointer" ng-click="getTempItemPrice(itemPrice.ItemPriceId)"><img src="/Content/images/edit.png" /></a> &nbsp;
+                                        <a title="Delete" style="cursor: pointer" ng-click="removeTempItemPrice(itemPrice.ItemPriceId)"><img src="/Content/images/delete.png" /></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br />
+                <div class="row modal-footer">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" value="Cancel" ng-click="setStatusFromStep()" class="btn btn-default" style="margin-top: 7px;" />
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" value="Save" ng-click="processItemPrice()" class="btn btn-default" style="margin-top: 7px;" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>

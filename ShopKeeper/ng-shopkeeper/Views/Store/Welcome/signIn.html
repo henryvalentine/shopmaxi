@@ -1,0 +1,33 @@
+﻿
+<div ng-controller="defaultController">
+    <div class="row">
+        <form>
+            <h4>Sign in.</h4>
+            <div class="row alert alert-danger" role="alert" ng-show="ngfeedback == true" style="width: 99%; margin: 7px;">
+                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="ngfeedback = false">x</span>
+            </div>
+            <br />
+            <div class="row">
+                <input type="text" ng-model="model.UserName" class="form-control" placeholder="Email *" />
+            </div>
+            <br />
+            <div class="row">
+                <input type="password" ng-model="model.Password" class="form-control" placeholder="Password *" />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Sign in" ng-click="signIn()" class="btn btn-default" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <br /><br />
+</div>

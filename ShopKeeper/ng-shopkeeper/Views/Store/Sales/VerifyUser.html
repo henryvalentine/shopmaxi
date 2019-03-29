@@ -1,0 +1,32 @@
+﻿
+<fieldset style="border: none; background: whitesmoke" ng-controller="saleController">
+    
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        Veriry your Account
+                    </h4>
+                </div>
+            </div>
+        </div>
+    <div class="row modal-body">
+        <div class="row">
+            <div class="col-md-12" style="padding-right: 7px;">
+                <input type="text" ng-model="email" class=" form-control" required placeholder="Enter your email" style="font-size: 1.1em"/>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2%">
+            <div class="col-md-12" style="padding-right: 7px;">
+                <input type="password" ng-model="password" class=" form-control" required placeholder="Enter your password" style="font-size: 1.1em" />
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2%">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-3" style="padding-right: 0px;">
+                <input type="button" ng-click="verifyUser()" class="btn btn-blue-alt" value="Continue" required placeholder="Enter your password" style="font-size: 1.1em" />
+            </div>
+        </div>
+    </div>
+</fieldset>

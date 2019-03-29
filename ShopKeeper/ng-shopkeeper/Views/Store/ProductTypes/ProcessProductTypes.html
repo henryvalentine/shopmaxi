@@ -1,0 +1,47 @@
+﻿<!--ng-init="initializeController"-->
+   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="productTypeController" ng-init="initializeController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{productType.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessBankes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <label class="control-label ">Product Type Name *</label>
+                        <input type="text" data-ng-model="productType.Name" class="form-control" id="fName" />
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Description</label>
+                        <textarea data-ng-model="productType.Description" class="form-control">{{productType.Description}}</textarea>
+                    </div>
+                    <div class="row">
+                        <label class="control-label "> Attach Logo </label>
+                        <input type="file" id="bankLogo" class="form-control" name="file" ng-ptfile-select accept="image/*" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <label class="control-label "> &nbsp;</label>
+                        <img ng-src="{{productType.SampleImagePath}}" style="height: 90%; width: 100%" id="hImg" />
+                    </div>
+                    <div class="row">
+                        <!--<progress value="{{progress}}"></progress>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row modal-footer">
+                <div>
+                    <input type="button" value="Save" ng-click="processProductType()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   

@@ -1,0 +1,37 @@
+﻿<!--ng-init="initializeController"-->
+
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="chartOfAccountController" >
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{chartOfAccount.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Account Type *</label>
+                    <input type="text" data-ng-model="chartOfAccount.AccountType" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "> Account Code *</label>
+                    <input type="text" data-ng-model="chartOfAccount.AccountCode" class="form-control" required />
+                </div>
+                <div class="col-md-12">
+                    <label class="control-label "> Account Group *</label>
+                    <select id="ngIx" ng-model="chartOfAccount.AccountGroup" ng-options="accountGroup as accountGroup.Name for accountGroup in accountGroups track by accountGroup.AccountGroupId" data-inset="true" class=" form-control" required>
+                        <option value="">-- Select Account Group --</option>
+                    </select>
+                </div>
+            </div>
+           
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processChartOfAccount()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

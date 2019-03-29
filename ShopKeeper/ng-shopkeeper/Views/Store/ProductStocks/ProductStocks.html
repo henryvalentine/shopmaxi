@@ -1,0 +1,582 @@
+﻿<br />
+
+<fieldset style="border: none; background: whitesmoke" ng-controller="productStockController" ng-init="initializeController()">
+   
+<div class="row fsEdit" id="newStockContainer" style="width: 100%; border: 1px solid #e0e0e0;" ng-show="newEdit===true">
+<div class="row">
+    <br/>
+    <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+        <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+    </div>
+    <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+        <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+    </div>
+</div>
+<div class=" modal-header">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="modal-title">{{storeItemStock.Header}}</h4>
+        </div>
+        <div class="col-md-4">
+            <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="float: right" />
+        </div>
+        <div class="col-md-2" ng-show ="isAdmin === true;">
+            <a class="btnUpload btn" ng-click="bulkUpload = true; stockId = 0; showImages === false" style="width: 115px; float: right; text-align: right">Bulk Upload</a>
+        </div>
+    </div>
+</div>
+    <div class="modal-body" ng-show="bulkUpload === true && isAdmin === true;" ng-cloak>
+        <form enctype="multipart/form-data" style="width: 50%;">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label "> Select Document * </label>
+                    <input type="file" class="form-control" name="file" ng-disabled="busy===true" ng-file-select="ProcessDocument($event)" /> &nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Cancel" ng-disabled="busy === true" ng-click="hideUpload()" class="btn btn-default" style="margin-top: 7px; float: left" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Outlet *</label>
+                    <ui-select ng-model="outlet" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Store Outlet --">{{$select.selected.OutletName}}</ui-select-match>
+                        <ui-select-choices repeat="outlet in outlets | propsFilter: {OutletName: $select.search} track by outlet.StoreOutletId">
+                            <div ng-bind-html="outlet.OutletName | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+<div class="modal-body" ng-hide="bulkUpload===true || hideNewEdit === true">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product Name/Model *</label>
+                    <input type="text" ng-model="storeItemStock.StoreItemObject.Name" class=" form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Product Brand *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemObject.ProductBrand" theme="bootstrap" class="fullWdith" ng-change="getDbx(storeItemStock.StoreItemObject.ProductBrand)">
+                        <ui-select-match placeholder="-- Select Product Brand --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productBrand in genericListObject.productBrands | propsFilter: {Name: $select.search} track by productBrand.StoreItemBrandId">
+                            <div ng-bind-html="productBrand.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Scan OR <a title="Generate SKU" ng-click="generateSKU()" style="cursor: pointer; color: #008000; font-weight: bold;"> Generate</a> SKU * </label>
+                    <input type="text" ng-sku ng-model="storeItemStock.SKU" class=" form-control" required style="font-weight: 500; width: 100%"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Product Category *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemObject.ProductCategory" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Product Brand --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productCategory in genericListObject.productCategories | propsFilter: {Name: $select.search} track by productCategory.StoreItemCategoryId">
+                            <div ng-bind-html="productCategory.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product Type *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemObject.ProductType" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Product Type --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productType in genericListObject.productTypes | propsFilter: {Name: $select.search} track by productType.StoreItemTypeId">
+                            <div ng-bind-html="productType.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Chart of Account</label>
+                    <ui-select ng-model="storeItemStock.StoreItemObject.ChartOfAccount" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Chart of Account --">{{$select.selected.AccountType}}</ui-select-match>
+                        <ui-select-choices repeat="chartofAccount in genericListObject.chartsOfAccount | propsFilter: {AccountType: $select.search} track by chartofAccount.ChartOfAccountId">
+                            <div ng-bind-html="chartofAccount.AccountType | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Distinguishing Property *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemVariationObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select option --">{{$select.selected.VariationProperty}}</ui-select-match>
+                        <ui-select-choices repeat="storeItemVariation in genericListObject.storeItemVariations | propsFilter: {VariationProperty: $select.search} track by storeItemVariation.StoreItemVariationId">
+                            <div ng-bind-html="storeItemVariation.VariationProperty | highlight: $select.search"></div> <!--| propsFilter: {VariationProperty: $select.search}-->
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Distinguishing Value *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemVariationValueObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder=" -- Select option --">{{$select.selected.Value}}</ui-select-match>
+                        <ui-select-choices repeat="storeItemVariationValue in genericListObject.storeItemVariationValues | propsFilter: {Value: $select.search} track by storeItemVariationValue.StoreItemVariationValueId">
+                            <div ng-bind-html="storeItemVariationValue.Value  | highlight: $select.search"></div>
+                        </ui-select-choices> <!--| propsFilter: {Value: $select.search}-->
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Description</label>
+                    <textarea data-ng-model="storeItemStock.StoreItemObject.Description" class="form-control">{{storeItemStock.StoreItemObject.Description}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Cost Price </label>
+                    <input type="text" ng-model="storeItemStock.CostPrice" class=" form-control" ui-number-mask="0"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Quantity In Stock *</label>
+                    <input type="text" ng-model="storeItemStock.QuantityInStock" class=" form-control" ui-number-mask="0"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Reorder Quantity</label>
+                    <input type="text" ng-model="storeItemStock.ReorderQuantity" class=" form-control" ui-number-mask="0"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Reorder Level</label>
+                    <input type="text" ng-model="storeItemStock.ReorderLevel" class=" form-control" ui-number-mask="0"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Shelf Location</label>
+                    <input type="text" ng-model="storeItemStock.ShelfLocation" class=" form-control" required/>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label">Expiry Date</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                               min-date="minDate" max-date="maxDate"
+                               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="storeItemStock.ExpirationDate"/>
+                        <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>   <!--min-date="minDate" max-date="'2015-06-22'"-->
+                                </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Currency * </label>
+                    <ui-select ng-model="defaultCurrency" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Currency --">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="currency in genericListObject.currencies | propsFilter: {Name: $select.search} track by currency.StoreCurrencyId">
+                            <div ng-bind-html="currency.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <!--<div class="col-md-6">
+                    <label class="control-label ">Outlet *</label>
+                    <ui-select ng-model="storeItemStock.StoreItemVariationValueObject" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder=" -- Select option --">{{$select.selected.Value}}</ui-select-match>
+                        <ui-select-choices repeat="storeItemVariationValue in genericListObject.storeItemVariationValues | propsFilter: {Value: $select.search} track by storeItemVariationValue.StoreItemVariationValueId">
+                            <div ng-bind-html="storeItemVariationValue.Value  | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>-->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Technical Specifications</label>
+                    <textarea data-ng-model="storeItemStock.StoreItemObject.TechSpechs" class="form-control">{{storeItemStock.StoreItemObject.TechSpechs}}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label "><input type="checkbox" ng-model="storeItemStock.PublishOnline" />Publish Online?</label>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label "><input type="checkbox" ng-model="storeItemStock.Discontinued" />Discontinue?</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row modal-footer">
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-4">
+            <input type="button" value="Save Inventory" ng-click="processStoreItemStock()" class="btn btn-primary" style="margin-top: 7px; width: 45%"/>
+        </div>
+    </div>
+</div>
+<br/>
+
+<div class="row" ng-if="showImages === true || (stockId !== null && stockId > 0)">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Inventory Price(s)</strong>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table-striped">
+                        <thead>
+                        <tr style="color: #000">
+                            <th style="width: 12%; text-align: left">
+                                Price({{defaultCurrency.Symbol}})
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Quantity
+                            </th>
+                            <th style="width: 12%; text-align: left">
+                                Unit
+                            </th>
+                            <th style="width: 7%">
+                                Action
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="price in prices">
+                            <td>{{price.Price | currency: " "}}</td>
+                            <td>{{price.MinimumQuantity | number:0}}</td>
+                            <td>{{price.UoMCode}}</td>
+                            <td>
+                                <a title="Edit" style="cursor: pointer" ng-click="getPrice(price.ItemPriceId)"><img src="/Content/images/edit.png"/></a> &nbsp;
+                                <a title="Delete" style="cursor: pointer" ng-click="deletePrice(price.ItemPriceId)"><img src="/Content/images/delete.png"/></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <form class="col-md-7 divlesspadding">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label ">Minimum Quantity * </label>
+                            <input type="text" ng-model="itemPrice.MinimumQuantity" class=" form-control" required style="font-weight: 500;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label ">Unit Of Measurement *</label>
+                            <ui-select ng-model="itemPrice.unitofMeasurement" theme="bootstrap" class="fullWdith">
+                                <ui-select-match placeholder=" -- Select Unit Of Measurement --">{{$select.selected.UoMCode}}</ui-select-match>
+                                <ui-select-choices repeat="uom in genericListObject.unitsofMeasurement | propsFilter: {UoMCode: $select.search} track by uom.UnitOfMeasurementId">
+                                    <div ng-bind-html="uom.UoMCode  | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label "> Price per Unit * </label>
+                            <input type="text" ng-model="itemPrice.Price" class=" form-control" required ui-number-mask="0">
+                        </div>
+                    </div>
+                    <div class="row modal-footer">
+                        <div class="col-md-7">
+                            <input type="button" value="Save Price" ng-click="processItemPrice()" class="btn btn-primary" style="margin-top: 7px;"/>
+                        </div>
+                        <div class="col-md-5">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Inventory Images</strong>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="row">
+                                <img ng-src="{{img.ImagePath2}}" style="height: 40%; width: 80%"/>
+                            </div>
+                            <div class="row">
+                                <label class="control-label "> Image View * </label>
+                                <ui-select ng-model="img.ImageViewObject" theme="bootstrap" style="width: 100%">
+                                    <ui-select-match placeholder="-- Select View Type --">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="imgview in genericListObject.imageViews | propsFilter: {Name: $select.search} track by imgview.ImageViewId">
+                                        <div ng-bind-html="imgview.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="row">
+                                <label class="control-label "> Attach Product Image </label>
+                                <input type="file" id="imgView" class="form-control" name="file" ng-file-select="previewImage($event)" accept="image/*"/>
+                            </div>
+                            <div class="row modal-footer divlesspadding">
+                                <input type="button" value="Save Image" class="btn btn-primary" ng-click="processStockImage()" style="float: left"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <table class="table-striped" role="grid" style="width: auto;">
+                                <thead>
+                                <tr style="color: #000;">
+                                    <th style="width: 20%; text-align: left">
+                                        View
+                                    </th>
+                                    <th style="width: 20%; text-align: left">
+                                        image
+                                    </th>
+                                    <th style="width: 10%">
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="image in images">
+                                    <td>{{image.ImageViewObject.Name}}</td>
+                                    <td><img ng-src="{{image.ImagePath2}}" style="height: 40%; width: 50%"/></td>
+                                    <td>
+                                        <a title="Edit" style="cursor: pointer" ng-click="getImage(image.ImageViewId)"><img src="/Content/images/edit.png"/></a> &nbsp;
+                                        <a title="Delete" style="cursor: pointer" ng-click="removeImage(image)"><img src="/Content/images/delete.png"/></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+</div>
+
+<div class="row fsEdit" style="width: 100%" ng-show="details===true">
+
+   
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        Product Name/Model : <label class="control-label "> {{storeItemStock.StoreItemObject.Name}} </label>
+                    </div>
+                    <div class="col-md-6">
+                        Product Brand : <label class="control-label "> {{storeItemStock.StoreItemObject.ProductBrand.Name}} </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        SKU : <label>{{storeItemStock.SKU}} </label>
+                    </div>
+                    <div class="col-md-6">
+                        Product Category : <label class="control-label "> {{storeItemStock.StoreItemObject.ProductCategory.Name}} </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        Product Type : <label class="control-label">{{storeItemStock.StoreItemObject.ProductType.Name}}</label>
+                    </div>
+                    <div class="col-md-6">
+                        Chart of Account : <label class="control-label "> {{storeItemStock.StoreItemObject.ChartOfAccount.Name}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        Distinguishing Property : <label class="control-label "> {{storeItemStock.StoreItemVariationObject.VariationProperty}}</label>
+                    </div>
+                    <div class="col-md-6">
+                        Distinguishing Value : <label class="control-label "> {{storeItemStock.StoreItemVariationValueObject.Value}} </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Description :
+                        <p>{{storeItemStock.StoreItemObject.Description}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        Cost Price : <label class="control-label "> {{storeItemStock.CostPrice | currency: " "}} </label>
+                    </div>
+                    <div class="col-md-6">
+                        Quantity In Stock : <label class="control-label ">{{storeItemStock.QuantityInStock | number:0}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        Reorder Quantity : <label class="control-label ">{{storeItemStock.ReorderQuantity | number:0}}</label>
+                    </div>
+                    <div class="col-md-6">
+                        Reorder Level : <label class="control-label ">{{storeItemStock.ReorderLevel | number:0}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        Shelf Location : <label class="control-label ">{{storeItemStock.ShelfLocation}}</label>
+                    </div>
+                    <div class="col-md-6">
+                        Expiry Date : <label class="control-label">{{storeItemStock.ExpiryDate}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Currency : <label class="control-label ">{{defaultCurrency.Name}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Technical Specifications :
+                        <p>{{storeItemStock.StoreItemObject.TechSpechs}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="showImages === true || (stockId !== null && stockId > 0)">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Inventory Price(s)</strong>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-striped">
+                            <thead>
+                            <tr style="color: #000">
+                                <th style="width: 12%; text-align: left">
+                                    Price({{defaultCurrency.Symbol}})
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Quantity
+                                </th>
+                                <th style="width: 12%; text-align: left">
+                                    Unit
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="price in prices">
+                                <td>{{price.Price | currency: " "}}</td>
+                                <td>{{price.MinimumQuantity | number:0}}</td>
+                                <td>{{price.UoMCode}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6" style="border-left: 0.5px solid #a9a9a9">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Inventory Images</strong>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table-striped" role="grid" style="width: auto;">
+                                <thead>
+                                <tr style="color: #000;">
+                                    <th style="width: 20%; text-align: left">
+                                        View
+                                    </th>
+                                    <th style="width: 20%; text-align: left">
+                                        image
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="image in images">
+                                    <td>{{image.ImageViewObject.Name}}</td>
+                                    <td><img ng-src="{{image.ImagePath2}}" style="height: 40%; width: 50%"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-body">
+            <br/>
+            <div class="row modal-footer">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Close" ng-click="details=false;newEdit=false;" class="btn btn-default" style="margin-top: 7px; float: right"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="newEdit===true||details===true">
+    <div class="row">
+        <div class="col-md-9">
+            <h4 class="modal-title">Inventory</h4>
+        </div>
+        <div class="3">
+            <a ng-click="prepareStoreItemStockTemplate()" class="btnAdd btn" style="width: 126px; float: right; text-align:right">New Inventory</a>
+        </div>
+    </div>
+
+    <br />
+    <table ng-stocks>
+        <thead>
+        <tr style="color: #fff">
+            <th style="width: 3%; text-align: left">
+                S/N
+            </th>
+            <th style="width: 12%; text-align: left">
+                Product
+            </th>
+            <th style="width: 12%; text-align: left">
+                SKU
+            </th>
+            <th style="width: 16%; text-align: left">
+                Category
+            </th>
+            <th style="width: 12%; text-align: left">
+                Brand
+            </th>
+            <th style="width: 12%; text-align: left">
+                Qty In Stock
+            </th>
+            <th style="width: 12%; text-align: left">
+                Qty Sold
+            </th>
+            <th style="width: 12%; text-align: left">
+                Expiry Date
+            </th>
+            <th style="width: 10%">
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</fieldset>
+<br/><br/>

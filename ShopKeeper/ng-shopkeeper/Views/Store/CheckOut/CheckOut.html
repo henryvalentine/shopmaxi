@@ -1,0 +1,270 @@
+﻿<br/><br/><br/><br/>
+
+<div class="row" ng-controller="checkOutController">
+    <div class="row">
+        <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true">
+            <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="positivefeedback = false">x</span>
+        </div>
+        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true">
+            <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="header-text"><strong>Your Shopping Cart</strong></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-8">
+                <ul>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-2" style="padding-right: 1px">
+
+                            </div>
+                            <div class="col-md-4" style="padding: 0px">
+                                <div class="row" style="padding: 0px">
+                                    <h5>Product details</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <h5>Quantity</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Unit Price</h5>
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li ng-repeat="cartItem in ShoppingCart.ShopingCartItemObjects">
+                        <div class="row">
+                            <div class="col-md-2" style="padding-right: 1px">
+                                <a style="cursor: pointer" ng-click="getItemDetails(item)">
+                                    <img src="{{cartItem.ImagePath}}" style="width: 90%"/>
+                                </a>
+
+                            </div>
+                            <div class="col-md-4" style="padding: 0px">
+                                <a style="cursor: pointer" ng-click="getItemDetails(item)">
+                                   {{cartItem.Name}}; {{cartItem.VariationValue}}
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label " style="font-weight: normal">{{cartItem.QuantityOrdered}}</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label " style="font-weight: normal">{{cartItem.CurencySymbol}}{{cartItem.UnitPrice | currency: " "}}</label>
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 divlesspadding">
+                        <strong>Your Cart Summary:</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 divlesspadding">
+                        Total Items : <label class="control-label " style="font-weight: normal">{{cartItemsCount}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 divlesspadding">
+                        Total Price : <label class="control-label " style="font-weight: normal">{{ShoppingCart.ShopingCartItemObjects[0].CurencySymbol}}{{cartTotalAmount | currency: " "}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6" style="padding-right: 0">
+            <div class="row" ng-if="customerAddressList !== null && customerAddressList.length > 0"> 
+                <div class="row" ng-if="customerAddressList.length > 1">
+                    <p ng-if="customerAddressList.length > 1">My Addresses</p>
+                    <p ng-if="customerAddressList.length === 1">My Address</p>
+                    <div class="row" ng-repeat="address in customerAddressList">
+                        <div class="row">
+                            <div class="col-md-4 divlesspadding">
+                                Address Line 1 :
+                            </div>
+                            <div class="col-md-8 divlesspadding">
+                                <label>{{address.AddressLine1}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 divlesspadding">
+                                Address Line 2 :
+                            </div>
+                            <div class="col-md-8 divlesspadding">
+                                <label>{{address.AddressLine2}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 divlesspadding">
+                                Email :
+                            </div>
+                            <div class="col-md-8 divlesspadding">
+                                <label>{{address.ContactEmail}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 divlesspadding">
+                                <label>{{address.CityName}}, {{address.StateName}}, <br/>{{address.CountryName}}</label>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                    <div class="col-md-4 divlesspadding"> 
+                        State :
+                    </div>
+                    <div class="col-md-8 divlesspadding">
+                        <label>{{address.StateName}}</label>
+                    </div>
+                </div>-->
+                        <!--<div class="row">
+                    <div class="col-md-4 divlesspadding">
+                        Country :
+                    </div>
+                    <div class="col-md-8 divlesspadding">
+                        <label>{{address.CountryName}}</label>
+                    </div>
+                </div>-->
+                        <div class="row">
+                            <div class="col-md-4 divlesspadding">
+
+                            </div>
+                            <div class="col-md-8 divlesspadding">
+                                <label>Use as delivery address <input type="radio" name="add" ng-change="saveAddress(address)" /></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <p ng-if="customerAddressList !== null && customerAddressList.length > 0"> Use a fresh delivery Address : </p>
+                <p ng-if="customerAddressList == null || customerAddressList.length < 1"> Provide your delivery Address : </p>
+            </div>
+            
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>Address Line 1 *</label>
+                        <input type="text" ng-model="deliveryAddress.AddressLine1" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>Address Line 2</label>
+                        <input type="text" ng-model="deliveryAddress.AddressLine2" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>Contact Email *</label>
+                        <input type="text" ng-model="deliveryAddress.ContactEmail" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>Country *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getStates(deliveryAddress.Country)" ng-model="deliveryAddress.Country" ng-options="country as country.Name for country in countries track by country.StoreCountryId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select Country --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>State/Province *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-change="getCities(deliveryAddress.State)" ng-model="deliveryAddress.State" ng-options="state as state.Name for state in states track by state.StoreStateId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select State --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 divlesspadding">
+                        <label>City *</label>
+                        <select ng-disable="processing===true" theme="bootstrap" ng-model="deliveryAddress.City" ng-options="city as city.Name for city in cities track by city.StoreCityId" data-inset="true" class=" form-control" required>
+                            <option value="">-- Select City --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4" style="padding-left: 0">
+            <div class="row">
+                <label>Payment option *</label>
+                <div class="row">
+                    <div class="col-md-12 divlesspadding">
+                        <label>
+                            <input type="radio" name="paymentType" ng-model="deliveryAddress.PaymentTypeId" ng-value="1" value="1"/> Cash on Delivery
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 divlesspadding">
+                        <label>
+                            <input type="radio" name="paymentType" ng-value="2" value="2"/> Credit/Debit Card
+                            <img src="/Content/images/payments.jpg" style="width: 70%; height: 70%"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-8 divlesspadding">
+                    <h5>Apply {{store.StoreName}} Coupon</h5>
+                    <input type="text" ng-model="deliveryAddress.CouponCode" class="form-control" placeholder="Enter Coupon Code" ng-blur="getCoupon()"/>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-4 divlesspadding">
+                    <input ng-disable="processing===true" type="button" ng-click="continue()" value="Save and Continue" class="btn btnGreen"/>
+                </div>
+                <div class="col-md-8">
+
+                </div>
+            </div>
+            <br />
+            <br/>
+            <br />
+           
+            <div class="row" ng-if="viewedItems !== null && viewedItems !== undefined && viewedItems.length > 0">
+                <label>Previously viewed Items</label>
+                <ul class="front">
+                    <li ng-repeat="item in viewedItems" class="Width30li">
+                        <a style="cursor: pointer" ng-click="getItemDetails(item)">
+                            <img src="{{item.ImagePath}}" />
+                            <h5>{{item.Name}} - {{item.CurrencySymbol}}{{item.Price}}</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br />
+    <br />
+    <div class="row">
+        <ul class="front">
+            <li ng-repeat="item in items" class="Width302li">
+                <a class="acursor" ng-click="getItemDetails(item)">
+                    <img src="{{item.ImagePath}}" style="width: 40%; height: 40%" />
+                    <h5>{{item.Name}} - {{item.CurrencySymbol}}{{item.Price}}</h5>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

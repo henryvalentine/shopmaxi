@@ -1,0 +1,317 @@
+﻿<br />
+<br />
+
+<fieldset style="border: none;" ng-controller="customerController" ng-init="initializeController()">
+    <div class="row" ng-hide="customerInfo === true || customerDetails === true">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Customers</h4>
+            </div>
+            <div class="3">
+                <a ng-click="prepareCustomerTemplate()" class="btnAdd btn" style="width: 129px; float: right; text-align:right">New Customer</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <table ng-customer>
+                <thead>
+                    <tr style="color: #fff">
+                        <th style="width: 3%; text-align: left">
+                            S/N
+                        </th>
+                        <th style="width: 15%; text-align: left">
+                            Customer Name
+                        </th>
+                        <th style="width: 10%; text-align: left">
+                            Type
+                        </th>
+                        <th style="width: 12%; text-align: left">
+                            Outlet
+                        </th>
+                        <th style="width: 12%; text-align: left">
+                            Email
+                        </th>
+                        <th style="width: 10%; text-align: left">
+                            Mobile Number
+                        </th>
+                        <th style="width: 10%; text-align: left">
+                            Office Line
+                        </th>
+                        <th style="width: 10%; text-align: left">
+                            Birthday
+                        </th>
+                        <th style="width: 5%">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;" ng-show="customerInfo === true">
+        <br />
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-6" ng-hide="bulkUpload == true">
+                    <h4 class="modal-title">{{user.Header}}</h4>
+                </div>
+                <div class="col-md-6" ng-show="bulkUpload == true">
+                    <h4 class="modal-title">Bulk Customer Upload</h4>
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-default" style="float: right"/>
+                </div>
+                <div class="col-md-3" ng-show="isAdmin === true;">
+                    <a class="btnUpload btn" ng-click="bulkUpload = true;" style="width: 115px; float: right; text-align: right">Bulk Upload</a>
+                </div>
+            </div>
+            <div class="modal-body" ng-show="bulkUpload == true && isAdmin === true;" ng-cloak>
+                <form enctype="multipart/form-data" style="width: 50%;">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label class="control-label "> Select Document * </label>
+                            <input type="file" class="form-control" name="file" ng-disabled="busy===true" ng-file-select="ProcessDocument($event)" /> &nbsp;&nbsp;&nbsp;
+                            <input type="button" value="Cancel" ng-disabled="busy===true" ng-click="hideUpload()" class="btn btn-default" style="margin-top: 7px; float: left" />
+                        </div>
+                        <!--<div class="col-md-6">
+                    <label class="control-label ">Outlet *</label>
+                    <ui-select ng-model="outlet" theme="bootstrap" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Store Outlet --">{{$select.selected.OutletName}}</ui-select-match>
+                        <ui-select-choices repeat="outlet in outlets | propsFilter: {OutletName: $select.search} track by outlet.StoreOutletId">
+                            <div ng-bind-html="outlet.OutletName | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-body" ng-hide="bulkUpload===true">
+            <br/>
+            <div class="row">
+                <div class="col-md-5">
+                    <strong>Note : fields marked with (*) are mandatory.</strong>
+                </div>
+            </div>
+            <br />
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Last Name *</label>
+                        <input type="text" ng-model="user.LastName" style="text-transform: capitalize" class=" form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label ">Other Names *</label>
+                        <input type="text" ng-model="user.OtherNames" style="text-transform: capitalize" class=" form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Email</label>
+                        <input type="email" ng-model="user.ContactEmail" class=" form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label ">Mobile Number *</label>
+                        <input type="tel" ng-model="user.MobileNumber" class=" form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Office Line</label>
+                        <input type="text" ng-model="user.OfficeLine" class=" form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label ">Gender *</label>
+                        <ui-select ng-model="user.GenderObject" theme="bootstrap" class="fullWdith">
+                            <ui-select-match placeholder="-- Select gender --">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="gender in genders | propsFilter: {name: $select.search} track by gender.genderId">
+                                <div ng-bind-html="gender.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Customer Type *</label>
+                        <ui-select ng-model="user.customerType" theme="bootstrap" class="fullWdith">
+                            <ui-select-match placeholder="-- Select Customer Type --">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="type in customerTypes | propsFilter: {Name: $select.search} track by type.StoreCustomerTypeId">
+                                <div ng-bind-html="type.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label ">Outlet *</label>
+                        <ui-select ng-model="user.storeOutlet" theme="bootstrap" class="fullWdith" ng-disabled="isAdmin === undefined || isAdmin === null || isAdmin === false">
+                            <ui-select-match placeholder="-- Select Store Outlet --">{{$select.selected.OutletName}}</ui-select-match>
+                            <ui-select-choices repeat="outlet in outlets | propsFilter: {OutletName: $select.search} track by outlet.StoreOutletId">
+                                <div ng-bind-html="outlet.OutletName | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Country *</label>
+                        <ui-select ng-model="user.StoreCountryObject" theme="bootstrap" class="fullWdith" ng-change="getStates(user.StoreCountryObject.StoreCountryId)">
+                            <ui-select-match placeholder="-- Select Country --">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="country in countries | propsFilter: {Name: $select.search} track by country.StoreCountryId">
+                                <div ng-bind-html="country.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label ">State *</label>
+                        <ui-select ng-model="user.StoreStateObject" theme="bootstrap" class="fullWdith">
+                            <ui-select-match placeholder="-- Select state --">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="state in user.StoreCountryObject.StoreStateObjects | propsFilter: {Name: $select.search} track by state.StoreStateId">
+                                <div ng-bind-html="state.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">City *</label>
+                        <ui-select ng-model="user.StoreCityObject" theme="bootstrap" class="fullWdith">
+                            <ui-select-match placeholder="-- Select city --">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="city in user.StoreStateObject.StoreCityObjects | propsFilter: {Name: $select.search} track by city.StoreCityId">
+                                <div ng-bind-html="city.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Street No. *</label>
+                        <input type="text" ng-model="user.AddressLine1" class=" form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label ">Contact Person(Marketer)</label>
+                        <ui-select ng-model="user.ContactPerson" theme="bootstrap" class="fullWdith">
+                            <ui-select-match placeholder="-- Select --">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="employee in employees | propsFilter: {Name: $select.search} track by employee.EmployeeId">
+                                <div ng-bind-html="employee.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Birthday</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control datepicker" ng-change="validateDates()" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened"
+                                   min-date="minDate" max-date="maxDate"
+                                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-model="user.BirthdayStr" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <div class="col-md-12">
+                        <input type="button" value="Save" ng-click="processCustomer()" ng-disabled="processing === true" class="btn btn-primary" style="margin-top: 7px;"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;" ng-show="customerDetails === true">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-7">
+                    <h4 class="modal-title">Customer Details</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Last Name : <strong>{{details.LastName}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Other Name : <strong>{{details.OtherNames}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Mobile Number : <strong>{{details.MobileNumber}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Office Line : <strong>{{details.OfficeLine}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Email : <strong>{{details.ContactEmail}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Gender : <strong>{{details.Gender}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Birthday : <strong>{{details.BirthdayStr}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Customer Type : <strong>{{details.CustomerObjects[0].CustomerTypeName}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Outlet : <strong>{{details.CustomerObjects[0].StoreOutletName}}</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Address : <strong>{{details.DeliveryAddressObject.AddressLine1}}, {{details.DeliveryAddressObject.CityName}}, {{details.DeliveryAddressObject.StateName}}, {{details.DeliveryAddressObject.CountryName}}</strong></h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Account Statement : </strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Total Transactions Amount: <strong>{{details.CustomerInvoiceObject.TotalAmountDue | currency: " "}}</strong></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Total Amount paid : <strong>{{details.CustomerInvoiceObject.TotalAmountPaid | currency: " "}}</strong></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Balance : <strong>{{details.CustomerInvoiceObject.InvoiceBalance | currency: " "}}</strong></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <div class="col-md-12">
+                        <input type="button" value="<< Back" ng-click="goBack()" class="btn btn-primary" style="margin-top: 7px;" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br />
+</fieldset>

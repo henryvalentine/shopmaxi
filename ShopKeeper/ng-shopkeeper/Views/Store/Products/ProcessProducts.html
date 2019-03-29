@@ -1,0 +1,97 @@
+﻿<!--ng-init="initializeController"-->
+   
+<div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="productController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{product.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessBankes" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product Name *</label>
+                    <input type="text" data-ng-model="product.Name" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label "> Parent Product <i>(optional)</i> </label>
+                    <ui-select ng-model="product.ParentProduct" theme="bootstrap">
+                        <ui-select-match placeholder="-- Select Parent Product --">{{product.ParentProduct.Name}}</ui-select-match>
+                        <ui-select-choices repeat="product in genericListObject.parentProducts | propsFilter: {Name: $select.search} track by product.StoreItemId">
+                            <div ng-bind-html="product.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product Type *</label>
+                    <ui-select ng-model="product.ProductType" theme="bootstrap">
+                        <ui-select-match placeholder="-- Select Product Type --">{{product.ProductType.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productType in genericListObject.productTypes | propsFilter: {Name: $select.search} track by productType.StoreItemTypeId">
+                            <div ng-bind-html="productType.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Product Category *</label>
+                    <ui-select ng-model="product.ProductCategory" theme="bootstrap">
+                        <ui-select-match placeholder="-- Select Product Brand --">{{product.ProductCategory.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productCategory in genericListObject.productCategories | propsFilter: {Name: $select.search} track by productCategory.StoreItemCategoryId">
+                            <div ng-bind-html="productCategory.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="control-label ">Product Brand *</label>
+                    <ui-select ng-model="product.ProductBrand" theme="bootstrap">
+                        <ui-select-match placeholder="-- Select Product Brand --">{{product.ProductBrand.Name}}</ui-select-match>
+                        <ui-select-choices repeat="productBrand in genericListObject.productBrands | propsFilter: {Name: $select.search} track by productBrand.StoreItemBrandId">
+                            <div ng-bind-html="productBrand.Name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label ">Chart of Account *</label>
+                    <ui-select ng-model="product.ChartOfAccount" theme="bootstrap">
+                        <ui-select-match placeholder="-- Select Chart of Account --">{{product.ChartOfAccount.AccountType}}</ui-select-match>
+                        <ui-select-choices repeat="chartofAccount in genericListObject.chartsOfAccount | propsFilter: {AccountType: $select.search} track by chartofAccount.ChartOfAccountId">
+                            <div ng-bind-html="chartofAccount.AccountType | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Description</label>
+                    <textarea data-ng-model="product.Description" class="form-control">{{product.Description}}</textarea>
+                </div>
+            </div>
+            <div class="row modal-footer">
+                <div>
+                    <input type="button" value="Save" ng-click="processProduct()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   
+<style>
+    body {
+        padding: 15px;
+    }
+
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown
+     {
+        top: 36px;
+    }
+    </style >

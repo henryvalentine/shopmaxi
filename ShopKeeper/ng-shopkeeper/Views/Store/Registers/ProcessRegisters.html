@@ -1,0 +1,36 @@
+﻿    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="registerController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">{{selectedRegister.Header}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form id="fsProcessRegisteres" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label "> Name *</label>
+                    <input type="text" data-ng-model="selectedRegister.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label ">Current Outlet * </label>
+                    <ui-select ng-model="selectedRegister.StoreOutlet" theme="bootstrap" ng-change="setQuantity(soldItem.StoreItemStock)" class="fullWdith">
+                        <ui-select-match placeholder="-- Select Inventory --">{{$select.selected.OutletName}}</ui-select-match>
+                        <ui-select-choices repeat="item in outlets | propsFilter: {OutletName: $select.search} track by item.StoreOutletId">
+                            <div ng-bind-html="item.OutletName | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                </div>
+
+            <div class="row modal-footer">
+                <div class="col-md-12">
+                    <input type="button" value="Save" ng-click="processRegister()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

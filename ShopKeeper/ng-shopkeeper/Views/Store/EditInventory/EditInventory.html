@@ -1,0 +1,366 @@
+﻿
+<br /><br /><br />
+<h4>Inventory Updates</h4>
+<br />
+
+<fieldset style="border: none; background: whitesmoke" ng-controller="editInventoryController" ng-init="initializeComponents()">
+    <div class="row" ng-hide="details == true || edit == true">
+        <div class="row">
+            <div class="col-md-12" id="trBrError" style="width: 100%; display: none; visibility: visible; background: whitesmoke">
+                <span style="width: 100%; font-weight:bold; font-size: 12pt" id="brFeedback"></span>
+            </div>
+        </div>
+        <table id="tblProducts" ng-edit-inventory-table>
+            <thead>
+                <tr style="color: #fff; font-size: 0.9em">
+                    <th style="width: 3%; text-align: left">
+                        S/N
+                    </th>
+                    <th style="width: 15%; text-align: left">
+                        Product
+                    </th>
+                    <th style="width: 16%; text-align: left">
+                        SKU
+                    </th>
+                    <th style="width: 17%; text-align: left">
+                        Quantity In Stock
+                    </th>
+                    <th style="width: 20%; text-align: left">
+                        Expiry Date
+                    </th>
+                    <th style="width: 8%">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <div class="row fsEdit" id="popDiv" style="width: 100%" ng-show="details == true">
+        <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;">
+            <div class=" modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="modal-title">{{productVariant.StoreItem.Name}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+               
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">SKU </label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.SKU}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Price per {{productVariant.MinimumQuantity}} {{productVariant.unitofMeasurement.UoMCode}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label "> {{productVariant.CurrencySymbol}}{{productVariant.Price}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Quantity In Stock</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.QuantityInStock}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Shelf Location</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.ShelfLocation}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Reorder Quantity</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.ReorderQuantity}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Reorder Level</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.ReorderLevel}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Expiry Date</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.ExpirationDate}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Variant Property</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.productVariation.VariationProperty}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label style="font-weight: normal">Variant Value</label>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="control-label ">{{productVariant.productVariationValue.Value}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <img ng-src="{{preview.ImagePath}}" style="height: 70%; width: 100%" />
+                                </div>
+                                <div class="col-md-3" style="padding: 0px">
+                                    <label style="font-weight: normal; float: left">{{preview.ViewName}}</label>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row" style="overflow: auto">
+                                <div class="col-md-3" ng-repeat="img in productVariant.StockUploadObjects" style="padding: 0px">
+                                    <a title="{{img.ViewName}}" style="cursor: pointer" ng-click="viewSessObj(img.ImageViewId)"><img src="{{img.ImagePath}}" style="height: 80%; width: 80%" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row modal-footer">
+                    <div class="col-md-9">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" value="Close" ng-click="details = false" class="btn btn-default" style="margin-top: 7px; float: right" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row fsEdit" style="width: 100%; border: 3px solid #27ae60;" ng-show="edit == true">
+        <div class=" modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="modal-title">{{productVariant.StoreItem.Name}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px;">
+                            <label class="control-label "> Price * </label>
+                            <input type="text" ng-model="storeItemStock.Price" class=" form-control" required>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px; padding-left: 0px; ">
+                            <label class="control-label ">Unit Of Measurement *</label>
+                            <ui-select ng-model="productVariant.unitOfMeasurement" theme="bootstrap">
+                                <ui-select-match placeholder=" -- Select Unit Of Measurement --">{{$select.selected.UoMCode}}</ui-select-match>
+                                <ui-select-choices repeat="uom in genericListObject.unitsofMeasurement | propsFilter: {UoMCode: $select.search} track by uom.UnitOfMeasurementId">
+                                    <div ng-bind-html="uom.UoMCode  | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px;">
+                            <label class="control-label "> Currency * </label>
+                            <ui-select ng-model="productVariant.Currency" theme="bootstrap">
+                                <ui-select-match placeholder="-- Select Currency --">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="currency in genericListObject.currencies | propsFilter: {Name: $select.search} track by currency.StoreCurrencyId">
+                                 
+                                    <div ng-bind-html="currency.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+                            <label class="control-label">Expiry Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" close-text="Close" ng-model="productVariant.ExpirationDate" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label ">Variant Property *</label>
+                            <ui-select ng-model="productVariant.productVariation" theme="bootstrap">
+                                <ui-select-match placeholder="-- Select Currency --">{{$select.selected.VariationProperty}}</ui-select-match>
+                                <ui-select-choices repeat="storeItemVariation in genericListObject.storeItemVariations | propsFilter: {VariationProperty: $select.search} track by storeItemVariation.StoreItemVariationId">
+                                    <div ng-bind-html="storeItemVariation.VariationProperty | highlight: $select.search"></div> <!--| propsFilter: {VariationProperty: $select.search}-->
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label ">Variant Value *</label>
+                            <ui-select ng-model="productVariant.productVariationValue" theme="bootstrap">
+                                <ui-select-match placeholder=" -- Select Product Variant Value --">{{$select.selected.Value}}</ui-select-match>
+                                <ui-select-choices repeat="storeItemVariationValue in genericListObject.storeItemVariationValues | propsFilter: {Value: $select.search} track by storeItemVariationValue.StoreItemVariationValueId">
+                                    <div ng-bind-html="storeItemVariationValue.Value  | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label "> Quantity in Stock </label>
+                            <input type="text" ng-model="productVariant.QuantityInStock" class=" form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Expiry Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control datepicker" ng-click="open($event)" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)" close-text="Close" ng-model="productVariant.ExpirationDate" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="row">
+                            <h4>Price List</h4>
+                        </div>
+                        <table role="grid" class="table" style="width: 100%;">
+                            <thead>
+                                <tr style="color: #000; font-size: 0.9em; font-weight: normal">
+                                    <th style="text-align: left; width: 7%">
+                                        Quantity
+                                    </th>
+                                    <th style="text-align: left; width: 12%">
+                                        UoM
+                                    </th>
+                                    <th style="text-align: left; width: 30%">
+                                        Price({{productVariant.Currency.Symbol}})
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="price in productVariant.itemPriceList">
+                                    <td style="text-align: left; width: 7%">{{price.MinimumQuantity}}</td>
+                                    <td style="text-align: left; width: 12%">{{price.UoMCode}}</td>
+                                    <td style="text-align: left; width: 30%">{{price.Price}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="row">
+                <div class="col-md-12" style="padding-left: 0px">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-left: 0px">
+                                <div class="row">
+                                    <label class="control-label ">Image View *</label>
+                                    <ui-select ng-model="sessObj.ImageView" theme="bootstrap">
+                                        <ui-select-match placeholder=" -- Select Image View --">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="imageView in genericListObject.imageViews | propsFilter: {Name: $select.search} track by imageView.ImageViewId">
+                                            <div ng-bind-html="imageView.Name  | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="row">
+                                    <label class="control-label "> Image </label>
+                                    <input type="file" class="form-control" name="file" ng-sess-img accept="image/*" />
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-md-6">
+                                <div>&nbsp;</div>
+                                <div class="row">
+                                    <img ng-src="{{sessObj.ImagePath}}" style="height: 70%; width: 100%" />
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6" style="padding-right: 0px">
+                                       
+                                    </div>
+                                    <div class="col-md-6" style="padding-right: 0px">
+                                        <input type="button" value="{{buttonText}}" ng-click="saveSessObj()" class="btn btn-default" style="float: right" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h5>Inventory Image(s)</h5>
+                        </div>
+                        <table class="dataTable no-footer" role="grid" style="width: auto;">
+                            <thead>
+                                <tr style="color: #fff; font-size: 0.8em; font-weight: normal">
+                                    <th style="width: 30%; text-align: left">
+                                        Image View
+                                    </th>
+                                    <th style="width: 10%">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="img in productVariant.StockUploadObjects">
+                                    <td>{{img.ImageView.Name}}</td>
+                                    <td>
+                                        <a title="Edit" style="cursor: pointer" ng-click="getSessObj(img.ImageViewId)"><img src="/Content/images/edit.png" /></a> &nbsp;
+                                        <a title="Delete" style="cursor: pointer" ng-click="removeSessObj(img.ImageViewId)"><img src="/Content/images/delete.png" /></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row modal-footer">
+                <div class="col-md-10">
+                   
+                </div>
+                <div class="col-md-1" style="padding-right: 0px">
+                    <input type="button" value="Cancel" ng-click="edit = false" class="btn btn-default" style="margin-top: 7px; float: right" />
+                </div>
+                <div class="col-md-1" style="padding-right: 0px">
+                    <input type="button" value="Save" ng-click="editInventory()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</fieldset>
+<br /><br />

@@ -1,0 +1,33 @@
+﻿
+   
+    <div class="row fsEdit" id="popDiv" style="visibility: visible; width: 100%" ng-controller="documentController">
+    <div class=" modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="modal-title">Bulk Upload</h4>
+            </div>
+        </div>
+    </div>
+        
+    <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <label class="control-label "> Select Document * </label>
+                        <input type="file" class="form-control" name="file" ng-permit-document-select />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row modal-footer">
+                <div>
+                    <input type="button" value="Save" ng-click="ProcessDocument()" class="btn btn-default" style="margin-top: 7px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+   

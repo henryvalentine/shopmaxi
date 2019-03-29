@@ -1,0 +1,1037 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Shopkeeper</title>
+    <script src="/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Scripts/jquery-ui.min-1.11.1.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/angular-animate.min.js"></script>
+    <script src="/Scripts/select.min.js"></script>
+    <script src="/Scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/feedbackmessage.css" rel="stylesheet" />
+    <link href="/Content/formControls.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app="access" ng-controller="accessController" ng-init="getSubscriptionPackages()">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Shopkeeper</a>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li style="float: right; margin-right: 5%"> <a style="cursor: pointer" ng-click="showAdminAccess()">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <div class="row" ng-show="plans === false && subSel === false && subsuccessmsg === false">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h1>
+                        SHOPKEEPER
+                    </h1>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="jumbotronrow">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-10">
+                    <h3>
+                        Software as a Service(SaaS) never gets better :::<br /> The solution to your on/offline e-commerce needs right in your palms.
+                    </h3>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+                    <button class="btnGreen btn btn-primary btn-large" ng-click="showSubForm()" style="margin-left: 50%; font-weight: bold">Get Started >></button>
+                </div>
+                <div class="col-md-3">
+
+                </div>
+            </div>
+        </div>
+        <div class="row check-element animate-show" ng-show="plans === true && subSel === false && subsuccessmsg === false;" ng-cloak>
+            <div class="row">
+                <div class="col-md-9">
+                    <h3>Subcription Plans</h3>
+                </div>
+                <div class="col-md-3">
+                    <button class="btnGreen btn btn-primary btn-large" ng-model="trialPackage" ng-click="setTrialPackage()" style="float: left; font-weight: bold">Try Free for 30 Days!</button>
+                </div>
+            </div>
+            <div class="row" style="background: whitesmoke; width: 100%;">
+                <div class="row" style="margin-top: 18px;">
+                    <div class="row alert alert-success" role="alert" ng-show="positivefeedback == true" style="width: 99%; margin: 7px;" ng-cloak>
+                        <span class="col-md-11">{{success}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="positivefeedback = false">x</span>
+                    </div>
+                    <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true" style="width: 99%; margin: 7px;" ng-cloak>
+                        <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer; padding-left: 6%;" title="close" ng-click="negativefeedback = false">x</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <table class="table2 center" ng-cloak>
+                        <tr>
+                            <td ng-repeat="package in allPackages">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h5>{{package.PackageTitle}}</h5>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            <h6>Disk Space(MB):</h6>
+                                        </td>
+                                        <td>
+                                            <h5>{{package.FileStorageSpace | number:0}}</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>Products:</h6>
+                                        </td>
+                                        <td>
+                                            <h5>{{package.NumberOfStoreProducts | number:0}}</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Number Of Outlets:</h6></td>
+                                        <td><h5>{{package.NumberOfOutlets | number:0}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Registers:</h6></td>
+                                        <td><h5>{{package.Registers | number:0}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Users:</h6></td>
+                                        <td><h5>{{package.NumberOfUsers | number:0}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Max. Transaction:</h6></td>
+                                        <td><h5>{{package.MaximumTransactions | number:0}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Transaction Fee(&#8358;):</h6></td>
+                                        <td><h5>{{package.TransactionFee | currency: " "}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Max. Customers:</h6></td>
+                                        <td><h5>{{package.MaximumCustomer | number:0}}</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Dynamic Reporting:</h6></td>
+                                        <td>
+                                            <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.UseReportBuilder" />
+                                            <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.UseReportBuilder" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Live Chat:</h6></td>
+                                        <td>
+                                            <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.LiveChat" />
+                                            <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.LiveChat" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Emal</h6></td>
+                                        <td>
+                                            <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.EmailSupport" />
+                                            <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.EmailSupport" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Telephone Support:</h6></td>
+                                        <td>
+                                            <img src="/Content/images/Done(1).png" style="width: 16px; height: 16px" ng-show="package.TelephoneSupport" />
+                                            <img src="/Content/images/eraser3.png" style="width: 16px; height: 16px" ng-show="!package.TelephoneSupport" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <select ng-model="package.PackagePricing" class="form-control" ng-options="pricing  as pricing.BillingCycleName for pricing in package.PackagePricings track by pricing.PackagePricingId">
+                                                <option value="">-- select --</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btnGreen btn btn-primary" style="width: 100%; margin-top:2%" ng-click="setPackage(package)">Subscribe</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+            </div>
+        </div>
+
+        <div class="row check-element animate-show" ng-show="subSel === true && subsuccessmsg === false && plans === false" style="background: whitesmoke; width: 80%; border: 3px solid #27ae60;" ng-cloak>
+            <div class=" modal-header">
+                <div class="row">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-md-4" style="padding-left: 2px;">
+                                <h4>Subscription setup</h4>
+                            </div>
+                            <div class="col-md-8" style="padding-left: 0px;" ng-show="store.StoreAlias.trim().length > 0">
+                                <span>ID: {{store.StoreAlias}}.shopkepeer.ng</span>
+                            </div>
+                        </div>
+                        <div class="row alert alert-danger" role="alert" ng-show="negativefeedback == true" style="margin-top: 18px; " ng-cloak>
+                            <div class="col-md-12">
+                                <span class="col-md-11">{{error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="negativefeedback = false">x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="row">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" data-ng-model="store.StoreName" ng-change="updatealias(store.StoreName)" class="form-control" placeholder=" Store Name" style="font-size: 1em" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" data-ng-model="store.CompanyName" class="form-control" placeholder="Company Name" style="font-size: 1em" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="tel" data-ng-model="registerModel.PhoneNumber" class="form-control" placeholder="Phone Number(optional)" style="font-size: 1em" />
+                                </div>
+                                <div class="col-md-6">
+                                    <select ng-model="store.Currency" class="form-control" ng-options="currency as  currency.Name for currency in genericList.currencies track by currency.CurrencyId">
+                                        <option value="">-- select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="password" data-ng-model="registerModel.Password" class="form-control" placeholder="Password (at leaset 8 charaters wide)" style="font-size: 1em" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" data-ng-model="registerModel.Email" class="form-control" placeholder="Email" style="font-size: 1em" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div id="captchContaner" class="col-md-12 g-recaptcha" style="margin-top: 7px">
+
+                                </div>
+                            </div>
+                            <br />
+                        </form>
+                        <form method="POST">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select ng-model="package" class="form-control" ng-change="setNewPackage(package)" ng-options="pax as pax.PackageTitle for pax in allPackages track by pax.SubscriptionPackageId">
+                                            <option value="">-- select --</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row" ng-show="trial == false">
+                                            <div class="col-md-6">
+                                                <select ng-model="package.PackagePricing" class="form-control" ng-options="pricing  as pricing.BillingCycleName for pricing in package.PackagePricings2 track by pricing.PackagePricingId">
+                                                    <option value="">-- select --</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select ng-model="store.PaymentMethod" class="form-control" ng-options="paymentmethod as paymentmethod.Name for paymentmethod in genericList.paymentMethods  track by paymentmethod.PaymentMethodId">
+                                                    <option value="">-- select --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row modal-footer">
+                                <div class="col-md-3">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3" style="padding-right: 0px;">
+                                    <input type="button" value="<< Cancel" ng-click="plans = true;subSel = false;subsuccessmsg = false;" class="btn btn-default" style="margin-top: 7px; float: right" />
+                                </div>
+                                <div class="col-md-3" style="padding-left: 0px;">
+                                    <input type="button" value="Subscribe" ng-click="processSubscription()" ng-disabled="inprogress == true" class="btn btn-default" style="margin-top: 7px;" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <fieldset ng-show="subsuccessmsg === true; subSel === false && plans === false" style="border: none; background: whitesmoke; width: 50%; border: 3px solid #27ae60;" ng-cloak>
+            <div class="row alert alert-success" ng-show="subsuccessmsg == true" style="width: 99%; margin: 7px;" ng-cloak>
+                <span class="col-md-11">{{result.Error}}</span><span class="col-md-1" style="font-size: 20px; text-align: left; cursor: pointer" title="close" ng-click="subsuccessmsg = false">x</span>
+            </div>
+            <div class="row" ng-invoice>
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3>ShopKeeper<span style="font-size: 0.8em; font-weight: normal"> &nbsp; Subscription Payment Slip</span></h3>
+                    </div>
+                    <div class="col-md-3" style="padding-right: 0px;">
+                        <input type="button" value="<< Close" ng-click="initializeController()" class="btn btn-default" style="margin-top: 7px; float: right" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Reference:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.Gx}}</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Package:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.PackageName}}</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Duration(Days):</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.Duration | number:0}}</h4>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="result.isTrial == false">
+                    <div class="col-md-5">
+                        <label>Amount Due(&#8358;):</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.Magnitude | currency: " "}}</h4>
+                    </div>
+                </div>
+                <div class="row" ng-show="result.isTrial == false">
+                    <div class="col-md-5">
+                        <label>Payment Option:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label" style="font-weight: bold">{{result.PaymentOption}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Company:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label">{{result.CompanyName}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Store: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label">{{result.StoreName}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Store ID:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <h4 class="control-label">{{result.StoreAddress}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-2" style="padding-right: 0px" ng-show="result.isTrial == true">
+                    <a href="index.html#Master/Payments/ePayment" class=" btn btn-default btn-large" style="float: right; color: #000">Pay Now >></a>
+                </div>
+                <div class="col-md-2" style="padding-left: 0px">
+                    <button class="btn btn-default" ng-click="printInvoice()" style="float: right; color: #000">Print</button>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+
+        <br />
+        <div class="login_overlay popupAccess divStyle" id="adminAuthsection">
+            <a ng-click="closeAdminAccess()" style="color: #999999; float: right; font-weight: bold; text-decoration: none; cursor: pointer">x</a>
+            <div id="loginSection">
+                    
+                    <div class="col-md-row">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-9">
+                            <h4>Admin Login</h4>
+                    </div>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <input type="text" class="form-control" id="email" placeholder="Email" ng-model="model.UserName">
+                        </div>
+                        <br />
+                        <div class="row">
+                            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="model.Password">
+                        </div>
+                        <div class="row" style="margin-bottom: 7px; margin-top: 7px">
+                            <button class="btn btnGreen" id="btnLogin" ng-click="signIn(model)">Login</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+
+        <div class="angular-center-container">
+            <div class="angular-centered" ng-show="busy===true;">
+                <img src="/content/images/spinningred.gif" ng-show="busy===true" id="loading" />
+            </div>
+        </div>
+
+        <div data-widget-cid="widget-0" class="ui-mask"></div>
+        <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - www.shopkeeper.ng | All rights reserved</p>
+    </footer>
+
+        <script type="text/javascript">
+
+            angular.module('access', ['ui.select'])
+                .filter('propsFilter', function () {
+                    return function (items, props) {
+                        var out = [];
+
+                        if (angular.isArray(items)) {
+                            items.forEach(function (item) {
+                                var itemMatches = false;
+
+                                var keys = Object.keys(props);
+                                for (var i = 0; i < keys.length; i++) {
+                                    var prop = keys[i];
+                                    var text = props[prop].toLowerCase();
+                                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                                        itemMatches = true;
+                                        break;
+                                    }
+                                }
+
+                                if (itemMatches) {
+                                    out.push(item);
+                                }
+                            });
+                        } else {
+                            // Let the output be the input untouched
+                            out = items;
+                        }
+
+                        return out;
+                    };
+                })
+                .directive('validNumber', function () {
+                    return {
+                        require: '?ngModel',
+                        link: function (scope, element, attrs, ngModelCtrl) {
+                            if (!ngModelCtrl) {
+                                return;
+                            }
+
+                            ngModelCtrl.$parsers.push(function (val) {
+                                if (angular.isUndefined(val)) {
+                                    val = '';
+                                }
+                                var clean = val.replace(/[^0-9]+/g, '');
+                                if (val !== clean) {
+                                    ngModelCtrl.$setViewValue(clean);
+                                    ngModelCtrl.$render();
+                                }
+                                return clean;
+                            });
+
+                            element.bind('keypress', function (event) {
+                                if (event.keyCode === 32) {
+                                    event.preventDefault();
+                                }
+                            });
+                        }
+                    };
+                })
+                .directive("ngStoreLogo", function () {
+                    return {
+                        link: function ($scope, el) {
+                            el.bind("change", function (e) {
+                                $scope.file = (e.srcElement || e.target).files[0];
+                                $scope.processFile();
+                            });
+                        }
+                    };
+                })
+                .directive('ngInvoice', function ($compile) {
+                    return function ($scope, ngInvoice) {
+                        $scope.invoice = ngInvoice;
+                    };
+                })
+                .controller('accessController', function ($scope, $scope, $http) {
+                    var ccxv = '';
+                    $scope.showSubForm = function () {
+                        angular.element('#captchContaner').html('');
+                        ccxv = grecaptcha.render('captchContaner',
+                                {
+                                    'sitekey': '6LfhKxETAAAAAKvuueQuNAku7HJ0fx0lJ9QeXQvE',
+                                    'theme': 'light'
+                                });
+
+                        $scope.plans = true;
+                        $scope.subSel = false;
+                        $scope.subsuccessmsg = false;
+                    }
+
+                    $scope.accountForm = function () {
+                        $scope.plans = false;
+                        $scope.subSel = true;
+                        $scope.subsuccessmsg = false;
+                    }
+
+                    $scope.landingPage = function () {
+                        $scope.plans = false;
+                        $scope.subSel = false;
+                        $scope.subsuccessmsg = false;
+                    }
+
+                    $scope.successPage = function () {
+                        $scope.plans = false;
+                        $scope.subSel = false;
+                        $scope.subsuccessmsg = true;
+                    }
+                    
+                    $scope.recaptchaCallback = function () {
+                        $scope.rcp = true;
+                    };
+
+                    $scope.initializeController = function () {
+                        $scope.store =
+                        {
+                            'StoreId': '',
+                            'StoreName': '',
+                            'TotalOutlets': 1,
+                            'StoreAlias': '',
+                            'CompanyName': '',
+                            'CustomerEmail': '',
+                            'SubscriptionStatus': 2,
+                            'BillingCycleCode': '',
+                            'StoreLogoPath': '/Content/images/noImage.png',
+                            'CurrencySymbol': '&#8358;',
+                            'DateCreated': '',
+                            'LastUpdated': '',
+                            'Currency': { 'Name': 'Naira', 'CurrencyId': 1, 'Symbol': '#' },
+                            'BillingCycle': { 'BillingCycleId': 1, 'Name': 'Monthly', 'Code': 'MNT' },
+                            'PaymentMethod': { 'Name': '-- Payment Method --', 'PaymentMethodId': '' },
+                            'SubscriptionPackageId': 0,
+                            'Amount': '',
+                            'IsTrial': false
+
+                        };
+
+                        $scope.registerModel =
+                        {
+                            'UserName': '',
+                            'Password': '',
+                            'Email': '',
+                            'PhoneNumber': ''
+                        };
+
+                        $scope.trial = false;
+                        $scope.inprogress = false;
+                        $scope.creatLogin = false;
+                        $scope.clearErrors();
+                        $scope.package = {};
+                    };
+                    
+                    function processSubscriptionCompleted(data)
+                    {
+                        if (data.Code < 1) {
+                            $scope.setError(data.Error);
+                            $scope.inprogress = false;
+                            return;
+                        }
+
+                        var result =
+                        {
+                            'storeName': data.StoreName,
+                            'storeAddress': data.StoreAddress,
+                            'companyName': data.CompanyName,
+                            'referenceCode': data.ReferenceCode,
+                            'amountToPay': data.Magnitude,
+                            'duration': data.Duration,
+                            'currencySymbol': data.CurrencyCode,
+                            'alias': data.StoreAlias,
+                            'successMessage': data.Error,
+                            'packageName': data.PackageName,
+                            'isTrial': data.IsTrial,
+                            'paymentOption': data.PaymentOption
+                        };
+
+
+                        $scope.result = result;
+
+                        var registerModel =
+                        {
+                            'UserName': $scope.registerModel.UserName,
+                            'Password': $scope.registerModel.Password,
+                            'Email': $scope.registerModel.Email,
+                            'PhoneNumber': $scope.registerModel.PhoneNumber,
+                            'AmountDue': data.Magnitude,
+                            'PackageName': data.PackageName,
+                            'StoreName': data.StoreName,
+                            'Duration': data.Duration,
+                            'CompanyName': data.CompanyName,
+                            'ReferenceCode': data.ReferenceCode,
+                            'IsTrial': data.IsTrial,
+                            'Gx': data.Gx,
+                            'IsBankOption': data.IsBankOption,
+                            'PaymentOption': data.PaymentOption
+                        };
+                        $scope.ajaxPost({ registerModel: registerModel }, "/Account/RegisterSubscriptionAccount", $scope.processSubscriptionAccountCompleted);
+
+                    };
+
+                    $scope.processSubscription = function () {
+                        var hh = grecaptcha.getResponse(ccxv);
+
+                        if (hh == null || hh.trim().length < 1) {
+                            alert('Please solve the Recaptcha Challenge before proceeding.');
+                            return;
+                        }
+
+
+                        var store =
+                        {
+                            'StoreId': '',
+                            'StoreName': $scope.store.StoreName,
+                            'TotalOutlets': 0,
+                            'StoreAlias': '',
+                            'CompanyName': '',
+                            'CustomerEmail': $scope.store.CustomerEmail,
+                            'StoreLogoPath': '',
+                            'DefaultCurrency': $scope.store.Currency.Symbol,
+                            'DateCreated': '',
+                            'LastUpdated': '',
+                            'CurrencyName': $scope.store.Currency.Name,
+                            'SubscriptionPackageId': $scope.package.SubscriptionPackageId,
+                            'PackageName': $scope.package.PackageTitle,
+                            'StorageSize': $scope.package.FileStorageSpace,
+                            'Duration': 0,
+                            'BillingCycleId': 0,
+                            'IsBankOption': true,
+                            'PaymentOption': ''
+                        };
+
+                        if ($scope.trial) {
+                            store.IsTrial = true;
+                            store.BillingCycleCode = $scope.notAppBillC.Code;
+                            store.BillingCycleId = $scope.notAppBillC.BillingCycleId;
+                            store.SubscriptionStatus = 1;
+                            store.Duration = 14;
+                            store.PaymentMethodId = $scope.notAppMeth.PaymentMethodId;
+                            store.IsBankOption = false;
+                            store.Amount = 0;
+                        } else {
+                            store.BillingCycleCode = $scope.package.PackagePricing.BillingCycleCode;
+                            store.BillingCycleId = $scope.package.PackagePricing.BillingCycleId; //$scope.store.BillingCycle.BillingCycleId;
+                            store.PaymentMethodId = $scope.store.PaymentMethod.PaymentMethodId;
+                            store.Amount = $scope.package.PackagePricing.Price;
+
+                            store.SubscriptionStatus = 2;
+                            store.IsTrial = false;
+                            store.Duration = $scope.package.PackagePricing.Duration + 14;
+
+                            if (store.BillingCycleId == undefined || store.BillingCycleId == NaN || store.BillingCycleId < 1) {
+                                $scope.setError('Please select a Subscription Duration');
+                                return;
+                            }
+
+                            if (store.PaymentMethodId == undefined || store.PaymentMethodId == null || store.PaymentMethodId == NaN) {
+                                $scope.setError("ERROR: Please select a Payment method.");
+                                return;
+                            }
+
+                            store.PaymentOption = $scope.store.PaymentMethod.Name;
+
+                            if (store.PaymentMethodId === 1) {
+                                store.IsBankOption = true;
+                            } else {
+                                store.IsBankOption = false;
+                            }
+                        }
+
+                        if (store.StoreName == undefined || store.StoreName == null || store.StoreName.length < 1) {
+                            $scope.setError('Please provide your Store Name');
+                            return;
+                        }
+
+                        if ($scope.store.CompanyName == undefined || $scope.store.CompanyName == null || $scope.store.CompanyName.length < 1) {
+                            store.CompanyName = store.StoreName;
+                        } else {
+                            store.CompanyName = $scope.store.CompanyName;
+                        }
+
+                        if ($scope.store.StoreAlias === NaN || $scope.store.StoreAlias == null || $scope.store.StoreAlias.length < 1) {
+                            var arr = store.StoreName.split(' ');
+                            var alias = arr[0].trim();
+                            store.StoreAlias = alias;
+                        } else {
+                            store.StoreAlias = $scope.store.StoreAlias;
+                        }
+
+                        if ($scope.registerModel.Password == undefined || $scope.registerModel.Password == null || $scope.registerModel.Password.length < 1) {
+                            $scope.setError('Please provide your account Password');
+                            return;
+                        }
+
+                        if ($scope.registerModel.Password.length < 8) {
+                            $scope.setError('Please provide a Password of at least eight character lenght');
+                            return;
+                        }
+
+                        if ($scope.registerModel.Email == undefined || $scope.registerModel.Email == null || $scope.registerModel.Email.length < 1) {
+                            $scope.setError('Please provide your Email');
+                            return;
+                        }
+
+                        $scope.registerModel.UserName = $scope.registerModel.Email;
+                        store.CustomerEmail = $scope.registerModel.Email;
+
+                        $scope.inprogress = true;
+
+                        $scope.processing = true;
+                        $scope.ajaxPost({ store: store }, "/Store/Subscribe", processSubscriptionCompleted);
+
+                    };
+
+                    $scope.processSubscriptionAccountCompleted = function (data)
+                    {
+                        if (data.Code < 1)
+                        {
+                            alert(data.Error);
+                            return;
+                        }
+                        $scope.result = data;
+                        $scope.inprogress = false;
+                        $scope.processing = false;
+                        $scope.initializeController();
+                        $scope.successPage();
+                    };
+
+                    $scope.setPackage = function (subpackage)
+                    {
+                        $scope.trial = false;
+                        if (subpackage == undefined || subpackage.SubscriptionPackageId === NaN || subpackage.SubscriptionPackageId < 1)
+                        {
+                            return;
+                        }
+
+                        if (subpackage.SubscriptionPackageId === 1 || subpackage.PackageTitle === 'Trial') {
+                            $scope.setTrialPackage(subpackage);
+                        }
+                        else {
+                            $scope.initializeController();
+                            $scope.setPackageCompleted(subpackage);
+                        }
+
+                    };
+
+                    $scope.setBCycle = function (billingcycle) {
+                        if (billingcycle == undefined || billingcycle.BillingCycleId < 1) {
+                            return;
+                        }
+
+                        $scope.store.BillingCycle = billingcycle;
+                    };
+
+                    $scope.setMethod = function (pMethod) {
+                        if (pMethod == undefined || pMethod.PaymentMethodId < 1) {
+                            return;
+                        }
+
+                        $scope.store.PaymentMethod = pMethod;
+                    };
+
+                    $scope.setNewPackage = function (subpackage) {
+                        $scope.trial = false;
+                        if (subpackage == undefined || subpackage.SubscriptionPackageId == NaN || subpackage.SubscriptionPackageId < 1) {
+                            return;
+                        }
+
+                        $scope.initializeController();
+
+                        if (subpackage.SubscriptionPackageId === 1 || subpackage.PackageTitle === 'Trial') {
+                            $scope.trialPackage = subpackage;
+                            $scope.trial = true;
+                        }
+                        else {
+                            $scope.trial = false;
+                        }
+
+                        $scope.setPackageCompleted(subpackage);
+                    };
+
+                    $scope.setPackageCompleted = function (subpackage) {
+                        if (subpackage == undefined || subpackage.SubscriptionPackageId == NaN || subpackage.SubscriptionPackageId < 1) {
+                            $scope.trial = false;
+                            $scope.setError('Please select a valid Plan.');
+                        }
+                        else {
+                            $scope.package = subpackage;
+                            $scope.header = subpackage.PackageTitle;
+                            $scope.accountForm();
+                            $scope.package.PackagePricings2 = $scope.package.PackagePricings;
+                        }
+                    };
+
+                    $scope.setTrialPackage = function () {
+                        if ($scope.trialPackage == undefined || $scope.trialPackage.SubscriptionPackageId === NaN || $scope.trialPackage.SubscriptionPackageId < 1) {
+                            $scope.trial = false;
+                            return;
+                        }
+
+                        $scope.initializeController();
+                        $scope.trial = true;
+                        $scope.setPackageCompleted($scope.trialPackage);
+                    };
+
+                    $scope.getSubscriptionPackages = function () {
+                        $scope.landingPage();
+                        $scope.initializeController();
+                        $scope.ajaxGet("/Store/GetPackages", $scope.getSubscriptionPackagesCompleted);
+                    };
+
+                    $scope.getSubscriptionPackagesCompleted = function (data) {
+                        if (data.length < 1) {
+                            $scope.setError('SERVER ERROR: Subscription Packages could not be retrieved. Please try again.');
+                            return;
+                        }
+                        else {
+
+                            angular.forEach(data, function (pack, i) {
+                                if (pack.SubscriptionPackageId === 1 || pack.PackageTitle === 'Trial' || pack.PackagePricings.length < 1) {
+                                    $scope.trialPackage = pack;
+                                    data.splice(i, 1);
+                                }
+                            });
+
+                            $scope.allPackages = data;
+                            $scope.ajaxGet("/Store/GetListObjects", $scope.getGenericListCompleted);
+                        }
+                    };
+
+                    $scope.getGenericListCompleted = function (data) {
+                        $scope.genericList = {};
+                        $scope.genericList.currencies = data.Currencies;
+
+                        angular.forEach(data.PaymentMethods, function (v, c) {
+                            if (v.PaymentMethodId === 5 || v.Name === 'Not Applicable') {
+                                $scope.notAppMeth = v;
+                                data.PaymentMethods.splice(c, 1);
+                            }
+                        });
+
+                        $scope.genericList.paymentMethods = data.PaymentMethods;
+
+                        angular.forEach(data.BillingCycles, function (l, p) {
+                            if (l.BillingCycleId === 5 || l.Code === 'NA') {
+                                $scope.notAppBillC = l;
+                                data.BillingCycles.splice(p, 1);
+                            }
+                        });
+
+                        $scope.genericList.billingCycles = data.BillingCycles;
+                    };
+
+                    $scope.updatealias = function (storeName) {
+                        $scope.store.StoreAlias = storeName.replace(/\s+/g, '');
+                    };
+
+                    $scope.setError = function (errorMessage) {
+                        $scope.error = errorMessage;
+                        $scope.negativefeedback = true;
+                        $scope.success = '';
+                        $scope.positivefeedback = false;
+                    };
+
+                    $scope.setSuccessFeedback = function (successMessage) {
+                        $scope.error = '';
+                        $scope.negativefeedback = false;
+                        $scope.success = successMessage;
+                        $scope.positivefeedback = true;
+                    };
+
+                    $scope.clearErrors = function () {
+                        $scope.error = '';
+                        $scope.success = '';
+                        $scope.negativefeedback = false;
+                        $scope.positivefeedback = false;
+                    };
+
+                    $scope.printInvoice = function () {
+                        var contents = $scope.invoice.html();
+                        var popupWin = '';
+                        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                            popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+                            popupWin.window.focus();
+                            popupWin.document.write('<!DOCTYPE html><html><head>' +
+                                '<link rel="stylesheet" type="text/css" href="/Content/feedbackmessage.css" /><link href="/Content/bootstrap.css" rel="stylesheet" />' +
+                                '</head><body onload="window.print()"><div class="reward-body">' + contents + '</div></html>');
+                            popupWin.onbeforeunload = function (event) {
+                                popupWin.close();
+                                return '.\n';
+                            };
+                            popupWin.onabort = function (event) {
+                                popupWin.document.close();
+                                popupWin.close();
+                            };
+                        }
+                        else {
+                            popupWin = window.open('', '_blank', 'width=800,height=600');
+                            popupWin.document.open();
+                            popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + contents + '</html>');
+                            popupWin.document.close();
+                        }
+                        popupWin.document.close();
+
+                        return true;
+
+                    };
+
+
+                    //END POINTS
+
+                    function setUIBusy()
+                    {
+                        $scope.busy = true;
+                    };
+
+                    function stopUIBusy() {
+                        $scope.busy = false;
+                    };
+
+                    $scope.ajaxPost = function (data, route, callbackFunction) {
+                        setUIBusy();
+                        setTimeout(function () {
+                            $http.post(route, data).success(function (response) {
+                                stopUIBusy();
+                                callbackFunction(response, status);
+                            });
+                        }, 1000);
+                    };
+
+                    $scope.ajaxGet = function (route, callbackFunction) {
+                        setTimeout(function () {
+                            setUIBusy();
+                            $http({ method: 'GET', url: route }).success(function (response) {
+                                stopUIBusy();
+                                callbackFunction(response);
+                            });
+                        }, 1000);
+                    };
+
+
+
+                    //User
+
+                    $scope.closeAdminAccess = function () {
+                        angular.element(".ui-mask").hide();
+                        angular.element('#adminAuthsection').hide();
+                    }
+                    $scope.showAdminAccess = function () {
+                        angular.element(".ui-mask").fadeIn();
+                        angular.element("#adminAuthsection").fadeIn();
+
+                    };
+
+                    $scope.signIn = function (auth) {
+                        if (auth == null) {
+                            alert('Action failed');
+                            return;
+                        }
+                        if (auth.UserName == null || auth.UserName.length < 1) {
+                            alert('Please provide your Email');
+                            return;
+                        }
+
+                        if (auth.Password == null || auth.Password.length < 1) {
+                            alert('Please provide your Password');
+                            return;
+                        }
+
+                        var model = { 'UserName': auth.UserName, 'Password': auth.Password };
+                        setUIBusy();
+                        $scope.ajaxPost({ model: model }, "/Account/AdminSignIn", $scope.signinComplete);
+                    };
+
+                    $scope.signinComplete = function (response)
+                    {
+                        stopUIBusy();
+                        if (response.Code < 1)
+                        {
+                            alert(response.UserName);
+                            return;
+                        }
+
+                        $scope.userName = response.UserName;
+                        $scope.isAuthenticated = true;
+                        var isCustomer = response.Roles.filter(function (r) {
+                            return r === "Customer";
+                        });
+
+                        if (isCustomer.length > 0) {
+                            $scope.closeAccess();
+                        }
+                        else {
+                            var redir = '/ngx.html#Master/Dashboard_Admin/Dashboard_Admin';
+                            window.location = redir.replace("/Account", "");
+                        }
+                    };
+                });
+        </script>
+        
+    </div>
+
+</body>
+</html>

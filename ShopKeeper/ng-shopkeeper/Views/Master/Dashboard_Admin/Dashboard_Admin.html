@@ -1,0 +1,466 @@
+﻿<br />
+<br />
+<br />
+<h4>Dashboard</h4>
+
+<br />
+
+<fieldset style="border: none;" ng-controller="dashboardController" ng-init="verifyLogin()"> 
+
+    <div class="row" ng-dashboard>
+        <div class="rm-transition">
+        <div id="page-content">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="dashboard-panel bg-white content-box">
+                            <div class="content-box-wrapper">
+                                <div class="dashboard-heading">
+                                    Weekly forecast
+                                    <span>November 2013 - December 2013</span>
+                                </div>
+                                <div class="center-div sparkline-bar-big-color-2"></div>
+                                <ul class="list-group text-center row mrg25T">
+                                    <li class="col-md-3">
+                                        <h3><i class="glyph-icon icon-caret-up font-green font-size-17 pad5R"></i>$1486</h3>
+                                        <span class="font-gray">Total earnings</span>
+                                    </li>
+                                    <li class="col-md-3">
+                                        <h3><i class="glyph-icon icon-minus font-yellow font-size-17 pad5R"></i>$863</h3>
+                                        <span class="font-gray">Weekly revenue</span>
+                                    </li>
+                                    <li class="col-md-3">
+                                        <h3><i class="glyph-icon icon-caret-down font-red font-size-17 pad5R"></i>$622</h3>
+                                        <span class="font-gray">New sources</span>
+                                    </li>
+                                    <li class="col-md-3">
+                                        <h3><i class="glyph-icon icon-caret-up font-green font-size-17 pad5R"></i>$65</h3>
+                                        <span class="font-gray">Gross margin</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="button-pane button-pane-alt">
+                                <div class="size-md float-left">
+                                    <select data-placeholder="Change statistics area" class="chosen-select">
+                                        <option value=""></option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Aland Islands">Aland Islands</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="American Samoa">American Samoa</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguilla">Anguilla</option>
+                                        <option value="Antarctica">Antarctica</option>
+                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Armenia">Armenia</option>
+                                        <option value="Aruba">Aruba</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Azerbaijan">Azerbaijan</option>
+                                        <option value="Bahamas">Bahamas</option>
+                                        <option value="Bahrain">Bahrain</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Barbados">Barbados</option>
+                                        <option value="Belarus">Belarus</option>
+                                        <option value="Belgium">Belgium</option>
+                                        <option value="Belize">Belize</option>
+                                        <option value="Benin">Benin</option>
+                                        <option value="Bermuda">Bermuda</option>
+                                        <option value="Bhutan">Bhutan</option>
+                                    </select>
+                                </div>
+                                <a href="#" class="btn btn-md btn-info float-right tooltip-button" data-placement="top" title="More statistics">
+                                    <i class="glyph-icon icon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="content-box mrg25T mrg25B">
+                            <table class="table text-center">
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="font-bold text-left">John Clark</td>
+                                        <td class="text-left"><a href="#" title="">Support</a></td>
+                                        <td><div class="label bg-orange">+152</div></td>
+                                        <td class="text-right hidden-mobile">
+                                            <div class="dropdown">
+                                                <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown">
+                                                    <span class="button-content">
+                                                        <i class="glyph-icon font-size-11 icon-cog"></i>
+                                                        <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-edit mrg5R"></i>
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-calendar mrg5R"></i>
+                                                            Schedule
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-download mrg5R"></i>
+                                                            Download
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="#" class="font-red" title="">
+                                                            <i class="glyph-icon icon-remove mrg5R"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td class="font-bold text-left">Kenny Davis</td>
+                                        <td class="text-left"><a href="#" title="">Business management</a></td>
+                                        <td><div class="label bg-black">+152</div></td>
+                                        <td class="text-right hidden-mobile">
+                                            <div class="dropdown">
+                                                <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown">
+                                                    <span class="button-content">
+                                                        <i class="glyph-icon font-size-11 icon-cog"></i>
+                                                        <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-edit mrg5R"></i>
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-calendar mrg5R"></i>
+                                                            Schedule
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-download mrg5R"></i>
+                                                            Download
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="#" class="font-red" title="">
+                                                            <i class="glyph-icon icon-remove mrg5R"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td class="font-bold text-left">David Robertson</td>
+                                        <td class="text-left"><a href="#" title="">Sales</a></td>
+                                        <td><div class="label bg-green">+191</div></td>
+                                        <td class="text-right hidden-mobile">
+                                            <div class="dropdown">
+                                                <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown">
+                                                    <span class="button-content">
+                                                        <i class="glyph-icon font-size-11 icon-cog"></i>
+                                                        <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-edit mrg5R"></i>
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-calendar mrg5R"></i>
+                                                            Schedule
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-download mrg5R"></i>
+                                                            Download
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="#" class="font-red" title="">
+                                                            <i class="glyph-icon icon-remove mrg5R"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td class="font-bold text-left">John Doe</td>
+                                        <td class="text-left"><a href="#" title="">Business</a></td>
+                                        <td><div class="label bg-red">+483</div></td>
+                                        <td class="text-right hidden-mobile">
+                                            <div class="dropdown">
+                                                <a href="#" title="" class="btn btn-md btn-default" data-toggle="dropdown">
+                                                    <span class="button-content">
+                                                        <i class="glyph-icon font-size-11 icon-cog"></i>
+                                                        <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                                    </span>
+                                                </a>
+                                                <ul class="dropdown-menu float-right">
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-edit mrg5R"></i>
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-calendar mrg5R"></i>
+                                                            Schedule
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="">
+                                                            <i class="glyph-icon icon-download mrg5R"></i>
+                                                            Download
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="#" class="font-red" title="">
+                                                            <i class="glyph-icon icon-remove mrg5R"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="content-box mrg25B">
+                            <h3 class="content-box-header bg-blue text-left">
+                                <i class="glyph-icon icon-comments"></i>
+                                Sortable checklist
+                            </h3>
+                            <div class="content-box-wrapper">
+                                <div class="scrollable-content scrollable-nice scrollable-medium">
+                                    <ul class="todo-box todo-sort ui-sortable">
+                                        <li class="border-red">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-1" id="sec-todo-1">
+                                            <label for="sec-todo-1">This is an example task that i need to finish</label>
+                                            <span class="bs-label bg-red" title="">Overdue</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-orange">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-2" id="sec-todo-2">
+                                            <label for="sec-todo-2">Update server to a newer version</label>
+                                            <span class="bs-label bg-green" title="">2 Weeks</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-blue">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-3" id="sec-todo-3">
+                                            <label for="sec-todo-3">Add more awesome template features</label>
+                                            <span class="bs-label bg-blue" title="">Tomorrow</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-purple">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-4" id="sec-todo-4">
+                                            <label for="sec-todo-4">Never forget to buy milk</label>
+                                            <span class="bs-label bg-black" title="">Today</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-red">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-11" id="sec-todo-11">
+                                            <label for="sec-todo-11">This is an example task that i need to finish</label>
+                                            <span class="bs-label bg-red" title="">Overdue</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-orange">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-22" id="sec-todo-22">
+                                            <label for="sec-todo-22">Update server to a newer version</label>
+                                            <span class="bs-label bg-green" title="">2 Weeks</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-blue">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-33" id="sec-todo-33">
+                                            <label for="sec-todo-33">Add more awesome template features</label>
+                                            <span class="bs-label bg-blue" title="">Tomorrow</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-azure">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-5" id="sec-todo-5">
+                                            <label for="sec-todo-5">Respond to all helpdesk questions</label>
+                                            <span class="bs-label bg-purple" title=""> Label 2</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-green">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-6" id="sec-todo-6">
+                                            <label for="sec-todo-6">Fix bugs for future releases</label>
+                                            <span class="bs-label bg-azure" title=""> Label 2</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                        <li class="border-blue-alt">
+                                            <div class="glyph-icon sort-handle icon-ellipsis-v ui-sortable-handle"></div>
+                                            <input type="checkbox" name="sec-todo-7" id="sec-todo-7">
+                                            <label for="sec-todo-7">Clean up the system directory</label>
+                                            <span class="bs-label bg-blue-alt" title=""> Label 2</span>
+                                            <a href="#" class="btn btn-xs btn-danger float-right" title="">
+                                                <i class="glyph-icon icon-remove"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success float-right" title="">
+                                                <i class="glyph-icon icon-check"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="dashboard-box mrg25B bg-blue-alt">
+                            <div class="content-wrapper">
+                                <div class="header">
+                                    Monthly evolution
+                                    <span>July - December 2013</span>
+                                </div>
+                                <div class="sparkline-big">183,579,180,311,405,342,579,405,450,311,180,311,450,302,370,210</div>
+                            </div>
+                            <div class="button-pane">
+                                <div class="size-md float-left heading">
+                                    Overdue orders
+                                </div>
+                                <a href="#" class="btn btn-info float-right tooltip-button" data-placement="top" title="" data-original-title="Remove comment">
+                                    <i class="glyph-icon icon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dashboard-box mrg25B bg-green">
+                            <div class="content-wrapper">
+                                <div class="header">
+                                    Weekly forecast
+                                    <span>November 2013 - December 2013</span>
+                                </div>
+                                <div class="sparkline-big">183,579,180,311,240,180,311,450,302,370,210,610</div>
+                            </div>
+                            <div class="button-pane">
+                                <div class="size-md float-left heading">
+                                    Exchange rate
+                                </div>
+                                <a href="#" class="btn btn-success float-right tooltip-button" data-placement="top" title="" data-original-title="Remove comment">
+                                    <i class="glyph-icon icon-reply"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dashboard-box mrg25B bg-orange">
+                            <div class="content-wrapper">
+                                <div class="header">
+                                    Yearly forecast
+                                    <span>2013 - 2014</span>
+                                </div>
+                                <div class="sparkline-big">183,579,180,311,240,180,311,450,302,370,210,610</div>
+                            </div>
+                            <div class="button-pane">
+                                <div class="size-md float-left heading">
+                                    New visitors
+                                </div>
+                                <a href="#" class="btn btn-black float-right tooltip-button" data-placement="left" title="" data-original-title="Remove comment">
+                                    <i class="glyph-icon icon-cog"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dashboard-box bg-white content-box">
+                            <div class="content-wrapper">
+                                <div class="header">
+                                    Monthly evolution
+                                    <span>July - December 2013</span>
+                                </div>
+                                <div class="center-div sparkline-bar-big-color">183,579,180,311,405,342,579,405,311,311,450,302,370,510,405,342,579,405,311,311,450,302,370,510</div>
+                            </div>
+                            <div class="button-pane button-pane-alt">
+                                <div class="size-md float-left heading">
+                                    Overdue orders
+                                </div>
+                                <a href="#" class="btn btn-info float-right tooltip-button" data-placement="top" title="" data-original-title="Remove comment">
+                                    <i class="glyph-icon icon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- #page-content -->
+        </div><!-- #page-content-wrapper -->
+        <!-- #page-wrapper -->
+    </div>
+</fieldset>

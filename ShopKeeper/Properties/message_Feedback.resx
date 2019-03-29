@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_Group_Name_Error" xml:space="preserve">
+    <value>Please Provide Account Group Name.</value>
+  </data>
+  <data name="Account_Group_Selection_Error" xml:space="preserve">
+    <value>Please Select a valid Account Group.</value>
+  </data>
+  <data name="Bank_Name_Error" xml:space="preserve">
+    <value>Please provide Bank full name.</value>
+  </data>
+  <data name="Bank_Sort_Code_Error" xml:space="preserve">
+    <value>Please provide Bank Sort Code.</value>
+  </data>
+  <data name="Billing_Cycle_Code_Error" xml:space="preserve">
+    <value>Please provide Billing Cycle Code.</value>
+  </data>
+  <data name="Billing_Cycle_Duration_Error" xml:space="preserve">
+    <value>Please provide Billing Cycle Duration.</value>
+  </data>
+  <data name="Billing_Cycle_Name_Error" xml:space="preserve">
+    <value>Please provide Billing Cycle name.</value>
+  </data>
+  <data name="Chart_Of_Account_Code_Error" xml:space="preserve">
+    <value>Please Provide Account Code.</value>
+  </data>
+  <data name="Chart_Of_Account_Selection_Error" xml:space="preserve">
+    <value>Please Select Chart of Account.</value>
+  </data>
+  <data name="Purchase_Order_Items_Error" xml:space="preserve">
+    <value>Please Select at least one item to purchase.</value>
+  </data>
+  <data name="Estimate_Items_Error" xml:space="preserve">
+    <value>Please Select at least one estimate item.</value>
+  </data>
+  <data name="Chart_Of_Account_Type_Error" xml:space="preserve">
+    <value>Please Provide Account Type.</value>
+  </data>
+  <data name="City_Name_Error" xml:space="preserve">
+    <value>Please provide City name.</value>
+  </data>
+  <data name="City_Selection_Error" xml:space="preserve">
+    <value>Please select a valid City.</value>
+  </data>
+  <data name="Cost_Price_In_Stock_Error" xml:space="preserve">
+    <value>Please provide Product's Cost Price</value>
+  </data>
+  <data name="Country_Name_Error" xml:space="preserve">
+    <value>Please provide Country name.</value>
+  </data>
+  <data name="Country_Selection_Error" xml:space="preserve">
+    <value>Please select a Country.</value>
+  </data>
+  <data name="Currency_Name_Error" xml:space="preserve">
+    <value>Please provide Currency name.</value>
+  </data>
+  <data name="Currency_Symbol_Error" xml:space="preserve">
+    <value>Please provide Currency Symbol.</value>
+  </data>
+  <data name="Customer_Type_Code" xml:space="preserve">
+    <value>Please provide Customer Type Code.</value>
+  </data>
+  <data name="Customer_Type_Name" xml:space="preserve">
+    <value>Please provide Customer Type Name.</value>
+  </data>
+  <data name="Delete_Failure" xml:space="preserve">
+    <value>Item information could not be deleted.</value>
+  </data>
+  <data name="Delete_Success" xml:space="preserve">
+    <value>Item information was successfully deleted.</value>
+  </data>
+  <data name="Delivery_Method_Title_Error" xml:space="preserve">
+    <value>Please provide Delivery Method Title.</value>
+  </data>
+  <data name="Duplicate_Sort_Code" xml:space="preserve">
+    <value>This Sort Code has been registered for another Bank.</value>
+  </data>
+  <data name="Duplicate_Mobile_Number" xml:space="preserve">
+    <value>This Mobile phone number is already in use.</value>
+  </data>
+  <data name="Duplicate_Email" xml:space="preserve">
+    <value>This Email is already in use.</value>
+  </data>
+  <data name="Fatal_Error" xml:space="preserve">
+    <value>A fatal error was encountered. Please try again.</value>
+  </data>
+  <data name="Insertion_Failure" xml:space="preserve">
+    <value>Item could not be added. Please try again.</value>
+  </data>
+  <data name="Insertion_Success" xml:space="preserve">
+    <value>Item information was successfully added</value>
+  </data>
+  <data name="Invalid_Selection" xml:space="preserve">
+    <value>Invalid selection!</value>
+  </data>
+  <data name="Item_Duplicate" xml:space="preserve">
+    <value>A similar item already exists.</value>
+  </data>
+  <data name="List_Read_Failure" xml:space="preserve">
+    <value>Requested Item list could not be retrieved.</value>
+  </data>
+  <data name="Model_State_Error" xml:space="preserve">
+    <value>Please provide all required field(s) and try again.</value>
+  </data>
+  <data name="Outlet_Address_Error" xml:space="preserve">
+    <value>The Outlet Address could not be added. Please try again</value>
+  </data>
+  <data name="Outlet_Address_Not_Provided" xml:space="preserve">
+    <value>Please select Provide Outlet Address</value>
+  </data>
+  <data name="Outlet_Name_Eror" xml:space="preserve">
+    <value>Please Provide Outlet Name</value>
+  </data>
+  <data name="Payment_Gateway_Error" xml:space="preserve">
+    <value>Please provide Payment Gateway Name.</value>
+  </data>
+  <data name="Payment_Method_Selection_Error" xml:space="preserve">
+    <value>Please select Payment Method.</value>
+  </data>
+  <data name="Process_Failed" xml:space="preserve">
+    <value>Unable to complete the the requested process. Please try later.</value>
+  </data>
+  <data name="Product_Brand_Name_Error" xml:space="preserve">
+    <value>Please provide Product Brand Name.</value>
+  </data>
+  <data name="Product_Brand_Selection_Error" xml:space="preserve">
+    <value>Please Select Product Brand.</value>
+  </data>
+  <data name="Product_Category_Name_Error" xml:space="preserve">
+    <value>Please provide Product Category name.</value>
+  </data>
+  <data name="Product_Category_Selection_Error" xml:space="preserve">
+    <value>Please Select Product Category.</value>
+  </data>
+  <data name="Product_Name_Error" xml:space="preserve">
+    <value>Please provide Product name/model.</value>
+  </data>
+  <data name="Product_Type_Name_Error" xml:space="preserve">
+    <value>Please provide Product Type name.</value>
+  </data>
+  <data name="Product_Type_Selection_Error" xml:space="preserve">
+    <value>Please Select Product Type.</value>
+  </data>
+  <data name="Product_Variation_Name_Error" xml:space="preserve">
+    <value>Please provide Product Variation name.</value>
+  </data>
+  <data name="Product_Variation_Selection_Error" xml:space="preserve">
+    <value>Please select Product Distinguishing Property</value>
+  </data>
+  <data name="Product_Variation_Value_Name_Error" xml:space="preserve">
+    <value>Please provide Product Variation Value name.</value>
+  </data>
+  <data name="Product_Variation_Value_Selection_Error" xml:space="preserve">
+    <value>Please select Product Distinguishing Value</value>
+  </data>
+  <data name="Quantity_In_Stock_Error" xml:space="preserve">
+    <value>Please provide Quantity in Stock</value>
+  </data>
+  <data name="Read_Failure" xml:space="preserve">
+    <value>Item could not be retrieved.</value>
+  </data>
+  <data name="Session_Time_Out" xml:space="preserve">
+    <value>Your session has timed out.</value>
+  </data>
+  <data name="SKU_Error" xml:space="preserve">
+    <value>Please provide Product's SKU </value>
+  </data>
+  <data name="State_Name_Error" xml:space="preserve">
+    <value>Please provide State name.</value>
+  </data>
+  <data name="State_Selection_Error" xml:space="preserve">
+    <value>Please select a State.</value>
+  </data>
+  <data name="Store_Address_StreetNo_Error" xml:space="preserve">
+    <value>Please provide Address.</value>
+  </data>
+  <data name="Customer_Address_Error" xml:space="preserve">
+    <value>Please provide Customer's Address.</value>
+  </data>
+  <data name="Street_Number_Error" xml:space="preserve">
+    <value>Please provide Customer's Street number.</value>
+  </data>
+  <data name="Store_Item_Selection_Error" xml:space="preserve">
+    <value>Please select a Product</value>
+  </data>
+  <data name="Store_Outlet_Selection_Eror" xml:space="preserve">
+    <value>Please select an Outlet.</value>
+  </data>
+  <data name="Sub_Package_File_Storage_Error" xml:space="preserve">
+    <value>Please provide Subscription Package File Storage Space.</value>
+  </data>
+  <data name="Sub_Package_Max_Transaction_Error" xml:space="preserve">
+    <value>Please provide the Maximum Transactions for the Subscription Package.</value>
+  </data>
+  <data name="Sub_Package_Name_Error" xml:space="preserve">
+    <value>Please provide SubscriptionPackage name.</value>
+  </data>
+  <data name="Sub_Package_Number_of_Outlet_Error" xml:space="preserve">
+    <value>Please provide the Number of Outlets for this Subscription Package.</value>
+  </data>
+  <data name="Sub_Package_Number_of_Product_Error" xml:space="preserve">
+    <value>Please provide  the number of Store Products for this  Subscription Package.</value>
+  </data>
+  <data name="Sub_Package_Number_of_Registers_Error" xml:space="preserve">
+    <value>Please provide the Number of Registers for the Subscription Package.</value>
+  </data>
+  <data name="Sub_Package_Number_of_Users_Error" xml:space="preserve">
+    <value>Please provide the applicable Number of Users for the Subscription Package.</value>
+  </data>
+  <data name="Supplier_Name_Error" xml:space="preserve">
+    <value>Please provide Supplier name.</value>
+  </data>
+  <data name="Supplier_Selection_Error" xml:space="preserve">
+    <value>Please select a Supplier.</value>
+  </data>
+  <data name="Transaction_Amount_Eror" xml:space="preserve">
+    <value>Please provide Transaction Amount.</value>
+  </data>
+  <data name="Transaction_Type_Action_Error" xml:space="preserve">
+    <value>Please provide the Action for this Transaction Type.</value>
+  </data>
+  <data name="Transaction_Type_Name_Error" xml:space="preserve">
+    <value>Please provide Transaction Type name.</value>
+  </data>
+  <data name="Transaction_Type_Selection_Error" xml:space="preserve">
+    <value>Please select Transaction Type.</value>
+  </data>
+  <data name="UoM_Name_Error" xml:space="preserve">
+    <value>Please provide Unit of Measurement name.</value>
+  </data>
+  <data name="Update_Failure" xml:space="preserve">
+    <value>Item could not be updated. Please try again.</value>
+  </data>
+  <data name="Update_Success" xml:space="preserve">
+    <value>Item information was successfully updated.</value>
+  </data>
+  <data name="Product_Variant_List_Error" xml:space="preserve">
+    <value>Product Stock Variant list is empty.</value>
+  </data>
+  <data name="Coupon_Code_Error" xml:space="preserve">
+    <value>Please provide Coupon Code</value>
+  </data>
+  <data name="Coupon_Minimum_Order_Amount_Error" xml:space="preserve">
+    <value>Please provide Minimum Order Amount.</value>
+  </data>
+  <data name="Coupon_Percentage_Deduction_Error" xml:space="preserve">
+    <value>Please provide Percentage Deduction</value>
+  </data>
+  <data name="Coupon_Title_Error" xml:space="preserve">
+    <value>Please provide Coupon Title.</value>
+  </data>
+  <data name="Coupon_Validity_Error" xml:space="preserve">
+    <value>Coupon Validity Start Date must not be later than the Validity End Date.</value>
+  </data>
+  <data name="Coupon_Valid_From_Error" xml:space="preserve">
+    <value>Please Provide Coupon Validity Start Date</value>
+  </data>
+  <data name="Coupon_Valid_From_Less_Error" xml:space="preserve">
+    <value>Coupon Validity Start Date Must not be Earlier than Today</value>
+  </data>
+  <data name="Coupon_Valid_To_Error" xml:space="preserve">
+    <value>Please provide Coupon Validity End Date</value>
+  </data>
+  <data name="Coupon_Valid_To_Less_Error" xml:space="preserve">
+    <value>Coupon Validity Date Date Must not be Earlier than Today</value>
+  </data>
+  <data name="Customer_Type_Selection_Error" xml:space="preserve">
+    <value>Please select Customer Type</value>
+  </data>
+  <data name="First_Purchase_Date_Eror" xml:space="preserve">
+    <value>Customer's purchase Date tis not invalid.</value>
+  </data>
+  <data name="UserProfile_Gender_Error" xml:space="preserve">
+    <value>Please select Gender</value>
+  </data>
+  <data name="UserProfile_Last_Name_Error" xml:space="preserve">
+    <value>Please provide Last Name</value>
+  </data>
+  <data name="UserProfile_Other_Names_Error" xml:space="preserve">
+    <value>Please provide Other Names.</value>
+  </data>
+  <data name="UserProfile_Mobile_Number" xml:space="preserve">
+    <value>Please provide customer's mobile phone number.</value>
+  </data>
+  <data name="UserProfile_Salutation_Error" xml:space="preserve">
+    <value>Please provide Satutation.</value>
+  </data>
+  <data name="UserProfile_Selection_Eror" xml:space="preserve">
+    <value>Please select UserProfile</value>
+  </data>
+  <data name="Inventory_List_Empty" xml:space="preserve">
+    <value>Inventory List is empty</value>
+  </data>
+  <data name="ImageView_Name_Error" xml:space="preserve">
+    <value>Please provide Image View Name.</value>
+  </data>
+  <data name="Update_Session_Time_Out_With_Success" xml:space="preserve">
+    <value>The Inventory Information was successfully updated, but the View Images could not be processed. Please try again</value>
+  </data>
+  <data name="Cannot_Delete" xml:space="preserve">
+    <value>This Item Cannot be Deleted.</value>
+  </data>
+  <data name="File_Collection_Error" xml:space="preserve">
+    <value>Stock Image View Collection could not be processed</value>
+  </data>
+  <data name="File_Error" xml:space="preserve">
+    <value>File Information could not be processed</value>
+  </data>
+  <data name="File_Upload_Error" xml:space="preserve">
+    <value>File could not be Saved</value>
+  </data>
+  <data name="Image_View_Error" xml:space="preserve">
+    <value>Please select an Image View</value>
+  </data>
+  <data name="Invalid_File" xml:space="preserve">
+    <value>Invalid File</value>
+  </data>
+  <data name="Price_In_Stock_Error" xml:space="preserve">
+    <value>Please provide Product's Price</value>
+  </data>
+  <data name="UoM_Selection_Error" xml:space="preserve">
+    <value>Please select Unit of Measurement</value>
+  </data>
+  <data name="Min_Quantity_Error" xml:space="preserve">
+    <value>Please provide minimum Quantity</value>
+  </data>
+  <data name="Store_Item_Stock_Selection_Error" xml:space="preserve">
+    <value>Please select an Inventory</value>
+  </data>
+  <data name="Date_Hired_Error" xml:space="preserve">
+    <value>Date Hired cannot be later than Today</value>
+  </data>
+  <data name="Employee_Address_Add_Error" xml:space="preserve">
+    <value>Employee Address could not be Added</value>
+  </data>
+  <data name="Employee_Address_Error" xml:space="preserve">
+    <value>Please provide Employee's Address</value>
+  </data>
+  <data name="Employee_Address_Update_Error" xml:space="preserve">
+    <value>Employee Address could not be updated</value>
+  </data>
+  <data name="Employee_No_Error" xml:space="preserve">
+    <value>Please provide Employee's Number</value>
+  </data>
+  <data name="JobRole_Selection_Error" xml:space="preserve">
+    <value>Please select a Role</value>
+  </data>
+  <data name="Outlet_Selection_Error" xml:space="preserve">
+    <value>Please select an Outlet</value>
+  </data>
+  <data name="Expected_Delivery_Date_Error" xml:space="preserve">
+    <value>Please provide expected delivery date</value>
+  </data>
+  <data name="Date_Delivered_Error" xml:space="preserve">
+    <value>Please provide purchased item reception date</value>
+  </data>
+  <data name="Quantity_Delivered_Error" xml:space="preserve">
+    <value>Please provide Quantity received</value>
+  </data>
+  <data name="Salutation_Name_Error" xml:space="preserve">
+    <value>Please provide Salutation Name</value>
+  </data>
+  <data name="Amount_Due_Error" xml:space="preserve">
+    <value>Please provide Amount Due</value>
+  </data>
+  <data name="Derived_Total_Cost_Error" xml:space="preserve">
+    <value>Please provide the Total cost for this order.</value>
+  </data>
+  <data name="Invalid_Expiry_Date" xml:space="preserve">
+    <value>Please provide a valid Expiry Date</value>
+  </data>
+  <data name="Amount_Paid_Error" xml:space="preserve">
+    <value>Please Provide Amount Paid</value>
+  </data>
+  <data name="Amount_Sold_Error" xml:space="preserve">
+    <value>Please provide Item Amount</value>
+  </data>
+  <data name="Payment_Type_Selection_Error" xml:space="preserve">
+    <value>Please select Payment Type</value>
+  </data>
+  <data name="Quantity_Sold_Error" xml:space="preserve">
+    <value>Please provide Item Quantity</value>
+  </data>
+  <data name="Sale_Payment_List_Error" xml:space="preserve">
+    <value>Sale Payment infromation could not be processed</value>
+  </data>
+  <data name="Sold_Item_List_Error" xml:space="preserve">
+    <value>The Sold Item(s) information could not be processed</value>
+  </data>
+  <data name="Transaction_List_Error" xml:space="preserve">
+    <value>The requested action could not be completed</value>
+  </data>
+  <data name="Register_Name_Error" xml:space="preserve">
+    <value>Please provide Register Name</value>
+  </data>
+  <data name="Billing_Cycle_Selection_Error" xml:space="preserve">
+    <value>Please select a Billing Cycle</value>
+  </data>
+  <data name="Customer_Email_Empty" xml:space="preserve">
+    <value>Please provide an email fr commuicating with your customers</value>
+  </data>
+  <data name="Invalid_Subscription_Price" xml:space="preserve">
+    <value>Invalid Value for Subscription Payment</value>
+  </data>
+  <data name="Store_Name_Error_1" xml:space="preserve">
+    <value>Please provide your Store Name</value>
+  </data>
+  <data name="company_Name_Duplicate" xml:space="preserve">
+    <value>Company Name  has been taken</value>
+  </data>
+  <data name="Store_Name_Error_2" xml:space="preserve">
+    <value>This Store Name has been taken.</value>
+  </data>
+  <data name="Subscription_Duration_Error" xml:space="preserve">
+    <value>Please select Subscription duration</value>
+  </data>
+  <data name="Subscription_Failure" xml:space="preserve">
+    <value>The Subscription process failed. Please try again later.</value>
+  </data>
+  <data name="Subscription_Success" xml:space="preserve">
+    <value>Your Subscription was successful. Please click on the 'Pay Now' button presented below for payment using your subscription information presented below. Thanks.</value>
+  </data>
+  <data name="Subscription_Amount_Error" xml:space="preserve">
+    <value>The subscription Price could not be computed. Please try again later.</value>
+  </data>
+  <data name="Empty_Email" xml:space="preserve">
+    <value>Please provide Email</value>
+  </data>
+  <data name="Empty_User_Name" xml:space="preserve">
+    <value>Please provide a User Name for your Account</value>
+  </data>
+  <data name="Minimum_Password_Lenght" xml:space="preserve">
+    <value>Please provide a Password of at least 8 character lenght</value>
+  </data>
+  <data name="Password_Empty" xml:space="preserve">
+    <value>Please provide a Password for your Account</value>
+  </data>
+  <data name="Validation_Failed" xml:space="preserve">
+    <value>Validation failed. Please try again.</value>
+  </data>
+  <data name="Admin_Account_Creation_Failure" xml:space="preserve">
+    <value>The Subscription Process was successful but your user account could not be created. You can do this later by providing your reference code at your Login Page.</value>
+  </data>
+  <data name="Activation_Failure" xml:space="preserve">
+    <value>Your account could not be activated. Please try again or contact the Admin for help.</value>
+  </data>
+  <data name="Activation_Success" xml:space="preserve">
+    <value>Your account been successfully activated. Please Login in to your Store with your login Details.</value>
+  </data>
+  <data name="User_Verified" xml:space="preserve">
+    <value>User was successfully Verified.</value>
+  </data>
+  <data name="User_Not_Verified" xml:space="preserve">
+    <value>User verification failed.</value>
+  </data>
+  <data name="Email_Failure" xml:space="preserve">
+    <value>An activation mail could not be sent to the provided Email address. Please go to the 'Request Activation Mail' section on your Store login page to request for a new activation email.</value>
+  </data>
+  <data name="Email_Success" xml:space="preserve">
+    <value>An activation mail has been sent to the provided Email address. Please click on the link provided in the mail to activate your account.</value>
+  </data>
+  <data name="Subscription_Success_1" xml:space="preserve">
+    <value>Your Subscription was successful. An activation Email has been sent to the provided Email address. Please click on the provided link in the Email to activate your account.</value>
+  </data>
+  <data name="Subscription_Success_2" xml:space="preserve">
+    <value>Your Subscription was successful. Please walk into any of the approved Banks with a printed copy of your Payment slip presented below for payment. Thanks.</value>
+  </data>
+  <data name="Subscription_Success_3" xml:space="preserve">
+    <value>Your Subscription was successful. Please click on the 'Pay Now' button presented below for payment using your subscription information presented below. Thanks.</value>
+  </data>
+  <data name="Offline_Activation_Success" xml:space="preserve">
+    <value>Process was successful.</value>
+  </data>
+  <data name="Login_Failed" xml:space="preserve">
+    <value>Your Store Information could not be retrived. Please try again or contact an agent.</value>
+  </data>
+  <data name="Account_Expired" xml:space="preserve">
+    <value>Your Store subscription has expired and you cannot continue with your transactions. Please renew your subscription.</value>
+  </data>
+  <data name="Account_Activation_Required" xml:space="preserve">
+    <value>Your Subscription is yet to be activated.</value>
+  </data>
+  <data name="Account_Activation_Failed" xml:space="preserve">
+    <value>Your Subscription activation failed. Please try again later.</value>
+  </data>
+  <data name="Tm_Lps_Error" xml:space="preserve">
+    <value>Please it's strongly recommended tha you connect online to run updates on your system.</value>
+  </data>
+  <data name="SignUp_Failed" xml:space="preserve">
+    <value>Sign up failed.</value>
+  </data>
+  <data name="Signup_Email_Confirmation_Failed" xml:space="preserve">
+    <value>Your sign up process was successfully completed, but your email could not be confirmed. Please request for an account activation link later.</value>
+  </data>
+  <data name="Signup_Successful" xml:space="preserve">
+    <value>Registeration was successfully completed. Please login with your credentials.</value>
+  </data>
+  <data name="Invalid_Credentials" xml:space="preserve">
+    <value>Invalid username or password.</value>
+  </data>
+  <data name="Unknown_Login_Error" xml:space="preserve">
+    <value>An unknown error was encoutered and the Login operation was aborted. Please contact an agent if error persists.</value>
+  </data>
+  <data name="ChildMenu_Href_Error" xml:space="preserve">
+    <value>Please provide Menu Link</value>
+  </data>
+  <data name="ChildMenu_Order_Error" xml:space="preserve">
+    <value>Please provide Menu Order</value>
+  </data>
+  <data name="ChildMenu_Roles_Error" xml:space="preserve">
+    <value>Please provide at least one role to access the menu</value>
+  </data>
+  <data name="ChildMenu_Value_Error" xml:space="preserve">
+    <value>Please provide Menu Display Text</value>
+  </data>
+  <data name="Menu_List_Empty" xml:space="preserve">
+    <value>Menu List is empty</value>
+  </data>
+  <data name="ParentMenu_Error" xml:space="preserve">
+    <value>Please select Parent Menu</value>
+  </data>
+  <data name="ParentMenu_Href_Error" xml:space="preserve">
+    <value>Please provide Menu Link</value>
+  </data>
+  <data name="ParentMenu_Order_Error" xml:space="preserve">
+    <value>Please provide Menu Order</value>
+  </data>
+  <data name="ParentMenu_Roles_Error" xml:space="preserve">
+    <value>Please provide at least one role to access the menu</value>
+  </data>
+  <data name="ParentMenu_Value_Error" xml:space="preserve">
+    <value>Please provide Menu Display Text</value>
+  </data>
+</root>
